@@ -70,8 +70,8 @@
           = f.text_field :shipping_region_code, class: 'form-control', placeholder: 'CA'
       .col-xs-4
         .form-group
-          = f.label :shipping_country, 'Country Code'
-          = f.text_field :shipping_country, class: 'form-control', placeholder: 'USA'
+          = f.label :shipping_country, 'Country'
+          = f.country_select :shipping_country, { priority_countries: ['GB', 'US'] }, { class: 'form-control' }
     .row
       .col-xs-6
         .form-group
