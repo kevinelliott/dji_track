@@ -7,6 +7,7 @@
           - @order.errors.full_messages.each do |msg|
             %li= msg
 
+    %h4 Credentials
     .row
       .col-xs-4
         .form-group
@@ -25,11 +26,26 @@
           = f.text_field :phone_tail, class: 'form-control', placeholder: '1234'
           %small.form-text
             The last 4 digits of the phone number associated with your order. Not shared publicly.
+    %p
+      Your Merchant, Order ID and your Phone Tail serve as your credentials here.
+      %strong.text-warning Do not forget them!
+      You may update
+      your previous listing just by making sure you are using the same Order ID and Phone Tail when submitting
+      this form.
+
+    %hr
+
+    %h4 Order Details
+    %p
+      The information provided here is optional, but it is useful to help others determine more about your
+      order. Submit this form again later using the same credentials above in order to update your entry.
+
     .row
       .col-xs-12
         .form-group
           = f.label :order_time, 'Order Time'
           = f.text_field :order_time, class: 'form-control', placeholder: '2016-09-29 11:21:21 UTC'
+
     .row
       .col-xs-4
         .form-group
