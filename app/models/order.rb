@@ -18,6 +18,24 @@ class Order < ApplicationRecord
     end
   end
 
+  def pretty_shipping_company
+    case shipping_company.downcase
+    when 'tba' then 'Pending'
+    when 'dhl' then 'DHL'
+    else
+      shipping_company.upcase
+    end
+  end
+
+  def shipping_company_class
+    case shipping_company.downcase
+    when 'tba' then 'shipping-company-pending'
+    when 'dhl' then 'shipping-company-selected'
+    else
+      'shipping-company-unknown'
+    end
+  end
+
   def shipping_status_class
     case shipping_status.downcase.to_sym
     when :pending then 'shipping-status-pending'
