@@ -26,6 +26,7 @@
 %table.table.table-sm.table-striped.table-middle
   %thead.thead-inverse
     %tr
+      %th Rank
       %th Merchant
       %th Order ID
       %th DJI Forum Username
@@ -38,8 +39,9 @@
       %th.text-xs-right Last Reported
 
   %tbody
-    - @orders.each do |order|
+    - @orders.each_with_index do |order, index|
       %tr
+        %td= index+1
         %td.text-xs-left= order.merchant
         %td.text-xs-left
           = order.masked_order_id
