@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show]
 
   def index
-    @merchants = Merchant.order(created_at: :asc).includes(:orders)
+    @merchants = Merchant.active.order(created_at: :asc).includes(:orders)
     @merchant_orders = {}
     @merchants.each do |merchant|
       @merchant_orders[merchant.id] = merchant.orders.order(order_time: :asc)
@@ -18,24 +18,32 @@ class OrdersController < ApplicationController
   end
 
   def create
-    merchant_name = order_params[:merchant].presence || 'DJI'
-    merchant = Merchant.where('LOWER(name) LIKE ?', merchant_name.downcase).first
+    merchant = if order_params[:merchant].present?
+      if order_params[:merchant].to_i.present?
+        Merchant.find(order_params[:merchant].to_i)
+      else
+        merchant_name = order_params[:merchant].presence || 'DJI'
+        Merchant.where('LOWER(name) LIKE ?', merchant_name.downcase).first
+      end
+    else
+      Merchant.find(1)
+    end
 
-    @order = Order.find_or_initialize_by(order_id: order_params[:order_id])
+    @order = Order.find_or_initialize_by(order_id: order_params[:order_id], phone_tail: order_params[:phone_tail])
     @order.merchant              = merchant
-    @order.dji_username          = order_params[:dji_username]
-    @order.email_address         = order_params[:email_address]
+    @order.dji_username          = order_params[:dji_username] if order_params[:dji_username].present?
+    @order.email_address         = order_params[:email_address] if order_params[:email_address].present?
     @order.order_time            = DateTime.parse order_params[:order_time] if order_params[:order_time].present?
-    @order.payment_status        = order_params[:payment_status]
-    @order.phone_tail            = order_params[:phone_tail]
-    @order.shipping_city         = order_params[:shipping_city]
-    @order.shipping_region_code  = order_params[:shipping_region_code]
-    @order.shipping_postal_code  = order_params[:shipping_postal_code]
-    @order.shipping_country      = order_params[:shipping_country]
-    @order.shipping_country_code = order_params[:shipping_country_code]
-    @order.shipping_status       = order_params[:shipping_status]
-    @order.shipping_company      = order_params[:shipping_company]
-    @order.tracking_number       = order_params[:tracking_number]
+    @order.payment_status        = order_params[:payment_status] if order_params[:payment_status].present?
+    @order.phone_tail            = order_params[:phone_tail] if order_params[:phone_tail].present?
+    @order.shipping_city         = order_params[:shipping_city] if order_params[:shipping_city].present?
+    @order.shipping_region_code  = order_params[:shipping_region_code] if order_params[:shipping_region_code].present?
+    @order.shipping_postal_code  = order_params[:shipping_postal_code] if order_params[:shipping_postal_code].present?
+    @order.shipping_country      = order_params[:shipping_country] if order_params[:shipping_country].present?
+    @order.shipping_country_code = order_params[:shipping_country_code] if order_params[:shipping_country_code].present?
+    @order.shipping_status       = order_params[:shipping_status] if order_params[:shipping_status].present?
+    @order.shipping_company      = order_params[:shipping_company] if order_params[:shipping_company].present?
+    @order.tracking_number       = order_params[:tracking_number] if order_params[:tracking_number].present?
     if @order.changes.present?
       # Notify user of any changes if their email address is on file
       @order.last_changed_at = Time.zone.now
@@ -44,7 +52,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
+        format.html { redirect_to orders_path, notice: 'Your entry was submitted. Others will appreciate this. Thank you!' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }

@@ -11,7 +11,7 @@
       .col-xs-4
         .form-group
           = f.label :merchant
-          = f.select :merchant, ['DJI'], {}, { class: 'form-control' }
+          = f.select :merchant, Merchant.active.order(name: :asc).collect { |o| [o.name, o.id] }, { selected: '1', prompt: 'Choose a Merchant' }, { class: 'form-control' }
     .row
       .col-xs-6
         .form-group
@@ -24,12 +24,25 @@
           = f.label :phone_tail, 'Phone Tail'
           = f.text_field :phone_tail, class: 'form-control', placeholder: '1234'
           %small.form-text
-            The last 4 digits of the phone number associated with your order.
+            The last 4 digits of the phone number associated with your order. Not shared publicly.
     .row
       .col-xs-12
         .form-group
           = f.label :order_time, 'Order Time'
           = f.text_field :order_time, class: 'form-control', placeholder: '2016-09-29 11:21:21 UTC'
+    .row
+      .col-xs-4
+        .form-group
+          = f.label :payment_status, 'Payment Status'
+          = f.select :payment_status, ['Pay Confirmed', 'Pay Pending'], {}, { class: 'form-control' }
+      .col-xs-4
+        .form-group
+          = f.label :shipping_status, 'Shipping Status'
+          = f.select :shipping_status, ['Pending', 'Shipped'], {}, { class: 'form-control' }
+      .col-xs-4
+        .form-group
+          = f.label :shipping_company, 'Shipping Company'
+          = f.select :shipping_company, [['Pending', 'Tba'], ['DHL', 'Dhl'], ['FedEx', 'Fdx'], ['UPS', 'Ups']], {}, { class: 'form-control' }
     .row
       .col-xs-4
         .form-group
@@ -44,12 +57,19 @@
           = f.label :shipping_country, 'Country Code'
           = f.text_field :shipping_country, class: 'form-control', placeholder: 'USA'
     .row
-      .col-xs-12
+      .col-xs-6
+        .form-group
+          = f.label :email_address, 'DJI Username'
+          = f.text_field :dji_username, class: 'form-control', placeholder: 'kevinelliott'
+          %small.form-text
+            This help you and others identify your order.
+      .col-xs-6
         .form-group
           = f.label :email_address, 'Email Address'
           = f.text_field :email_address, class: 'form-control', placeholder: 'kevin@welikeinc.com'
           %small.form-text
             Provide your email address if you wish to be notified about changes to your order status. (not yet avail)
+
     = f.hidden_field :manual, value: true
     .actions
       = f.submit 'Save', class: 'btn btn-primary form-control'

@@ -2,7 +2,10 @@ class Order < ApplicationRecord
   before_save :default_order
 
   belongs_to :merchant
-  
+
+  validates :order_id, presence: true, length: { is: 12 }
+  validates :phone_tail, presence: true, length: { is: 4 }
+
   def default_order
     self.last_changed_at  ||= Time.zone.now
     self.payment_status   ||= ''
