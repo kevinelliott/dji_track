@@ -12,6 +12,8 @@ class OrdersController < ApplicationController
   def create
     @order = Order.find_or_initialize_by(order_id: order_params[:order_id])
     @order.merchant              = order_params[:merchant]
+    @order.dji_username          = order_params[:dji_username]
+    @order.email_address         = order_params[:email_address]
     @order.order_time            = DateTime.parse order_params[:order_time] if order_params[:order_time].present?
     @order.payment_status        = order_params[:payment_status]
     @order.phone_tail            = order_params[:phone_tail]
@@ -22,8 +24,7 @@ class OrdersController < ApplicationController
     @order.shipping_country_code = order_params[:shipping_country_code]
     @order.shipping_status       = order_params[:shipping_status]
     @order.shipping_company      = order_params[:shipping_company]
-    @order.email_address         = order_params[:email_address]
-    @order.dji_username          = order_params[:dji_username]
+    @order.tracking_number       = order_params[:tracking_number]
     if @order.changes.present?
       # Notify user of any changes if their email address is on file
       @order.last_changed_at = Time.zone.now
