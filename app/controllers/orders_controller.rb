@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
 
   def create
     @order = Order.find_or_initialize_by(order_id: order_params[:order_id])
+    @order.merchant              = order_params[:merchant]
     @order.order_time            = DateTime.parse order_params[:order_time] if order_params[:order_time].present?
     @order.payment_status        = order_params[:payment_status]
     @order.shipping_city         = order_params[:shipping_city]
@@ -44,6 +45,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_id, :order_time, :payment_status, :payment_method, :payment_total, :shipping_address, :shipping_address_line_2, :shipping_city, :shipping_region_code, :shipping_postal_code, :shipping_country, :shipping_country_code, :shipping_phone, :shipping_status, :shipping_company, :tracking_number, :email_address, :dji_username)
+      params.require(:order).permit(:merchant, :order_id, :order_time, :payment_status, :payment_method, :payment_total, :shipping_address, :shipping_address_line_2, :shipping_city, :shipping_region_code, :shipping_postal_code, :shipping_country, :shipping_country_code, :shipping_phone, :shipping_status, :shipping_company, :tracking_number, :email_address, :dji_username)
     end
 end
