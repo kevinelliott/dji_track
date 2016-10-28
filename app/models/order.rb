@@ -37,6 +37,7 @@ class Order < ApplicationRecord
   end
 
   def shipping_status_class
+    self.shipping_status ||= ''
     case shipping_status.downcase.to_sym
     when :pending then 'shipping-status-pending'
     when :shipped then 'shipping-status-shipped'
