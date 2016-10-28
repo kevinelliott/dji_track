@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   def create
     merchant = if order_params[:merchant].present?
-      if order_params[:merchant].to_i.present?
+      if order_params[:merchant].to_i > 0
         Merchant.find(order_params[:merchant].to_i)
       else
         merchant_name = order_params[:merchant].presence || 'DJI'
