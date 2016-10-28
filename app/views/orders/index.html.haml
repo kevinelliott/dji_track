@@ -20,7 +20,7 @@
 %p.alert.alert-info
   %strong Contribute your data:
   = link_to 'Submit it Manually', new_order_path, class: 'btn btn-sm btn-info'
-  or install the DJI command-line tools at
+  or to submit it automatically every 5 or 10 minutes, install the DJI command-line tools at
   = link_to 'http://github.com/kevinelliott/dji'
   and specify the
   %strong --publish
@@ -63,8 +63,10 @@
               = order.dji_username
             %td.text-xs-left
               = order.order_time
-            %td
-              = order.shipping_country
+            %td.text-xs-left
+              - if order.shipping_country.present?
+                = flag_icon(order.shipping_country[0..1].downcase.to_sym)
+                = order.shipping_country
             %td{ class: order.payment_status_class }
               = order.payment_status
             %td{ class: order.shipping_status_class }

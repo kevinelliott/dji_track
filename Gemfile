@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
+
 ruby '2.3.1'
+
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
@@ -8,15 +10,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-group :development, :test do
-  gem 'byebug', platform: :mri
-end
-group :development do
-  gem 'web-console'
-  gem 'listen', '~> 3.0.5'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
-end
+gem 'flag-icons-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 gem 'devise'
@@ -25,6 +19,19 @@ gem 'haml-rails'
 gem 'high_voltage'
 gem 'pg'
 gem 'sendgrid'
+
+
+group :development, :test do
+  gem 'byebug', platform: :mri
+end
+
+group :development do
+  gem 'web-console'
+  gem 'listen', '~> 3.0.5'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
 group :development do
   gem 'better_errors'
   gem 'foreman'
@@ -39,6 +46,7 @@ group :development do
   gem 'rb-inotify', :require=>false
   gem 'spring-commands-rspec'
 end
+
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'faker'
@@ -48,10 +56,12 @@ group :development, :test do
   gem 'rubocop'
   gem 'thin'
 end
+
 group :production do
   gem 'rails_12factor'
   gem 'unicorn'
 end
+
 group :test do
   gem 'capybara'
   gem 'database_cleaner'
