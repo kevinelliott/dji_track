@@ -23,7 +23,10 @@ class OrdersController < ApplicationController
     @order.shipping_company      = order_params[:shipping_company]
     @order.email_address         = order_params[:email_address]
     @order.dji_username          = order_params[:dji_username]
-    @order.last_changed_at       = Time.zone.now if @order.changes.present?
+    if @order.changes.present?
+      # Notify user of any changes if their email address is on file
+      @order.last_changed_at = Time.zone.now
+    end
     @order.updated_at            = Time.zone.now
 
     respond_to do |format|
