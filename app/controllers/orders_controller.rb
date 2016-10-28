@@ -14,6 +14,7 @@ class OrdersController < ApplicationController
     @order.merchant              = order_params[:merchant]
     @order.order_time            = DateTime.parse order_params[:order_time] if order_params[:order_time].present?
     @order.payment_status        = order_params[:payment_status]
+    @order.phone_tail            = order_params[:phone_tail]
     @order.shipping_city         = order_params[:shipping_city]
     @order.shipping_region_code  = order_params[:shipping_region_code]
     @order.shipping_postal_code  = order_params[:shipping_postal_code]
