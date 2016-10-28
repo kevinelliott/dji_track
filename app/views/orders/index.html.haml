@@ -37,7 +37,7 @@
   %tbody
     - @orders.each do |order|
       %tr
-        %td= order.merchant
+        %td.text-xs-left= order.merchant
         %td.text-xs-left
           = order.masked_order_id
         %td.text-xs-left= order.dji_username
