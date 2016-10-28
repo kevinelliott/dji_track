@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   def create
     merchant_name = order_params[:merchant].presence || 'DJI'
-    merchant = Merchant.where('LOWER(name) LIKE ?', merchant_name.downcase)
+    merchant = Merchant.where('LOWER(name) LIKE ?', merchant_name.downcase).first
 
     @order = Order.find_or_initialize_by(order_id: order_params[:order_id])
     @order.merchant              = merchant
