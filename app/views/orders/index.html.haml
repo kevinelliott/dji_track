@@ -26,8 +26,8 @@
       %th Order ID
       %th DJI Forum Username
       %th Order Time
-      %th Payment Status
       %th Country
+      %th Payment Status
       %th Shipping Status
       %th Shipping Company
       %th.text-xs-right Last Changed
@@ -41,9 +41,9 @@
           = order.masked_order_id
         %td.text-xs-left= order.dji_username
         %td= order.order_time
+        %td= order.shipping_country
         %td{ class: order.payment_status_class }
           = order.payment_status
-        %td= order.shipping_country
         %td{ class: order.shipping_status_class }
           = order.shipping_status
         %td= order.shipping_company
