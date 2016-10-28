@@ -1,0 +1,63 @@
+%p#notice= notice
+
+%p
+  %b Owner:
+  = @order.owner_id
+%p
+  %b Order:
+  = @order.order_id
+%p
+  %b Order time:
+  = @order.order_time
+%p
+  %b Payment status:
+  = @order.payment_status
+%p
+  %b Payment method:
+  = @order.payment_method
+%p
+  %b Payment total:
+  = @order.payment_total
+%p
+  %b Shipping address:
+  = @order.shipping_address
+%p
+  %b Shipping address line 2:
+  = @order.shipping_address_line_2
+%p
+  %b Shipping city:
+  = @order.shipping_city
+%p
+  %b Shipping region code:
+  = @order.shipping_region_code
+%p
+  %b Shipping postal code:
+  = @order.shipping_postal_code
+%p
+  %b Shipping country:
+  = @order.shipping_country
+%p
+  %b Shipping country code:
+  = @order.shipping_country_code
+%p
+  %b Shipping phone:
+  = @order.shipping_phone
+%p
+  %b Shipping status:
+  = @order.shipping_status
+%p
+  %b Shipping company:
+  = @order.shipping_company
+%p
+  %b Tracking number:
+  = @order.tracking_number
+%p
+  %b Email address:
+  = @order.email_address
+%p
+  %b Access key:
+  = @order.access_key
+
+= link_to 'Edit', edit_order_path(@order)
+\|
+= link_to 'Back', orders_path

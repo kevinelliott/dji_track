@@ -1,0 +1,2 @@
+json.extract! order, :id, :owner_id, :order_id, :order_time, :payment_status, :payment_method, :payment_total, :shipping_address, :shipping_address_line_2, :shipping_city, :shipping_region_code, :shipping_postal_code, :shipping_country, :shipping_country_code, :shipping_phone, :shipping_status, :shipping_company, :tracking_number, :email_address, :access_key, :created_at, :updated_at
+json.url order_url(order, format: :json)

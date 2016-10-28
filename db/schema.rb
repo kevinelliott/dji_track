@@ -10,10 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028042100) do
+ActiveRecord::Schema.define(version: 20161028044001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "owner_id"
+    t.string   "order_id"
+    t.datetime "order_time"
+    t.string   "payment_status"
+    t.string   "payment_method"
+    t.string   "payment_total"
+    t.string   "shipping_address"
+    t.string   "shipping_address_line_2"
+    t.string   "shipping_city"
+    t.string   "shipping_region_code"
+    t.string   "shipping_postal_code"
+    t.string   "shipping_country"
+    t.string   "shipping_country_code"
+    t.string   "shipping_phone"
+    t.string   "shipping_status"
+    t.string   "shipping_company"
+    t.string   "tracking_number"
+    t.string   "email_address"
+    t.string   "access_key"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["email_address"], name: "index_orders_on_email_address", using: :btree
+    t.index ["order_id"], name: "index_orders_on_order_id", using: :btree
+    t.index ["order_time"], name: "index_orders_on_order_time", using: :btree
+    t.index ["owner_id"], name: "index_orders_on_owner_id", using: :btree
+    t.index ["payment_status"], name: "index_orders_on_payment_status", using: :btree
+    t.index ["shipping_city"], name: "index_orders_on_shipping_city", using: :btree
+    t.index ["shipping_company"], name: "index_orders_on_shipping_company", using: :btree
+    t.index ["shipping_country"], name: "index_orders_on_shipping_country", using: :btree
+    t.index ["shipping_country_code"], name: "index_orders_on_shipping_country_code", using: :btree
+    t.index ["shipping_postal_code"], name: "index_orders_on_shipping_postal_code", using: :btree
+    t.index ["shipping_region_code"], name: "index_orders_on_shipping_region_code", using: :btree
+    t.index ["shipping_status"], name: "index_orders_on_shipping_status", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

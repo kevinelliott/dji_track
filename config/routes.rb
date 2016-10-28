@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'visitors#index'
+  resources :orders, except: [:new, :edit, :update, :destroy]
+
   devise_for :users
   resources :users
+
+  root to: 'visitors#index'
 end

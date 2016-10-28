@@ -1,0 +1,31 @@
+%h1 Orders
+
+%table.table.table-sm.table-striped.table-middle
+  %thead
+    %tr
+      %th Order ID
+      %th Order Time
+      %th Payment Status
+      %th City
+      %th Region
+      %th Country
+      %th Shipping Status
+      %th Shipping Company
+      %th.text-xs-right Last Reported
+
+  %tbody
+    - @orders.each do |order|
+      %tr
+        %td.text-xs-left
+          = order.masked_order_id
+        %td= order.order_time
+        %td= order.payment_status
+        %td= order.shipping_city
+        %td= order.shipping_region_code
+        %td= order.shipping_country
+        %td{ class: order.shipping_status_class }
+          = order.shipping_status
+        %td= order.shipping_company
+        %td.text-xs-right
+          = time_ago_in_words order.updated_at
+          ago

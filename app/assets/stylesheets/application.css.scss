@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+table.table-middle {
+  td {
+    text-align: center;
+    vertical-align: middle;
+  }
+}

@@ -1,0 +1,67 @@
+= form_for @order do |f|
+  - if @order.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"
+      %ul
+        - @order.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :owner_id
+    = f.number_field :owner_id
+  .field
+    = f.label :order_id
+    = f.text_field :order_id
+  .field
+    = f.label :order_time
+    = f.datetime_select :order_time
+  .field
+    = f.label :payment_status
+    = f.text_field :payment_status
+  .field
+    = f.label :payment_method
+    = f.text_field :payment_method
+  .field
+    = f.label :payment_total
+    = f.text_field :payment_total
+  .field
+    = f.label :shipping_address
+    = f.text_field :shipping_address
+  .field
+    = f.label :shipping_address_line_2
+    = f.text_field :shipping_address_line_2
+  .field
+    = f.label :shipping_city
+    = f.text_field :shipping_city
+  .field
+    = f.label :shipping_region_code
+    = f.text_field :shipping_region_code
+  .field
+    = f.label :shipping_postal_code
+    = f.text_field :shipping_postal_code
+  .field
+    = f.label :shipping_country
+    = f.text_field :shipping_country
+  .field
+    = f.label :shipping_country_code
+    = f.text_field :shipping_country_code
+  .field
+    = f.label :shipping_phone
+    = f.text_field :shipping_phone
+  .field
+    = f.label :shipping_status
+    = f.text_field :shipping_status
+  .field
+    = f.label :shipping_company
+    = f.text_field :shipping_company
+  .field
+    = f.label :tracking_number
+    = f.text_field :tracking_number
+  .field
+    = f.label :email_address
+    = f.text_field :email_address
+  .field
+    = f.label :access_key
+    = f.text_field :access_key
+  .actions
+    = f.submit 'Save'
