@@ -19,6 +19,7 @@
 %table.table.table-sm.table-striped.table-middle
   %thead.thead-inverse
     %tr
+      %th Merchant
       %th Order ID
       %th DJI Forum Username
       %th Order Time
@@ -33,6 +34,7 @@
   %tbody
     - @orders.each do |order|
       %tr
+        %td= order.merchant
         %td.text-xs-left
           = order.masked_order_id
         %td.text-xs-left= order.dji_username
