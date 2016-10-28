@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
     @merchants = Merchant.order(created_at: :asc).includes(:orders)
     @merchant_orders = {}
     @merchants.each do |merchant|
-      @merchant_orders[merchant.id] = merchant.orders
+      @merchant_orders[merchant.id] = merchant.orders.order(order_time: :asc)
     end
   end
 
