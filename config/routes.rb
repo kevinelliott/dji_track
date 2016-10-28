@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :orders, except: [:new, :edit, :update, :destroy]
+  resources :orders, except: [:edit, :update, :destroy]
 
   devise_for :users
   resources :users

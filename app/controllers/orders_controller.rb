@@ -9,6 +9,10 @@ class OrdersController < ApplicationController
   def show
   end
 
+  def new
+    @order = Order.new
+  end
+  
   def create
     @order = Order.find_or_initialize_by(order_id: order_params[:order_id])
     @order.merchant              = order_params[:merchant]

@@ -54,9 +54,9 @@
           = order.shipping_status
         %td{ class: order.shipping_company_class }
           = order.pretty_shipping_company
-        %td.text-xs-right
+        %td.text-xs-right{ title: order.last_changed_at }
           = time_ago_in_words order.last_changed_at
           ago
-        %td.text-xs-right
+        %td.text-xs-right{ title: order.updated_at }
           = time_ago_in_words order.updated_at
           ago
