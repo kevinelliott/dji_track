@@ -18,8 +18,11 @@ class OrdersController < ApplicationController
   end
 
   def create
+    merchant_name = order_params[:merchant].presence || 'DJI'
+    merchant = Merchant.where('LOWER(name) LIKE ?', merchant_name.downcase)
+
     @order = Order.find_or_initialize_by(order_id: order_params[:order_id])
-    @order.merchant              = order_params[:merchant]
+    @order.merchant              = merchant
     @order.dji_username          = order_params[:dji_username]
     @order.email_address         = order_params[:email_address]
     @order.order_time            = DateTime.parse order_params[:order_time] if order_params[:order_time].present?
