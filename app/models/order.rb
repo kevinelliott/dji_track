@@ -3,7 +3,9 @@ class Order < ApplicationRecord
 
   def default_order
     self.last_changed_at  ||= Time.zone.now
+    self.payment_status   ||= ''
     self.shipping_company ||= ''
+    self.shipping_country ||= ''
     self.shipping_status  ||= ''
   end
 
