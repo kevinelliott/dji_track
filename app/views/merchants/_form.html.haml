@@ -1,0 +1,25 @@
+= form_for @merchant do |f|
+  - if @merchant.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@merchant.errors.count, "error")} prohibited this merchant from being saved:"
+      %ul
+        - @merchant.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :website
+    = f.text_field :website
+  .field
+    = f.label :referral_code
+    = f.text_field :referral_code
+  .field
+    = f.label :status
+    = f.text_field :status
+  .actions
+    = f.submit 'Save'

@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
   before_save :default_order
 
+  belongs_to :merchant
+  
   def default_order
     self.last_changed_at  ||= Time.zone.now
     self.payment_status   ||= ''

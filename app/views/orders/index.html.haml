@@ -23,40 +23,55 @@
     Coming soon:
   Email and SMS alerts when key order information changes. DJI only emails you when your order ships, but we can detect various stages that they don't communicate about, such as Wait Pick, Shipped (without tracking), etc.
 
-%table.table.table-sm.table-striped.table-middle
-  %thead.thead-inverse
-    %tr
-      %th Rank
-      %th Merchant
-      %th Order ID
-      %th DJI Forum Username
-      %th Order Time
-      %th Country
-      %th Payment Status
-      %th Shipping Status
-      %th Shipping Company
-      %th.text-xs-right Last Changed
-      %th.text-xs-right Last Reported
+- @merchants.each do |merchant|
+  - orders = @merchant_orders[merchant.id]
 
-  %tbody
-    - @orders.each_with_index do |order, index|
-      %tr
-        %td= index+1
-        %td.text-xs-left= order.merchant
-        %td.text-xs-left
-          = order.masked_order_id
-        %td.text-xs-left= order.dji_username
-        %td.text-xs-left= order.order_time
-        %td= order.shipping_country
-        %td{ class: order.payment_status_class }
-          = order.payment_status
-        %td{ class: order.shipping_status_class }
-          = order.shipping_status
-        %td{ class: order.shipping_company_class }
-          = order.pretty_shipping_company
-        %td.text-xs-right{ title: order.last_changed_at }
-          = time_ago_in_words order.last_changed_at
-          ago
-        %td.text-xs-right{ title: order.updated_at }
-          = time_ago_in_words order.updated_at
-          ago
+  - if orders.present?
+
+    %h2= merchant.name
+
+    %table.table.table-sm.table-striped.table-middle
+      %thead.thead-inverse
+        %tr
+          %th Rank
+          %th Merchant
+          %th Order ID
+          %th DJI Forum Username
+          %th Order Time
+          %th Country
+          %th Payment Status
+          %th Shipping Status
+          %th Shipping Company
+          %th.text-xs-right Last Changed
+          %th.text-xs-right Last Reported
+
+      %tbody
+        - orders.each_with_index do |order, index|
+          %tr
+            %td
+              = index+1
+            %td.text-xs-left
+              = order.merchant.name
+            %td.text-xs-left
+              = order.masked_order_id
+            %td.text-xs-left
+              = order.dji_username
+            %td.text-xs-left
+              = order.order_time
+            %td
+              = order.shipping_country
+            %td{ class: order.payment_status_class }
+              = order.payment_status
+            %td{ class: order.shipping_status_class }
+              = order.shipping_status
+            %td{ class: order.shipping_company_class }
+              = order.pretty_shipping_company
+            %td.text-xs-right{ title: order.last_changed_at }
+              = time_ago_in_words order.last_changed_at
+              ago
+            %td.text-xs-right{ title: order.updated_at }
+              = time_ago_in_words order.updated_at
+              ago
+
+%br
+%br

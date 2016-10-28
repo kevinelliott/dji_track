@@ -1,0 +1,29 @@
+%h1 Listing merchants
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Website
+      %th Referral code
+      %th Status
+      %th
+      %th
+      %th
+
+  %tbody
+    - @merchants.each do |merchant|
+      %tr
+        %td= merchant.name
+        %td= merchant.description
+        %td= merchant.website
+        %td= merchant.referral_code
+        %td= merchant.status
+        %td= link_to 'Show', merchant
+        %td= link_to 'Edit', edit_merchant_path(merchant)
+        %td= link_to 'Destroy', merchant, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Merchant', new_merchant_path

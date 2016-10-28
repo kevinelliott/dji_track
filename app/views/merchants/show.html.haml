@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @merchant.name
+%p
+  %b Description:
+  = @merchant.description
+%p
+  %b Website:
+  = @merchant.website
+%p
+  %b Referral code:
+  = @merchant.referral_code
+%p
+  %b Status:
+  = @merchant.status
+
+= link_to 'Edit', edit_merchant_path(@merchant)
+\|
+= link_to 'Back', merchants_path

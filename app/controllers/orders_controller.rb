@@ -3,7 +3,11 @@ class OrdersController < ApplicationController
   before_action :set_order, only: [:show]
 
   def index
-    @orders = Order.order(order_time: :asc)
+    @merchants = Merchant.order(created_at: :asc).includes(:orders)
+    @merchant_orders = {}
+    @merchants.each do |merchant|
+      @merchant_orders[merchant.id] = merchant.orders
+    end
   end
 
   def show
@@ -12,7 +16,7 @@ class OrdersController < ApplicationController
   def new
     @order = Order.new
   end
-  
+
   def create
     @order = Order.find_or_initialize_by(order_id: order_params[:order_id])
     @order.merchant              = order_params[:merchant]

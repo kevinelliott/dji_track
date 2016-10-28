@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028110912) do
+ActiveRecord::Schema.define(version: 20161028215714) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "merchants", force: :cascade do |t|
+    t.string   "name",                              null: false
+    t.text     "description"
+    t.string   "website"
+    t.string   "referral_code"
+    t.string   "status",        default: "pending", null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.index ["status"], name: "index_merchants_on_status", using: :btree
+  end
 
   create_table "orders", force: :cascade do |t|
     t.integer  "owner_id"
@@ -35,16 +46,18 @@ ActiveRecord::Schema.define(version: 20161028110912) do
     t.string   "tracking_number"
     t.string   "email_address"
     t.string   "access_key"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.datetime "last_changed_at"
     t.string   "dji_username"
     t.string   "merchant"
     t.string   "phone_tail"
+    t.integer  "merchant_id",             default: 1, null: false
     t.index ["dji_username"], name: "index_orders_on_dji_username", using: :btree
     t.index ["email_address"], name: "index_orders_on_email_address", using: :btree
     t.index ["last_changed_at"], name: "index_orders_on_last_changed_at", using: :btree
     t.index ["merchant"], name: "index_orders_on_merchant", using: :btree
+    t.index ["merchant_id"], name: "index_orders_on_merchant_id", using: :btree
     t.index ["order_id"], name: "index_orders_on_order_id", using: :btree
     t.index ["order_time"], name: "index_orders_on_order_time", using: :btree
     t.index ["owner_id"], name: "index_orders_on_owner_id", using: :btree
