@@ -27,7 +27,6 @@
       %th DJI Forum Username
       %th Order Time
       %th Payment Status
-      %th Region
       %th Country
       %th Shipping Status
       %th Shipping Company
@@ -43,7 +42,6 @@
         %td.text-xs-left= order.dji_username
         %td= order.order_time
         %td= order.payment_status
-        %td= order.shipping_region_code
         %td= order.shipping_country
         %td{ class: order.shipping_status_class }
           = order.shipping_status
