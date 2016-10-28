@@ -2,7 +2,9 @@ class Order < ApplicationRecord
   before_save :default_order
 
   def default_order
-    self.last_changed_at ||= Time.zone.now
+    self.last_changed_at  ||= Time.zone.now
+    self.shipping_company ||= ''
+    self.shipping_status  ||= ''
   end
 
   def masked_order_id
@@ -37,7 +39,6 @@ class Order < ApplicationRecord
   end
 
   def shipping_status_class
-    self.shipping_status ||= ''
     case shipping_status.downcase.to_sym
     when :pending then 'shipping-status-pending'
     when :shipped then 'shipping-status-shipped'
