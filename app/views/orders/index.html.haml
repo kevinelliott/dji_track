@@ -1,9 +1,12 @@
-%h1 Orders
-%p
-  The following table contains users who are contributing their Mavic Pro shipment details. This is used to
-  be able to know where/when your order might ship. It just helps you to form an idea of how the queues are
-  shipping.
-  
+.jumbotron
+  %h1.display-3 Orders from DJI
+  %p.lead
+    The following table contains users who are contributing their 
+    %strong Mavic Pro
+    shipment details. This is used to
+    be able to know where/when your order might ship. It just helps you to form an idea of how the queues are
+    shipping.
+    
 %p.alert.alert-info
   To contribute your own data, install the DJI command-line tools at
   = link_to 'http://github.com/kevinelliott/dji'
@@ -16,6 +19,7 @@
   %thead.thead-inverse
     %tr
       %th Order ID
+      %th DJI Forum Username
       %th Order Time
       %th Payment Status
       %th City
@@ -31,6 +35,7 @@
       %tr
         %td.text-xs-left
           = order.masked_order_id
+        %td.text-xs-left= order.dji_username
         %td= order.order_time
         %td= order.payment_status
         %td= order.shipping_city

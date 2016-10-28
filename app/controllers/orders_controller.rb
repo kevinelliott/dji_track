@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  skip_before_filter :verify_authenticity_token
+  skip_before_action :verify_authenticity_token
   before_action :set_order, only: [:show]
 
   def index
@@ -10,20 +10,20 @@ class OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.find_or_initialize_by(order_id: order_params[:order_id]) do |o|
-      o.order_time            = DateTime.parse order_params[:order_time] if order_params[:order_time].present?
-      o.payment_status        = order_params[:payment_status]
-      o.shipping_city         = order_params[:shipping_city]
-      o.shipping_region_code  = order_params[:shipping_region_code]
-      o.shipping_postal_code  = order_params[:shipping_postal_code]
-      o.shipping_country      = order_params[:shipping_country]
-      o.shipping_country_code = order_params[:shipping_country_code]
-      o.shipping_status       = order_params[:shipping_status]
-      o.shipping_company      = order_params[:shipping_company]
-      o.email_address         = order_params[:email_address]
-    end
-    @order.last_changed_at = Time.zone.now if @order.changes.present?
-    @order.updated_at = Time.zone.now
+    @order = Order.find_or_initialize_by(order_id: order_params[:order_id])
+    @order.order_time            = DateTime.parse order_params[:order_time] if order_params[:order_time].present?
+    @order.payment_status        = order_params[:payment_status]
+    @order.shipping_city         = order_params[:shipping_city]
+    @order.shipping_region_code  = order_params[:shipping_region_code]
+    @order.shipping_postal_code  = order_params[:shipping_postal_code]
+    @order.shipping_country      = order_params[:shipping_country]
+    @order.shipping_country_code = order_params[:shipping_country_code]
+    @order.shipping_status       = order_params[:shipping_status]
+    @order.shipping_company      = order_params[:shipping_company]
+    @order.email_address         = order_params[:email_address]
+    @order.dji_username          = order_params[:dji_username]
+    @order.last_changed_at       = Time.zone.now if @order.changes.present?
+    @order.updated_at            = Time.zone.now
 
     respond_to do |format|
       if @order.save
@@ -44,6 +44,6 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:order_id, :order_time, :payment_status, :payment_method, :payment_total, :shipping_address, :shipping_address_line_2, :shipping_city, :shipping_region_code, :shipping_postal_code, :shipping_country, :shipping_country_code, :shipping_phone, :shipping_status, :shipping_company, :tracking_number, :email_address)
+      params.require(:order).permit(:order_id, :order_time, :payment_status, :payment_method, :payment_total, :shipping_address, :shipping_address_line_2, :shipping_city, :shipping_region_code, :shipping_postal_code, :shipping_country, :shipping_country_code, :shipping_phone, :shipping_status, :shipping_company, :tracking_number, :email_address, :dji_username)
     end
 end
