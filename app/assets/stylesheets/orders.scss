@@ -1,15 +1,15 @@
 
-.shipping-status-pending {
+.shipping-status-pending, .payment-status-pending {
   background-color: #ffcccc;
-  color: #ff3333;
+  color: #cc3333;
 }
 
-.shipping-status-shipped {
+.shipping-status-shipped, .payment-status-pay-confirmed {
   background-color: #ccffcc;
-  color: #33ff33;
+  color: #009900;
 }
 
-.shipping-status-unknown {
+.shipping-status-unknown, .payment-status-unknown {
   background-color: #cccccc;
   color: #000000;
 }
