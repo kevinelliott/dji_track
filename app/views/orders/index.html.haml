@@ -1,7 +1,19 @@
 %h1 Orders
+%p
+  The following table contains users who are contributing their Mavic Pro shipment details. This is used to
+  be able to know where/when your order might ship. It just helps you to form an idea of how the queues are
+  shipping.
+  
+%p.alert.alert-info
+  To contribute your own data, install the DJI command-line tools at
+  = link_to 'http://github.com/kevinelliott/dji'
+  and be sure to specify the
+  %strong --publish
+  option.
+
 
 %table.table.table-sm.table-striped.table-middle
-  %thead
+  %thead.thead-inverse
     %tr
       %th Order ID
       %th Order Time
@@ -11,6 +23,7 @@
       %th Country
       %th Shipping Status
       %th Shipping Company
+      %th.text-xs-right Last Changed
       %th.text-xs-right Last Reported
 
   %tbody
@@ -26,6 +39,9 @@
         %td{ class: order.shipping_status_class }
           = order.shipping_status
         %td= order.shipping_company
+        %td.text-xs-right
+          = time_ago_in_words order.last_changed_at
+          ago
         %td.text-xs-right
           = time_ago_in_words order.updated_at
           ago

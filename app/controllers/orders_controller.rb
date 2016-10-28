@@ -22,6 +22,8 @@ class OrdersController < ApplicationController
       o.shipping_company      = order_params[:shipping_company]
       o.email_address         = order_params[:email_address]
     end
+    @order.last_changed_at = Time.zone.now if @order.changes.present?
+    @order.updated_at = Time.zone.now
 
     respond_to do |format|
       if @order.save
