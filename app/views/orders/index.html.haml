@@ -40,7 +40,7 @@
       = merchant.name
       .float-xs-right
         %small
-          #{orders.shipped.count / orders.count}% of Orders Shipped
+          #{((orders.shipped.count / orders.count.to_f) * 100).round}% of Orders Shipped
 
     %table.table.table-sm.table-striped.table-middle
       %thead.thead-inverse
