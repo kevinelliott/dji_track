@@ -3,6 +3,8 @@ class Order < ApplicationRecord
 
   belongs_to :merchant
 
+  scope :shipped, -> { where(shipping_status: 'Shipped') }
+
   validates :order_id, presence: true, length: { is: 12 }
   validates :phone_tail, presence: true, length: { is: 4 }
 

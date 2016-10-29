@@ -36,7 +36,11 @@
 
   - if orders.present?
 
-    %h2= merchant.name
+    %h2
+      = merchant.name
+      .float-xs-right
+        %small
+          #{orders.shipped.count / orders.count}% of Orders Shipped
 
     %table.table.table-sm.table-striped.table-middle
       %thead.thead-inverse
