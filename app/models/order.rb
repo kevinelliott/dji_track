@@ -16,6 +16,15 @@ class Order < ApplicationRecord
     self.shipping_status  ||= ''
   end
 
+  def delivery_status_class
+    case delivery_status
+    when 'delivered' then 'delivery-status-delivered'
+    when 'pending' then 'delivery-status-pending'
+    else
+      'delivery-status-unknown'
+    end
+  end
+
   def masked_order_id
     order_id.present? ? "#{order_id.slice(0..-5)}****" : nil
   end

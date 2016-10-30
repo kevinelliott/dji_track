@@ -1,15 +1,18 @@
 
-.shipping-status-pending, .payment-status-pending, .shipping-company-pending {
+.shipping-status-pending, .payment-status-pending, 
+.shipping-company-pending, .delivery-status-pending {
   background-color: #ffcccc;
   color: #cc3333;
 }
 
-.shipping-status-shipped, .payment-status-pay-confirmed, .shipping-company-selected{
+.shipping-status-shipped, .payment-status-pay-confirmed,
+.shipping-company-selected, .delivery-status-delivered {
   background-color: #ccffcc;
   color: #009900;
 }
 
-.shipping-status-unknown, .payment-status-unknown, .shipping-company-unknown {
+.shipping-status-unknown, .payment-status-unknown,
+.shipping-company-unknown, .delivery-status-unknown {
   background-color: #cccccc;
   color: #000000;
 }
