@@ -16,9 +16,11 @@
 
 @import "flag-icon";
 
-table.table-middle {
-  font-size: 9pt;
+table {
+  font-size: 8pt;
+}
 
+table.table-middle {
   td {
     text-align: center;
     vertical-align: middle;
