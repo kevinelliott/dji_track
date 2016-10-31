@@ -13,3 +13,14 @@
     %main{:role => "main"}
       = render 'layouts/messages'
       = yield
+    %footer
+      .container
+        %hr
+        %small
+          Have issues, ideas, or comments? Contact Kevin at
+          = mail_to 'kevin@welikeinc.com', 'kevin@welikeinc.com', subject: 'DJI Track'
+          and you can find me as
+          %strong kevinelliott
+          on the DJI Forums or RC Groups.
+        %br
+        %br
