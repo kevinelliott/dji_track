@@ -61,14 +61,6 @@ class OrdersController < ApplicationController
     end
   end
 
-  def update_dji_orders
-    @orders = Order.order(updated_at: :asc).limit(10)
-  end
-
-  def update_tracking
-    @orders = Order.where('LOWER(shipping_company) = ?', 'dhl')
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
