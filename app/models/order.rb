@@ -51,7 +51,7 @@ class Order < ApplicationRecord
   def shipping_company_class
     case shipping_company.downcase
     when 'tba' then 'shipping-company-pending'
-    when 'dhl', 'fdx' then 'shipping-company-selected'
+    when 'dhl', 'fedex' then 'shipping-company-selected'
     else
       'shipping-company-unknown'
     end
