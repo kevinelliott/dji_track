@@ -44,8 +44,8 @@
           %th Order Time
           %th Country
           %th Payment
-          %th Shipping
           %th Shipper
+          %th Shipping
           %th Delivery
           %th.text-xs-right Last Changed
           %th.text-xs-right Last Reported
@@ -67,10 +67,10 @@
                 = order.shipping_country
             %td{ class: order.payment_status_class }
               = order.payment_status
-            %td{ class: order.shipping_status_class }
-              = order.shipping_status
             %td{ class: order.shipping_company_class }
               = order.pretty_shipping_company
+            %td{ class: order.shipping_status_class }
+              = order.shipping_status
             %td{ class: order.delivery_status_class }
               - if order.estimated_delivery_at.present?
                 = distance_of_time_in_words(order.estimated_delivery_at, Date.current)

@@ -22,6 +22,7 @@ namespace :update do
           order[:last_changed_at] = Time.zone.now  
           order.save
         else
+          order.touch
           puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} has no changes."
         end
       else
