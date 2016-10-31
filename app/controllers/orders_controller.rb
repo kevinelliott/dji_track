@@ -61,6 +61,10 @@ class OrdersController < ApplicationController
     end
   end
 
+  def update_dji_orders
+    @orders = Order.order(updated_at: :asc).limit(10)
+  end
+
   def update_tracking
     @orders = Order.where('LOWER(shipping_company) = ?', 'dhl')
   end
