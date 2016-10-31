@@ -71,7 +71,7 @@
       .col-xs-4
         .form-group
           = f.label :shipping_country, 'Country'
-          = f.country_select :shipping_country, { priority_countries: ['GB', 'US'] }, { class: 'form-control' }
+          = f.country_select :shipping_country, { priority_countries: ['GB', 'US'], include_blank: 'Select a Country' }, { class: 'form-control' }
     .row
       .col-xs-6
         .form-group
