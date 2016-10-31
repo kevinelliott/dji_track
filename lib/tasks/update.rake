@@ -38,7 +38,7 @@ namespace :update do
     puts "-------------------------------------------------------------------"
     puts
 
-    orders = Order.where('LOWER(shipping_company) = ?', 'dhl')
+    orders = Order.order(order_time: :asc)
 
     orders.each_with_index do |order, index|
       options = { order_number: order.order_id, phone_tail: order.phone_tail }
@@ -49,13 +49,13 @@ namespace :update do
           tr = DJI::DHL.track(order.tracking_number)
           shipment = tr.shipments.first
           if shipment.present?
-            puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} shipment with waybill #{shipment.waybill} has an estimated delivery date of #{shipment.estimated_delivery_date}"
+            puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} #{order.pretty_shipping_company} shipment with waybill #{shipment.waybill} has an estimated delivery date of #{shipment.estimated_delivery_date}"
             order.update(estimated_delivery_at: shipment.estimated_delivery_date, delivery_status: 'enroute')
           else
-            puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} has invalid waybill #{order.tracking_number}!"
+            puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} has invalid #{order.pretty_shipping_company} waybill #{order.tracking_number}!"
           end
         else
-          puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} has a currently unsupported shipper #{order.shipping_company}."
+          puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} has a currently unsupported shipper '#{order.shipping_company}'."
         end
       else
         puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} has no tracking number."
