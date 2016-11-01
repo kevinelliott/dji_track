@@ -13,4 +13,8 @@ Rails.application.routes.draw do
   get '/orders/new', to: redirect('/dji_track/orders/new')
 
   root to: 'visitors#index'
+
+  constraints(host: /dji-track.herokuapp.com/) do
+    match "/(*path)" => redirect { |params, req| "//www.dronehome.io/#{params[:path]}" },  via: [:get, :post]
+  end
 end
