@@ -8,12 +8,12 @@ namespace :update do
     orders = Order.order(updated_at: :asc).limit(10)
 
     orders.each_with_index do |order, index|
-      count   = index + 1
+      count        = index + 1
       debug_prefix = "#{count} - Order #{order.order_id}/#{order.phone_tail}"
-      options = { order_number: order.order_id, phone_tail: order.phone_tail }
 
       if order.order_id.present? && order.phone_tail.present?
-        data = DJI::OrderTracking.tracking_details(options)
+        options = { order_number: order.order_id, phone_tail: order.phone_tail, debug: false }
+        data    = DJI::OrderTracking.tracking_details(options)
 
         if data.present?
           order.payment_total    = data[:total]
