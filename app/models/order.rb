@@ -16,6 +16,15 @@ class Order < ApplicationRecord
     self.shipping_status  ||= ''
   end
 
+  def delivered_in_days
+    delivery = delivered_at.presence || estimated_delivery_at.presence
+    if delivery.present? && order_time.present?
+      (order_time - delivery).abs / 60 / 60 / 24
+    else
+      nil
+    end
+  end
+
   def delivery_status_class
     case delivery_status
     when 'delivered' then 'delivery-status-delivered'

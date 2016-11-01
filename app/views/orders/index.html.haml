@@ -1,15 +1,27 @@
-.jumbotron
-  %h1.display-3 Mavic Orders
-  %p.lead
-    Crowdsourced order statuses. Find out when your 
-    %strong Mavic Pro
-    order ships.
-  %p
-    This is used to
-    be able to know where/when your order might ship. It helps you to get an idea of how the queues are
-    shipping. Right now we need more realtime data to do further analysis on, so you should contribute your order information
-    in order to help other people.
- 
+
+.card
+  .card-block
+    .row
+      .col-lg-4.col-md-4
+        = image_tag 'mavic-pro.png', class: 'img-fluid'
+      .col-lg-8.col-md-8.col-sm-12.col-xs-12
+        %h1.media-heading
+          Mavic Pro Orders
+        %p.lead
+          Crowdsourced order statuses. Find out when your 
+          %strong Mavic Pro
+          order ships.
+        %p.small
+          Estimate when your order might ship. This helps you to get an idea of how the DJI queues are
+          shipping. We need more realtime data to do further analysis on, so you should contribute your order information
+          in order to help other people.
+        %p
+          Average shipping duration is currently  
+          %strong
+            = @average_duration
+        %small.text-muted
+          Last updated 5 minutes ago.
+  
 %p.alert.alert-info
   %strong Contribute your data:
   = link_to 'Submit it Manually', new_order_path, class: 'btn btn-sm btn-info'

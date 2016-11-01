@@ -8,6 +8,16 @@ class OrdersController < ApplicationController
     @merchants.each do |merchant|
       @merchant_orders[merchant.id] = merchant.orders.order(order_time: :asc)
     end
+
+    @average_duration = begin
+      deliveries = []
+      @merchant_orders.each do |merchant, orders|
+        orders.each do |order|
+          deliveries << order.delivered_in_days if order.delivered_in_days.present?
+        end
+      end
+      "#{((deliveries.sum / deliveries.count) / 7).round(1)} weeks"
+    end
   end
 
   def show
