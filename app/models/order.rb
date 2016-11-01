@@ -52,15 +52,20 @@ class Order < ApplicationRecord
     when 'tba' then 'Pending'
     when 'dhl' then 'DHL'
     when 'fedex' then 'FedEx'
+    when 'sagawa' then 'Sagawa'
     else
       shipping_company.upcase
     end
   end
 
   def shipping_company_class
+    valid_shipping_companies = %w[
+      dhl fedex ups usps sagawa
+    ]
+
     case shipping_company.downcase
     when 'tba' then 'shipping-company-pending'
-    when 'dhl', 'fedex' then 'shipping-company-selected'
+    when *valid_shipping_companies then 'shipping-company-selected'
     else
       'shipping-company-unknown'
     end
