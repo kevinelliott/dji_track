@@ -1,3 +1,5 @@
+- content_for :subnav do
+  = render 'layouts/subnav_dji'
 
 .card
   .card-block.bg-highlight
@@ -24,7 +26,7 @@
   
 %p.alert.alert-info
   %strong Contribute your data:
-  = link_to 'Submit it Manually', new_order_path, class: 'btn btn-sm btn-info'
+  = link_to 'Submit it Manually', new_dji_track_order_path, class: 'btn btn-sm btn-info'
   or
   = link_to 'install my DJI command-line tools', 'http://github.com/kevinelliott/dji'
   to see it realtime and self-publish it here.

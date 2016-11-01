@@ -1,0 +1,20 @@
+- content_for :subnav do
+  = render 'layouts/subnav_dji'
+
+.jumbotron
+  %h1.display-4 DJI Track
+  %p.lead
+    A place to track your DJI preorders, regular orders, and understand where your order is in relation to
+    other people's shipping status.
+
+.row
+  .col-md-4
+    .card
+      = image_tag 'mavic-pro.png', class: 'card-img-top img-fluid', alt: 'Mavic Pro'
+      .card-block
+        %h4.card-title Mavic Pro Preorders
+        %p.card-text
+          Realtime shipping statuses of the brand new
+          Mavic Pro and Mavic Pro Fly More combo from DJI.
+        .text-xs-center
+          = link_to 'Mavic Pro Orders', dji_track_orders_path, class: 'btn btn-primary'

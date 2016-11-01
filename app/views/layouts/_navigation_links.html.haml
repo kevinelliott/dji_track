@@ -1,2 +1,2 @@
-%li.nav-item
-  = link_to 'Orders', orders_path, class: 'nav-link'
+%li.nav-item{ class: controller.class.parents.include?(DjiTrack) ? 'active' : '' }
+  = link_to 'DJI Track', dji_track_root_path, class: 'nav-link'

@@ -1,5 +1,5 @@
 .card.card-block
-  = form_for @order do |f|
+  = form_for @order, url: dji_track_orders_path do |f|
     - if @order.errors.any?
       #error_explanation
         %h2= "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"

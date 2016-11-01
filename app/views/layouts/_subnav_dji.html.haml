@@ -1,0 +1,7 @@
+.container
+  %nav.navbar.navbar-dark.bg-info
+    %ul.nav.navbar-nav
+      %li.nav-item{ class: controller.controller_name.eql?('visitors') ? 'active' : '' }
+        = link_to "DJI Track", dji_track_root_path, class: 'nav-link'
+      %li.nav-item{ class: controller.controller_name.eql?('orders') ? 'active' : '' }
+        = link_to "Orders", dji_track_orders_path, class: 'nav-link'

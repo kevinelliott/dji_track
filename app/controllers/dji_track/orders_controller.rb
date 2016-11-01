@@ -1,4 +1,4 @@
-class OrdersController < ApplicationController
+class DjiTrack::OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_order, only: [:show]
 
@@ -62,7 +62,7 @@ class OrdersController < ApplicationController
 
     respond_to do |format|
       if @order.save
-        format.html { redirect_to orders_path, notice: 'Your entry was submitted. Others will appreciate this. Thank you!' }
+        format.html { redirect_to dji_track_orders_path, notice: 'Your entry was submitted. Others will appreciate this. Thank you!' }
         format.json { render :show, status: :created, location: @order }
       else
         format.html { render :new }
