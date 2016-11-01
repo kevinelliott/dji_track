@@ -8,25 +8,31 @@ namespace :update do
     orders = Order.order(updated_at: :asc).limit(10)
 
     orders.each_with_index do |order, index|
+      count   = index + 1
+      debug_prefix = "#{count} - Order #{order.order_id}/#{order.phone_tail}"
       options = { order_number: order.order_id, phone_tail: order.phone_tail }
 
-      data = DJI::OrderTracking.tracking_details(options)
+      if order.order_id.present? && order.phone_tail.present?
+        data = DJI::OrderTracking.tracking_details(options)
 
-      if data.present?
-        order.payment_total    = data[:total]
-        order.shipping_status  = data[:shipping_status]
-        order.shipping_company = data[:shipping_company]
-        order.tracking_number  = data[:tracking_number]
-        if order.changes.present?
-          puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} has changes: #{order.changes.inspect}"
-          order[:last_changed_at] = Time.zone.now  
-          order.save
+        if data.present?
+          order.payment_total    = data[:total]
+          order.shipping_status  = data[:shipping_status]
+          order.shipping_company = data[:shipping_company]
+          order.tracking_number  = data[:tracking_number]
+          if order.changes.present?
+            puts "#{debug_prefix} has changes: #{order.changes.inspect}"
+            order[:last_changed_at] = Time.zone.now  
+            order.save
+          else
+            order.touch
+            puts "#{debug_prefix} has no changes."
+          end
         else
-          order.touch
-          puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} has no changes."
+          puts "#{debug_prefix} is not a valid DJI order. Unable to find it on DJI's website.'"
         end
       else
-        puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} is not a valid DJI order."
+        puts "#{debug_prefix} is not a valid DJI order. Phone tail is not provided."
       end
 
       # Add some delay so that we're not hitting DJI's website too hard
