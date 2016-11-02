@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161030110231) do
+ActiveRecord::Schema.define(version: 20161102010023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "manufacturers", force: :cascade do |t|
+    t.string   "name",            null: false
+    t.string   "code",            null: false
+    t.text     "description"
+    t.string   "website"
+    t.string   "support_email"
+    t.string   "support_website"
+    t.string   "logo_url"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["code"], name: "index_manufacturers_on_code", using: :btree
+    t.index ["name"], name: "index_manufacturers_on_name", using: :btree
+  end
 
   create_table "merchants", force: :cascade do |t|
     t.string   "name",                              null: false
@@ -73,6 +87,14 @@ ActiveRecord::Schema.define(version: 20161030110231) do
     t.index ["shipping_postal_code"], name: "index_orders_on_shipping_postal_code", using: :btree
     t.index ["shipping_region_code"], name: "index_orders_on_shipping_region_code", using: :btree
     t.index ["shipping_status"], name: "index_orders_on_shipping_status", using: :btree
+  end
+
+  create_table "terms", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["name"], name: "index_terms_on_name", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

@@ -29,7 +29,7 @@ namespace :update do
             puts "#{debug_prefix} has no changes."
           end
         else
-          puts "#{debug_prefix} is not a valid DJI order. Unable to find it on DJI's website.'"
+          puts "#{debug_prefix} is not a valid DJI order. Unable to find it on DJI's website."
         end
       else
         puts "#{debug_prefix} is not a valid DJI order. Phone tail is not provided."
@@ -57,6 +57,7 @@ namespace :update do
           shipment = tr.shipments.first
           if shipment.present?
             puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} #{order.pretty_shipping_company} shipment with waybill #{shipment.waybill} has an estimated delivery date of #{shipment.estimated_delivery_date}"
+            puts shipment.inspect
             order.update(estimated_delivery_at: shipment.estimated_delivery_date, delivery_status: 'enroute')
           else
             puts "#{index + 1} - Order #{order.order_id}/#{order.phone_tail} has invalid #{order.pretty_shipping_company} waybill #{order.tracking_number}!"

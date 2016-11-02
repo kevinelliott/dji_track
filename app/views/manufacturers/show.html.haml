@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @manufacturer.name
+%p
+  %b Code:
+  = @manufacturer.code
+%p
+  %b Description:
+  = @manufacturer.description
+%p
+  %b Website:
+  = @manufacturer.website
+%p
+  %b Support email:
+  = @manufacturer.support_email
+%p
+  %b Support website:
+  = @manufacturer.support_website
+%p
+  %b Logo url:
+  = @manufacturer.logo_url
+
+= link_to 'Edit', edit_manufacturer_path(@manufacturer)
+\|
+= link_to 'Back', manufacturers_path

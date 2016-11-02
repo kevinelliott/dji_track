@@ -1,0 +1,27 @@
+%h1 Manufacturers
+%p
+  Just seemingly a few years ago there were only a few manufacturers of quadcopters &mdash; also 
+  referred to as Unmanned Aerial Vehicles (UAVs) and drones. Today there are several major
+  players who make 
+  %strong high end
+  &amp;
+  %strong prosumer drones
+  , several startups making 
+  %strong adventure drones
+  and a large variety companies making lower end 
+  %strong play drones
+  giving room to a lot of competition and a variety of choices for buyers.
+
+- @manufacturers.each do |manufacturer|
+  .media.manufacturer
+    .media-left
+      = image_tag manufacturer.logo_url, class: 'media-object manufacturer-logo', width: 100
+    .media-body.manufacturer-body
+      %h4.manufacturer-name
+        = manufacturer.name
+      .manufacturer-description
+        = manufacturer.description
+      .manufacturer-support.text-muted
+        Suppport:
+        - if manufacturer.support_website.present?
+          = link_to manufacturer.support_website, manufacturer.support_website, target: '_blank'

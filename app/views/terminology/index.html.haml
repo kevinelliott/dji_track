@@ -1,0 +1,19 @@
+%h1 Drone Terminology
+%p
+  An index of terminology to help you understand the world of Unmanned Aerial Vehicles (UAVs).
+  
+%p.alert.alert-info
+  Send email to
+  = mail_to 'kevin@welikeinc.com', 'kevin@welikeinc.com', subject: 'DroneHome Terminology'
+  for additions or corrections.
+
+#accordion{ role: 'tablist', 'aria-multiselectable' => 'true' }
+  - @terms.each do |term|
+    .card
+      .card-header{ role: 'tab', id: "termHeading#{term.id}" }
+        %h5.mb-0
+          = link_to "#termCollapse#{term.id}", 'data-toggle' => 'collapse', 'data-parent' => '#accordion', 'aria-expanded' => 'true' do
+            = term.name
+      .collapse.in{ id: "termCollapse#{term.id}", role: 'tabpanel', 'aria-labelledby' => 'headingOne' }
+        .card-block
+          = term.description

@@ -1,0 +1,31 @@
+= form_for @manufacturer do |f|
+  - if @manufacturer.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@manufacturer.errors.count, "error")} prohibited this manufacturer from being saved:"
+      %ul
+        - @manufacturer.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :website
+    = f.text_field :website
+  .field
+    = f.label :support_email
+    = f.text_field :support_email
+  .field
+    = f.label :support_website
+    = f.text_field :support_website
+  .field
+    = f.label :logo_url
+    = f.text_field :logo_url
+  .actions
+    = f.submit 'Save'

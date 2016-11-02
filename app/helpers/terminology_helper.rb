@@ -1,0 +1,2 @@
+module TerminologyHelper
+end

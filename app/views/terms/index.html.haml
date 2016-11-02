@@ -1,0 +1,22 @@
+%h1 Terms
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @terms.each do |term|
+      %tr
+        %td= term.name
+        %td= term.description
+        %td= link_to 'Edit', edit_term_path(term)
+        %td= link_to 'Destroy', term, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Term', new_term_path
