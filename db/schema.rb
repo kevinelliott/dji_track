@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102073128) do
+ActiveRecord::Schema.define(version: 20161102082139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20161102073128) do
     t.datetime "estimated_delivery_at"
     t.string   "delivery_status",         default: "pending"
     t.datetime "delivered_at"
+    t.integer  "product_id"
     t.index ["delivered_at"], name: "index_orders_on_delivered_at", using: :btree
     t.index ["delivery_status"], name: "index_orders_on_delivery_status", using: :btree
     t.index ["dji_username"], name: "index_orders_on_dji_username", using: :btree
@@ -80,6 +81,7 @@ ActiveRecord::Schema.define(version: 20161102073128) do
     t.index ["order_time"], name: "index_orders_on_order_time", using: :btree
     t.index ["owner_id"], name: "index_orders_on_owner_id", using: :btree
     t.index ["payment_status"], name: "index_orders_on_payment_status", using: :btree
+    t.index ["product_id"], name: "index_orders_on_product_id", using: :btree
     t.index ["shipping_city"], name: "index_orders_on_shipping_city", using: :btree
     t.index ["shipping_company"], name: "index_orders_on_shipping_company", using: :btree
     t.index ["shipping_country"], name: "index_orders_on_shipping_country", using: :btree
@@ -150,5 +152,6 @@ ActiveRecord::Schema.define(version: 20161102073128) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "orders", "products"
   add_foreign_key "products", "manufacturers"
 end

@@ -41,6 +41,7 @@ class DjiTrack::OrdersController < ApplicationController
 
     @order = Order.find_or_initialize_by(order_id: order_params[:order_id], phone_tail: order_params[:phone_tail])
     @order.merchant              = merchant
+    @order.product               = Product.find(order_params[:product_id])
     @order.dji_username          = order_params[:dji_username] if order_params[:dji_username].present?
     @order.email_address         = order_params[:email_address] if order_params[:email_address].present?
     @order.order_time            = DateTime.parse order_params[:order_time] if order_params[:order_time].present?
@@ -79,6 +80,6 @@ class DjiTrack::OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:merchant, :order_id, :order_time, :payment_status, :payment_method, :payment_total, :shipping_address, :shipping_address_line_2, :shipping_city, :shipping_region_code, :shipping_postal_code, :shipping_country, :shipping_country_code, :shipping_phone, :shipping_status, :shipping_company, :tracking_number, :email_address, :dji_username, :phone_tail)
+      params.require(:order).permit(:merchant, :order_id, :order_time, :payment_status, :payment_method, :payment_total, :shipping_address, :shipping_address_line_2, :shipping_city, :shipping_region_code, :shipping_postal_code, :shipping_country, :shipping_country_code, :shipping_phone, :shipping_status, :shipping_company, :tracking_number, :email_address, :product_id, :dji_username, :phone_tail)
     end
 end

@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   before_save :default_order
 
   belongs_to :merchant
+  belongs_to :product
 
   scope :shipped, -> { where(shipping_status: 'Shipped') }
 

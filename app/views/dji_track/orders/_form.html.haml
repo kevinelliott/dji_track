@@ -41,7 +41,11 @@
       order. Submit this form again later using the same credentials above in order to update your entry.
 
     .row
-      .col-xs-12
+      .col-xs-6
+        .form-group
+          = f.label :product_id, 'Product'
+          = f.collection_select :product_id, Product.includes(:manufacturer).order('manufacturers.name ASC, products.name ASC'), :id, :manufacturer_product_name, { prompt: 'Select a Product' }, { class: 'form-control' }
+      .col-xs-6
         .form-group
           = f.label :order_time, 'Order Time'
           = f.text_field :order_time, class: 'form-control', placeholder: '2016-09-29 11:21:21 UTC'

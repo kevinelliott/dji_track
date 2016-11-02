@@ -9,4 +9,8 @@ class Product < ApplicationRecord
     id = asin.presence || upc.presence
     "http://www.amazon.com/dp/#{id}/?tag=#{amazon_affiliate_code}"
   end
+
+  def manufacturer_product_name
+    "#{manufacturer.name} #{name}"
+  end
 end
