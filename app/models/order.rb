@@ -32,7 +32,7 @@ class Order < ApplicationRecord
       if Time.current > estimated_delivery_at
         'delivery-status-arriving'
       else
-        'delivery-status-pending'
+        'delivery-status-enroute'
       end
     when 'pending' then 'delivery-status-pending'
     else
