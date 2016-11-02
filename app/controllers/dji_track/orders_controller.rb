@@ -41,7 +41,7 @@ class DjiTrack::OrdersController < ApplicationController
 
     @order = Order.find_or_initialize_by(order_id: order_params[:order_id], phone_tail: order_params[:phone_tail])
     @order.merchant              = merchant
-    @order.product               = Product.find(order_params[:product_id])
+    @order.product               = Product.find(order_params[:product_id]) if order_params[:product_id].present?
     @order.dji_username          = order_params[:dji_username] if order_params[:dji_username].present?
     @order.email_address         = order_params[:email_address] if order_params[:email_address].present?
     @order.order_time            = DateTime.parse order_params[:order_time] if order_params[:order_time].present?
