@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102010023) do
+ActiveRecord::Schema.define(version: 20161102073128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,25 @@ ActiveRecord::Schema.define(version: 20161102010023) do
     t.index ["shipping_status"], name: "index_orders_on_shipping_status", using: :btree
   end
 
+  create_table "products", force: :cascade do |t|
+    t.integer  "manufacturer_id",                     null: false
+    t.string   "name",                                null: false
+    t.string   "code",                                null: false
+    t.text     "description"
+    t.string   "logo_url"
+    t.string   "website"
+    t.string   "upc"
+    t.string   "asin"
+    t.string   "status",          default: "pending", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.string   "dji_store_url"
+    t.index ["code"], name: "index_products_on_code", using: :btree
+    t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id", using: :btree
+    t.index ["name"], name: "index_products_on_name", using: :btree
+    t.index ["status"], name: "index_products_on_status", using: :btree
+  end
+
   create_table "terms", force: :cascade do |t|
     t.string   "name",        null: false
     t.text     "description"
@@ -131,4 +150,5 @@ ActiveRecord::Schema.define(version: 20161102010023) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  add_foreign_key "products", "manufacturers"
 end

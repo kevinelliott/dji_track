@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Manufacturer:
+  = @product.manufacturer
+%p
+  %b Name:
+  = @product.name
+%p
+  %b Code:
+  = @product.code
+%p
+  %b Description:
+  = @product.description
+%p
+  %b Logo url:
+  = @product.logo_url
+%p
+  %b Website:
+  = @product.website
+%p
+  %b Upc:
+  = @product.upc
+%p
+  %b Asin:
+  = @product.asin
+%p
+  %b Status:
+  = @product.status
+
+= link_to 'Edit', edit_product_path(@product)
+\|
+= link_to 'Back', products_path

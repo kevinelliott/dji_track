@@ -1,0 +1,20 @@
+%h1 Products
+
+.card-deck-wrapper
+  .card-deck
+    - @products.each do |product|
+      .card
+        = image_tag product.logo_url, class: 'card-img-top w-100'
+        .card-block
+          %h5.card-title
+            = product.name
+          %h6.card-subtitle.text-muted
+            = product.manufacturer.name
+        .card-block
+          %p.card-text
+            = product.description
+        .card-footer
+          - if product.dji_store_url.present?
+            = link_to 'DJI Store', product.dji_store_url, class: 'btn btn-sm btn-outline-secondary', target: '_blank'
+          - if product.asin.present? || product.upc.present?
+            = link_to 'Amazon', product.amazon_url, class: 'btn btn-sm btn-outline-success'

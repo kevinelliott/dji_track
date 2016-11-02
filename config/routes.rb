@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :products
   namespace :dji_track do
     root to: 'visitors#index'
     resources :orders, except: [:edit, :update, :destroy]

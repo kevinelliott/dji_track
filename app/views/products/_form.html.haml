@@ -1,0 +1,40 @@
+= form_for @product do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@product.errors.count, "error")} prohibited this product from being saved:"
+      %ul
+        - @product.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :manufacturer_id, 'Manufacturer'
+    = f.collection_select :manufacturer_id, Manufacturer.order(name: :asc), :id, :name, prompt: 'Select a Manufacturer'
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :logo_url
+    = f.text_field :logo_url
+  .field
+    = f.label :website
+    = f.text_field :website
+  .field
+    = f.label :upc
+    = f.text_field :upc
+  .field
+    = f.label :asin
+    = f.text_field :asin
+  .field
+    = f.label :dji_store_url
+    = f.text_field :dji_store_url
+  .field
+    = f.label :status
+    = f.text_field :status
+  .actions
+    = f.submit 'Save'
