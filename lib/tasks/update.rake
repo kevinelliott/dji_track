@@ -51,6 +51,8 @@ namespace :update do
       options = { order_number: order.order_id, phone_tail: order.phone_tail }
 
       if order.tracking_number.present?
+        order.delivery_status = 'enroute' if order.shipping_status.downcase == 'shipped'
+        
         case order.shipping_company.downcase
         when 'dhl' then
           tr = DJI::DHL.track(order.tracking_number)
