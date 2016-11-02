@@ -52,9 +52,9 @@
         %tr
           %th Rank
           %th Order ID
-          %th Product
           %th DJI Forum Username
           %th Order Time
+          %th Product
           %th Country
           %th Payment
           %th Shipper
@@ -71,12 +71,12 @@
             %td.text-xs-left
               = order.masked_order_id
             %td.text-xs-left
-              - if order.product.present?
-                = order.product.name
-            %td.text-xs-left
               = order.dji_username
             %td.text-xs-left
               = order.order_time
+            %td.text-xs-left
+              - if order.product.present?
+                = order.product.name
             %td.text-xs-left
               - if order.shipping_country.present?
                 = flag_icon(order.shipping_country[0..1].downcase.to_sym)
