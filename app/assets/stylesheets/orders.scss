@@ -11,6 +11,11 @@
   color: #009900;
 }
 
+.delivery-status-arriving {
+  background-color: #ffc;
+  color: #ff0;
+}
+
 .shipping-status-unknown, .payment-status-unknown,
 .shipping-company-unknown, .delivery-status-unknown {
   background-color: #cccccc;

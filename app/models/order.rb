@@ -28,6 +28,12 @@ class Order < ApplicationRecord
   def delivery_status_class
     case delivery_status
     when 'delivered' then 'delivery-status-delivered'
+    when 'enroute' then
+      if Time.current > estimated_delivery_at
+        'delivery-status-arriving'
+      else
+        'delivery-status-pending'
+      end
     when 'pending' then 'delivery-status-pending'
     else
       'delivery-status-unknown'

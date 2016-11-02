@@ -85,7 +85,11 @@
               = order.shipping_status
             %td{ class: order.delivery_status_class }
               - if order.estimated_delivery_at.present?
-                = distance_of_time_in_words(order.estimated_delivery_at, Date.current)
+                - if Time.current > order.estimated_delivery_at
+                  Arriving
+                - else
+                  In
+                  = distance_of_time_in_words(order.estimated_delivery_at, Time.current)
               - else
                 = order.delivery_status.capitalize
             %td.text-xs-right{ title: order.last_changed_at }
