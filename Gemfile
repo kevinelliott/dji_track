@@ -24,11 +24,7 @@ gem 'country_select'
 gem 'flag-icons-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sendgrid'
-
-
-group :development, :test do
-  gem 'byebug', platform: :mri
-end
+gem 'font-awesome-rails'
 
 group :development do
   gem 'web-console'
@@ -51,6 +47,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'byebug', platform: :mri
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'pry-rails'

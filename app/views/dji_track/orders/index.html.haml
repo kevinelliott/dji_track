@@ -87,17 +87,27 @@
         %thead.thead-inverse
           %tr
             %th Rank
-            %th Order ID
-            %th DJI Forum Username
-            %th Order Time
+            %th
+              = sort_column :order_id, 'Order ID'
+            %th
+              = sort_column :dji_username, 'DJI Forum Username'
+            %th
+              = sort_column :order_time, 'Order Time'
             %th Product
-            %th Country
-            %th Payment
-            %th Shipper
-            %th Shipping
-            %th Delivery
-            %th.text-xs-right Last Changed
-            %th.text-xs-right Last Reported
+            %th
+              = sort_column :shipping_country, 'Country'
+            %th
+              = sort_column :payment_status, 'Payment'
+            %th
+              = sort_column :shipping_company, 'Shipper'
+            %th
+              = sort_column :shipping_status, 'Shipping'
+            %th
+              = sort_column :delivery_status, 'Delivery'
+            %th.text-xs-right
+              = sort_column :last_changed_at, 'Last Changed'
+            %th.text-xs-right
+              = sort_column :updated_at, 'Last Reported'
 
         %tbody
           - orders.each_with_index do |order, index|

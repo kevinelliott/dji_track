@@ -2,11 +2,17 @@ class DjiTrack::OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token
   before_action :set_order, only: [:show]
 
+  SORTABLE_COLUMNS = %w(order_id dji_username order_time shipping_country payment_status shipping_company shipping_status delivery_status last_changed_at updated_at)
+  
   def index
     @merchants = Merchant.active.order(created_at: :asc).includes(:orders)
     @merchant_orders = {}
     @merchants.each do |merchant|
-      @merchant_orders[merchant.id] = merchant.orders.order(order_time: :asc)
+      sort_column = SORTABLE_COLUMNS.include?(params[:sort_column]) ? params[:sort_column] : 'order_time'
+      sort_order  = %w(asc desc).include?(params[:sort_order]) ? params[:sort_order] : 'asc'
+      sort        = "#{sort_column} #{sort_order.upcase}"
+
+      @merchant_orders[merchant.id] = merchant.orders.order(sort)
     end
 
     @average_duration = begin
