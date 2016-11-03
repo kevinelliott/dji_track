@@ -85,6 +85,7 @@ class Order < ApplicationRecord
     ]
 
     case shipping_company.downcase
+    when '' then 'shipping-company-pending'
     when 'tba' then 'shipping-company-pending'
     when *valid_shipping_companies then 'shipping-company-selected'
     else

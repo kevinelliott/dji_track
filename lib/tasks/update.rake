@@ -24,8 +24,9 @@ namespace :update do
           else
             order.shipping_status  = data[:shipping_status]
           end
-          order.shipping_company = data[:shipping_company]
+          order.shipping_company = data[:shipping_company].presence || 'Tba'
           order.tracking_number  = data[:tracking_number]
+
           if order.changes.present?
             puts "#{debug_prefix} has changes: #{order.changes.inspect}"
             changes = order.changes
