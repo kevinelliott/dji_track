@@ -41,8 +41,22 @@ class Order < ApplicationRecord
     end
   end
 
+  def gravatar_url
+    require 'digest/md5'
+    token = if email_address.present?
+      Digest::MD5.hexdigest(email_address.downcase)
+    else
+      dji_username.presence || 'unknown'
+    end
+    "https://www.gravatar.com/avatar/#{token}"
+  end
+
   def masked_order_id
     order_id.present? ? "#{order_id.slice(0..-5)}****" : nil
+  end
+
+  def order_table_row_class
+    'table-success' if delivery_status.eql?('delivered')
   end
 
   def payment_status_class

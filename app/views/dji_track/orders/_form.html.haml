@@ -53,19 +53,6 @@
     .row
       .col-xs-4
         .form-group
-          = f.label :payment_status, 'Payment Status'
-          = f.select :payment_status, ['Pay Confirmed', 'Pay Pending'], {}, { class: 'form-control' }
-      .col-xs-4
-        .form-group
-          = f.label :shipping_status, 'Shipping Status'
-          = f.select :shipping_status, ['Pending', 'Shipped'], {}, { class: 'form-control' }
-      .col-xs-4
-        .form-group
-          = f.label :shipping_company, 'Shipping Company'
-          = f.select :shipping_company, [['Pending', 'Tba'], ['DHL', 'Dhl'], ['FedEx', 'Fedex'], ['UPS', 'Ups']], {}, { class: 'form-control' }
-    .row
-      .col-xs-4
-        .form-group
           = f.label :shipping_postal_code, 'Postal Code'
           = f.text_field :shipping_postal_code, class: 'form-control', placeholder: '94123'
       .col-xs-4
@@ -76,6 +63,30 @@
         .form-group
           = f.label :shipping_country, 'Country'
           = f.country_select :shipping_country, { priority_countries: ['GB', 'US'], include_blank: 'Select a Country' }, { class: 'form-control' }
+
+    .row
+      .col-xs-4
+        .form-group
+          = f.label :payment_status, 'Payment Status'
+          = f.select :payment_status, ['Pay Confirmed', 'Pay Pending'], {}, { class: 'form-control' }
+      .col-xs-4
+        .form-group
+          = f.label :shipping_company, 'Shipping Company'
+          = f.select :shipping_company, @shipping_companies, {}, { class: 'form-control' }
+      .col-xs-4
+        .form-group
+          = f.label :shipping_status, 'Shipping Status'
+          = f.select :shipping_status, ['Pending', 'Shipped'], {}, { class: 'form-control' }
+
+    .row
+      .col-xs-6
+        .form-group
+          = f.label :tracking_number, 'Tracking Number'
+          = f.text_field :tracking_number, class: 'form-control'
+          %small.form-text
+            If you have a tracking number then we can automatically look up
+            the status of the shipment.
+
     .row
       .col-xs-6
         .form-group
@@ -86,7 +97,7 @@
       .col-xs-6
         .form-group
           = f.label :email_address, 'Email Address'
-          = f.text_field :email_address, class: 'form-control', placeholder: 'kevin@welikeinc.com'
+          = f.text_field :email_address, class: 'form-control', placeholder: 'kevin@welikeinc.com', type: 'email'
           %small.form-text
             Provide your email address if you wish to be notified about changes to your order status. (not yet avail)
 

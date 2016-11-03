@@ -4,14 +4,15 @@
   You should add your
   %strong Mavic Pro
   order to the list if you are not already on it. This will allow us
-  to monitor your order for progress, share basic information about your order with others, and
-  get a sense of how DJI is shipping these orders out.
+  to monitor your order for progress, share basic information about your 
+  order with others, and get a sense of how DJI is shipping these orders out.
 
 %p.alert.alert-warning
-  Keep in mind that using this form will add your order but it will not keep it up to date automatically.
-  You must come back and resubmit this form when you want to update your listing.
-  If you want it to update automatically, we recommend the 
-  = link_to 'DJI CLI tool', 'http://github.com/kevinelliott/dji'
-  running on your computer.
+  We will attempt to retrieve your order from 
+  #{link_to "DJI's Order Tracking page", 'https://store.dji.com/orders/tracking'}, but
+  we are having problems retrieving about half of the orders. If you notice your order not automatically updating, you may use the
+  #{link_to 'DJI command-line tool', 'http://github.com/kevinelliott/dji'}
+  running on your computer. If you need to change your entry, just resubmit this form again with the same
+  Order ID and Phone Tail, but with different information in the Details section.
 
 = render 'form'

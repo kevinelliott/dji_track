@@ -18,6 +18,9 @@ class DjiTrack::OrdersController < ApplicationController
       end
       "#{((deliveries.sum / deliveries.count) / 7).round(1)} weeks"
     end
+
+    @orders_by_country = {}
+    @countries = Order.select(:shipping_country).uniq
   end
 
   def show
@@ -25,9 +28,12 @@ class DjiTrack::OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @shipping_companies = shipping_companies
   end
 
   def create
+    @shipping_companies = shipping_companies
+
     merchant = if order_params[:merchant].present?
       if order_params[:merchant].to_i > 0
         Merchant.find(order_params[:merchant].to_i)
@@ -82,4 +88,15 @@ class DjiTrack::OrdersController < ApplicationController
     def order_params
       params.require(:order).permit(:merchant, :order_id, :order_time, :payment_status, :payment_method, :payment_total, :shipping_address, :shipping_address_line_2, :shipping_city, :shipping_region_code, :shipping_postal_code, :shipping_country, :shipping_country_code, :shipping_phone, :shipping_status, :shipping_company, :tracking_number, :email_address, :product_id, :dji_username, :phone_tail)
     end
+
+    def shipping_companies
+      [
+        ['Pending', 'Tba'],
+        ['DHL', 'Dhl'],
+        ['FedEx', 'Fedex'],
+        ['Sagawa', 'Sagawa'],
+        ['UPS', 'Ups']
+      ]
+    end
+
 end

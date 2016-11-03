@@ -1,107 +1,145 @@
 - content_for :subnav do
   = render 'layouts/subnav_dji'
 
-.card
-  .card-block.bg-highlight
-    .row
-      .col-lg-4.col-md-4
-        = image_tag 'mavic-pro.png', class: 'img-fluid'
-      .col-lg-8.col-md-8.col-sm-12.col-xs-12
-        %h1.media-heading
-          Mavic Pro Orders
-        %p.lead
-          Crowdsourced order statuses. Find out when your 
-          %strong Mavic Pro
-          order ships.
-        %p.small
-          Estimate when your order might ship. This helps you to get an idea of how the DJI queues are
-          shipping. We need more realtime data to do further analysis on, so you should contribute your order information
-          in order to help other people.
-        %p
-          Average shipping duration is currently  
-          %strong
-            = @average_duration
-        %small.text-muted
-          Last updated 5 minutes ago.
-  
-%p.alert.alert-info
-  %strong Contribute your data:
-  = link_to 'Submit it Manually', new_dji_track_order_path, class: 'btn btn-sm btn-info'
-  or
-  = link_to 'install my DJI command-line tools', 'http://github.com/kevinelliott/dji'
-  to see it realtime and self-publish it here.
+.container
 
-%p.alert.alert-warning
-  %strong
-    Coming soon:
-  Email and SMS alerts when key order information changes. DJI only emails you when your order ships, but we can detect various stages that they don't communicate about, such as Wait Pick, Shipped (without tracking), etc.
+  .row
+    .col-md-8
 
-- @merchants.each do |merchant|
-  - orders = @merchant_orders[merchant.id]
+      .card
+        .card-block.bg-highlight
+          .row
+            .col-lg-4.col-md-4
+              = image_tag 'mavic-pro.png', class: 'img-fluid'
+            .col-lg-8.col-md-8.col-sm-12.col-xs-12
+              %h1.media-heading
+                Mavic Pro Orders
+              %p.lead
+                Crowdsourced order statuses. Find out when your 
+                %strong Mavic Pro
+                order ships.
+              %p.small
+                Estimate when your order might ship. This helps you to get an idea of how the DJI queues are
+                shipping. We need more realtime data to do further analysis on, so you should contribute your order information
+                in order to help other people.
+              %p
+                Average shipping duration is currently  
+                %strong
+                  = @average_duration
+              %small.text-muted
+                Last updated 5 minutes ago.
 
-  - if orders.present?
+      %p.alert.alert-info
+        %strong Contribute your data:
+        = link_to 'Submit it Manually', new_dji_track_order_path, class: 'btn btn-sm btn-info'
+        or
+        = link_to 'install my DJI command-line tools', 'http://github.com/kevinelliott/dji'
+        to see it realtime and self-publish it here.
 
-    %h2
-      = merchant.name
-      .float-xs-right
-        %small
-          #{((orders.shipped.count / orders.count.to_f) * 100).round}% of Orders Shipped
+      %p.alert.alert-warning
+        %strong
+          Coming soon:
+        Email and SMS alerts when key order information changes. DJI only emails you when your order ships, but we can detect various stages that they don't communicate about, such as Wait Pick, Shipped (without tracking), etc.
 
-    %table.table.table-sm.table-striped.table-middle.table-responsive
-      %thead.thead-inverse
-        %tr
-          %th Rank
-          %th Order ID
-          %th DJI Forum Username
-          %th Order Time
-          %th Product
-          %th Country
-          %th Payment
-          %th Shipper
-          %th Shipping
-          %th Delivery
-          %th.text-xs-right Last Changed
-          %th.text-xs-right Last Reported
+    .col-md-4
 
-      %tbody
-        - orders.each_with_index do |order, index|
+      .card
+        .card-block
+          %h4.card-title Update Your Details
+          %p.card-text
+            Need to make a change to the details you submitted? Update
+            your entry by going to the 
+            #{link_to 'manual submission form', new_dji_track_order_path }.
+            Use the same
+            %strong Order ID
+            and
+            %strong Phone Tail
+            as you previously did, but put in the 
+            %strong Details 
+            that you want to add or change.
+
+      .card
+        .card-block
+          %h4.card-title Drone Chat
+          %p.card-text
+            While you are waiting, why not chat with other people who also
+            ordered a Mavic? Realtime discussions with other drone enthusiasts.
+          .text-xs-center
+            = link_to 'Request Invitation', 'https://welike.typeform.com/to/m03t7Q', class: 'btn btn-primary'
+        .card-footer
+          .text-muted
+            It's free and public.
+
+  %br
+
+  - @merchants.each do |merchant|
+    - orders = @merchant_orders[merchant.id]
+
+    - if orders.present?
+
+      %h2
+        = merchant.name
+        .float-xs-right
+          %small
+            #{((orders.shipped.count / orders.count.to_f) * 100).round}% of Orders Shipped
+
+      %table.table.table-sm.table-striped.table-middle.table-responsive
+        %thead.thead-inverse
           %tr
-            %td
-              = index+1
-            %td.text-xs-left
-              = order.masked_order_id
-            %td.text-xs-left
-              = order.dji_username
-            %td.text-xs-left
-              = order.order_time
-            %td.text-xs-left
-              - if order.product.present?
-                = order.product.name
-            %td.text-xs-left
-              - if order.shipping_country.present?
-                = flag_icon(order.shipping_country[0..1].downcase.to_sym)
-                = order.shipping_country
-            %td{ class: order.payment_status_class }
-              = order.payment_status
-            %td{ class: order.shipping_company_class }
-              = order.pretty_shipping_company
-            %td{ class: order.shipping_status_class }
-              = order.shipping_status
-            %td{ class: order.delivery_status_class }
-              - if order.estimated_delivery_at.present?
-                - if Time.current > order.estimated_delivery_at
-                  Arriving
-                - else
-                  In
-                  = distance_of_time_in_words(order.estimated_delivery_at, Time.current)
-              - else
-                = order.delivery_status.capitalize
-            %td.text-xs-right{ title: order.last_changed_at }
-              = time_ago_in_words order.last_changed_at
-              ago
-            %td.text-xs-right{ title: order.updated_at }
-              = time_ago_in_words order.updated_at
-              ago
+            %th Rank
+            %th Order ID
+            %th DJI Forum Username
+            %th Order Time
+            %th Product
+            %th Country
+            %th Payment
+            %th Shipper
+            %th Shipping
+            %th Delivery
+            %th.text-xs-right Last Changed
+            %th.text-xs-right Last Reported
 
-%br
-%br
+        %tbody
+          - orders.each_with_index do |order, index|
+            %tr{ class: order.order_table_row_class }
+              %td
+                = index+1
+              %td.text-xs-left
+                = order.masked_order_id
+              %td.text-xs-left
+                - if order.gravatar_url.present?
+                  = image_tag order.gravatar_url, width: 25, class: 'rounded-circle'
+                = order.dji_username
+              %td.text-xs-left
+                = order.order_time
+              %td.text-xs-left
+                - if order.product.present?
+                  = order.product.name
+              %td.text-xs-left
+                - if order.shipping_country.present?
+                  = flag_icon(order.shipping_country[0..1].downcase.to_sym)
+                  = order.shipping_country
+              %td{ class: order.payment_status_class }
+                = order.payment_status
+              %td{ class: order.shipping_company_class }
+                = order.pretty_shipping_company
+              %td{ class: order.shipping_status_class }
+                = order.shipping_status
+              %td{ class: order.delivery_status_class }
+                - if order.estimated_delivery_at.present?
+                  - if Time.current > order.estimated_delivery_at
+                    Arriving
+                  - else
+                    In
+                    = distance_of_time_in_words(order.estimated_delivery_at, Time.current)
+                - else
+                  = order.delivery_status.capitalize
+              %td.text-xs-right{ title: order.last_changed_at }
+                = time_ago_in_words order.last_changed_at
+                ago
+              %td.text-xs-right{ title: order.updated_at }
+                = time_ago_in_words order.updated_at
+                ago
+
+  %br
+  %br
