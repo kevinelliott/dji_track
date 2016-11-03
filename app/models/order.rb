@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   before_save :default_order
 
   belongs_to :merchant
-  belongs_to :product
+  belongs_to :product, optional: true
 
   scope :shipped, -> { where(shipping_status: 'Shipped') }
 

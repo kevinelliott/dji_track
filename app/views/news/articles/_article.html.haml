@@ -1,0 +1,9 @@
+.article
+  %h3.article-title
+    = link_to article.title, news_article_path(article)
+  %h6.article-published-at.text-muted
+    = fa_icon 'clock-o'
+    = article.published_at.in_time_zone('Pacific Time (US & Canada)').to_s(:long)
+    PST
+  .article-body
+    = markdown(article.body)

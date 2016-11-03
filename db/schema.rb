@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103063706) do
+ActiveRecord::Schema.define(version: 20161103122259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "articles", force: :cascade do |t|
-    t.string   "subject",                        null: false
+    t.string   "title",                          null: false
     t.text     "body"
     t.datetime "published_at"
     t.string   "status",       default: "draft", null: false
@@ -73,18 +73,24 @@ ActiveRecord::Schema.define(version: 20161103063706) do
     t.string   "tracking_number"
     t.string   "email_address"
     t.string   "access_key"
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.datetime "last_changed_at"
     t.string   "dji_username"
     t.string   "phone_tail"
-    t.integer  "merchant_id",             default: 1,         null: false
+    t.integer  "merchant_id",                  default: 1,         null: false
     t.datetime "estimated_delivery_at"
-    t.string   "delivery_status",         default: "pending"
+    t.string   "delivery_status",              default: "pending"
     t.datetime "delivered_at"
     t.integer  "product_id"
+    t.boolean  "dji_lookup_success",           default: false,     null: false
+    t.string   "dji_lookup_error_code"
+    t.string   "dji_lookup_error_reason_code"
     t.index ["delivered_at"], name: "index_orders_on_delivered_at", using: :btree
     t.index ["delivery_status"], name: "index_orders_on_delivery_status", using: :btree
+    t.index ["dji_lookup_error_code"], name: "index_orders_on_dji_lookup_error_code", using: :btree
+    t.index ["dji_lookup_error_reason_code"], name: "index_orders_on_dji_lookup_error_reason_code", using: :btree
+    t.index ["dji_lookup_success"], name: "index_orders_on_dji_lookup_success", using: :btree
     t.index ["dji_username"], name: "index_orders_on_dji_username", using: :btree
     t.index ["email_address"], name: "index_orders_on_email_address", using: :btree
     t.index ["estimated_delivery_at"], name: "index_orders_on_estimated_delivery_at", using: :btree

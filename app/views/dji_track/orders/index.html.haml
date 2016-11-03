@@ -114,7 +114,7 @@
             %tr{ class: order.order_table_row_class }
               %td
                 = index+1
-              %td.text-xs-left
+              %td.text-xs-left{ class: !order.dji_lookup_success ? 'font-weight-bold' : '' }
                 = order.masked_order_id
               %td.text-xs-left
                 - if order.gravatar_url.present?
