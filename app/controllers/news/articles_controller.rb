@@ -17,8 +17,8 @@ class News::ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
-        format.html { redirect_to @article, notice: 'Article was submitted and will be reviewed by the editor. Thank you!' }
-        format.json { render :show, status: :created, location: @article }
+        format.html { redirect_to news_root_path, notice: 'Article was submitted and will be reviewed by the editor. Thank you!' }
+        format.json { render :show, status: :created, location: news_article_path(article) }
       else
         format.html { render :new }
         format.json { render json: @article.errors, status: :unprocessable_entity }
