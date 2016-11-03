@@ -1,0 +1,16 @@
+%ol.breadcrumb
+  %li.breadcrumb-item
+    = link_to 'News', news_root_path
+  %li.breadcrumb-item.active
+    = @article.title
+
+%br
+
+.article
+  %h3.article-title
+    = link_to @article.title, news_article_path(@article)
+  %h6.article-published-at.text-muted
+    = @article.published_at.in_time_zone('Pacific Time (US & Canada)').to_s(:long)
+    PST
+  .article-body
+    = markdown(@article.body)

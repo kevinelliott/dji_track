@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
 
-  resources :products
   namespace :dji_track do
-    root to: 'visitors#index'
     resources :orders, except: [:edit, :update, :destroy]
+    root to: 'visitors#index'
   end
 
   resources :manufacturers
@@ -12,6 +11,13 @@ Rails.application.routes.draw do
   end
   
   resources :merchants
+
+  namespace :news do
+    resources :articles
+    root to: 'articles#index'
+  end
+
+  resources :products
 
   resources :terms
   get 'terminology', to: 'terminology#index', as: :terminology

@@ -25,6 +25,7 @@ gem 'flag-icons-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sendgrid'
 gem 'font-awesome-rails'
+gem 'redcarpet'
 
 group :development do
   gem 'web-console'
