@@ -1,3 +1,16 @@
+.orders-header {
+  padding: 20px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+}
+
+.orders-subheader {
+  padding: 20px;
+  margin-bottom: 20px;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
 
 .shipping-status-pending, .payment-status-pending, 
 .shipping-company-pending, .delivery-status-pending {

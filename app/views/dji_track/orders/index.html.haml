@@ -77,11 +77,16 @@
 
     - if orders.present?
 
-      %h2
-        = merchant.name
-        .float-xs-right
-          %small
-            #{((orders.shipped.count / orders.count.to_f) * 100).round}% of Orders Shipped
+      .orders-header
+        %h2
+          = merchant.name
+          .float-xs-right
+            %small
+              #{((orders.shipped.count / orders.count.to_f) * 100).round}% of Orders Shipped
+
+      .orders-subheader
+        .orders-chart
+          = column_chart Order.where(order_time: [Date.parse('2016-09-27')..Date.parse('2016-10-11')]).group(:shipping_status).group_by_day(:order_time).count, stacked: true
 
       %table.table.table-sm.table-striped.table-middle.table-responsive
         %thead.thead-inverse

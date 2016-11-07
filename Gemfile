@@ -26,6 +26,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'sendgrid'
 gem 'font-awesome-rails'
 gem 'redcarpet'
+gem 'groupdate'
+gem 'chartkick'
 
 group :development do
   gem 'web-console'
