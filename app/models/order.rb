@@ -6,6 +6,7 @@ class Order < ApplicationRecord
   has_many :order_state_logs
 
   scope :delivered, -> { where(delivery_status: 'delivered') }
+  scope :not_delivered, -> { where('delivery_status != ?', 'delivered') }
   scope :shipped, -> { where('LOWER(shipping_status) = ?','shipped') }
 
   validates :order_id, presence: true, length: { is: 12 }

@@ -5,7 +5,7 @@ namespace :update do
     puts "-----------------------------------------------------------------------------"
     puts
 
-    orders = Order.order(updated_at: :asc)
+    orders = Order.not_delivered.order(updated_at: :asc)
 
     orders.each_with_index do |order, index|
       count        = index + 1
