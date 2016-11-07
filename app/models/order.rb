@@ -32,7 +32,7 @@ class Order < ApplicationRecord
     case delivery_status
     when 'delivered' then 'delivery-status-delivered'
     when 'enroute' then
-      if Time.current > estimated_delivery_at
+      if estimated_delivery_at.present? && Time.current > estimated_delivery_at
         'delivery-status-arriving'
       else
         'delivery-status-enroute'
