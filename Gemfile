@@ -29,10 +29,6 @@ gem 'redcarpet'
 gem 'groupdate'
 gem 'chartkick'
 
-source 'https://rails-assets.org' do
-  gem 'rails-assets-tether'
-end
-
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
