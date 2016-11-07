@@ -1,4 +1,4 @@
-$(document).on 'turbolinks:load', ->
+$(document).on 'page:load', ->
 
   $('body').on('click', '[data-toggle="modal"]', ->
     $($(this).data('target')+' .modal-body').load($(this).data("remote"))
