@@ -252,6 +252,8 @@ GEM
     redcarpet (3.3.4)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
+    rollbar (2.13.3)
+      multi_json
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
@@ -392,6 +394,7 @@ DEPENDENCIES
   rb-fsevent
   rb-inotify
   redcarpet
+  rollbar
   rspec-rails
   rubocop
   sass-rails (~> 5.0)

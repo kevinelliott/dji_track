@@ -28,6 +28,7 @@ gem 'font-awesome-rails'
 gem 'redcarpet'
 gem 'groupdate'
 gem 'chartkick'
+gem 'rollbar'
 
 group :development do
   gem 'web-console'
