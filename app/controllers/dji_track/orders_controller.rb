@@ -69,12 +69,15 @@ class DjiTrack::OrdersController < ApplicationController
     @order.tracking_number       = order_params[:tracking_number] if order_params[:tracking_number].present?
     if @order.changes.present?
       # Notify user of any changes if their email address is on file
+      changes = @order.changes
       @order.last_changed_at = Time.zone.now
     end
     @order.updated_at            = Time.zone.now
 
     respond_to do |format|
       if @order.save
+        OrderStateLog.track_changes(@order, changes) if changes.present?
+
         format.html { redirect_to dji_track_orders_path, notice: 'Your entry was submitted. Others will appreciate this. Thank you!' }
         format.json { render :show, status: :created, location: @order }
       else
