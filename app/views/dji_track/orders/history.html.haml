@@ -1,0 +1,13 @@
+- if @state_logs.count > 0
+  - @state_logs.each do |state_log|
+    .state-log
+      .state-log-when.text-muted
+        = state_log.created_at
+      .state-log-change
+        = state_log.column.humanize.titleize
+        changed from 
+        %strong #{state_log.from.titleize}
+        to 
+        %strong #{state_log.to.titleize}
+- else
+  There is currently no logged history. Please check again later.

@@ -3,6 +3,7 @@ class Order < ApplicationRecord
 
   belongs_to :merchant
   belongs_to :product, optional: true
+  has_many :order_state_logs
 
   scope :delivered, -> { where(delivery_status: 'delivered') }
   scope :shipped, -> { where('LOWER(shipping_status) = ?','shipped') }

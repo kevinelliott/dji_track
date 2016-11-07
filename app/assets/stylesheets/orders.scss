@@ -12,6 +12,10 @@
   border-bottom: 1px solid #ddd;
 }
 
+.order {
+  cursor: pointer;
+}
+
 .shipping-status-pending, .payment-status-pending, 
 .shipping-company-pending, .delivery-status-pending {
   background-color: #ffcccc;

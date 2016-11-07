@@ -93,7 +93,7 @@
         .orders-chart
           = column_chart chart_data_dji_track_orders_path, stacked: true
 
-      %table.table.table-sm.table-striped.table-middle.table-responsive
+      %table.table.table-sm.table-striped.table-middle.table-responsive.table-hover
         %thead.thead-inverse
           %tr
             %th Rank
@@ -121,7 +121,7 @@
 
         %tbody
           - orders.each_with_index do |order, index|
-            %tr{ class: order.order_table_row_class }
+            %tr.order.order-clickable{ class: order.order_table_row_class, data: { toggle: 'modal', target: '#historyModal', remote: history_dji_track_order_path(order), masked_order_id: order.masked_order_id } }
               %td
                 = index+1
               %td.text-xs-left{ class: !order.dji_lookup_success ? 'font-weight-bold' : '' }
@@ -163,3 +163,5 @@
 
   %br
   %br
+
+= render 'history_modal'

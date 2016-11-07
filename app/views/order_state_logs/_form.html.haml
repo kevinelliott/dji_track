@@ -1,0 +1,22 @@
+= form_for @order_state_log do |f|
+  - if @order_state_log.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@order_state_log.errors.count, "error")} prohibited this order_state_log from being saved:"
+      %ul
+        - @order_state_log.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :order
+    = f.text_field :order
+  .field
+    = f.label :column
+    = f.text_field :column
+  .field
+    = f.label :from
+    = f.text_field :from
+  .field
+    = f.label :to
+    = f.text_field :to
+  .actions
+    = f.submit 'Save'

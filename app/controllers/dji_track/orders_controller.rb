@@ -1,6 +1,6 @@
 class DjiTrack::OrdersController < ApplicationController
   skip_before_action :verify_authenticity_token
-  before_action :set_order, only: [:show]
+  before_action :set_order, only: [:show, :history]
 
   SORTABLE_COLUMNS = %w(order_id dji_username order_time shipping_country payment_status shipping_company shipping_status delivery_status last_changed_at updated_at)
   
@@ -86,6 +86,15 @@ class DjiTrack::OrdersController < ApplicationController
 
   def chart_data
     render json: Order.where(order_time: [Date.parse('2016-09-27')..Date.parse('2016-10-11')]).group(:shipping_status).group_by_day(:order_time).count.chart_json
+  end
+
+  def history
+    protected_columns = %w(order_id shipping_address shipping_address_line_2 shipping_city shipping_phone phone_tail tracking_number email_address)
+    @state_logs = @order.order_state_logs.where('order_state_logs.column NOT IN (?)', protected_columns).order(created_at: :desc).reject
+
+    respond_to do |format|
+      format.html { render layout: false }
+    end
   end
 
   private

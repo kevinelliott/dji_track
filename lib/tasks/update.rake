@@ -33,6 +33,8 @@ namespace :update do
             order[:last_changed_at] = Time.zone.now  
             order.save(validate: false)
 
+            OrderStateLog.track_changes(order, changes)
+
             { success: true, changed: true, changes: changes }
           else
             order.touch

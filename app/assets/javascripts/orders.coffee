@@ -1,3 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).on 'ready page:change', ->
+
+  $('body').on('click', '[data-toggle="modal"]', ->
+    $($(this).data('target')+' .modal-title').html('Change History for ' + $(this).data('maskedOrderId'))
+    $($(this).data('target')+' .modal-body').load($(this).data("remote"))
+  )

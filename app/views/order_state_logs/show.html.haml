@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Order:
+  = @order_state_log.order
+%p
+  %b Column:
+  = @order_state_log.column
+%p
+  %b From:
+  = @order_state_log.from
+%p
+  %b To:
+  = @order_state_log.to
+
+= link_to 'Edit', edit_order_state_log_path(@order_state_log)
+\|
+= link_to 'Back', order_state_logs_path

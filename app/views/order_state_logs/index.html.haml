@@ -1,0 +1,21 @@
+%h1 Order State Logs
+
+%table.table
+  %thead
+    %tr
+      %th Order
+      %th Column
+      %th From
+      %th To
+      %th
+
+  %tbody
+    - @order_state_logs.each do |order_state_log|
+      %tr
+        %td= order_state_log.order.order_id
+        %td= order_state_log.column
+        %td= order_state_log.from
+        %td= order_state_log.to
+        %td.text-xs-right
+          = link_to 'Destroy', order_state_log, :method => :delete, :data => { :confirm => 'Are you sure?' }
+

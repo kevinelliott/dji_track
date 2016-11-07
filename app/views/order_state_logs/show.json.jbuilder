@@ -1,0 +1,1 @@
+json.partial! "order_state_logs/order_state_log", order_state_log: @order_state_log

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107064312) do
+ActiveRecord::Schema.define(version: 20161107121543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,19 @@ ActiveRecord::Schema.define(version: 20161107064312) do
     t.string   "common_name",   default: "MISSING COMMON NAME", null: false
     t.index ["common_name"], name: "index_merchants_on_common_name", using: :btree
     t.index ["status"], name: "index_merchants_on_status", using: :btree
+  end
+
+  create_table "order_state_logs", force: :cascade do |t|
+    t.integer  "order_id"
+    t.string   "column",     null: false
+    t.string   "from"
+    t.string   "to"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["column"], name: "index_order_state_logs_on_column", using: :btree
+    t.index ["from"], name: "index_order_state_logs_on_from", using: :btree
+    t.index ["order_id"], name: "index_order_state_logs_on_order_id", using: :btree
+    t.index ["to"], name: "index_order_state_logs_on_to", using: :btree
   end
 
   create_table "orders", force: :cascade do |t|
@@ -176,6 +189,7 @@ ActiveRecord::Schema.define(version: 20161107064312) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "order_state_logs", "orders"
   add_foreign_key "orders", "products"
   add_foreign_key "products", "manufacturers"
 end

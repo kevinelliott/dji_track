@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :order_state_logs
   namespace :dji_track do
     resources :orders, except: [:edit, :update, :destroy] do
       collection do
         get 'chart_data', as: :chart_data
+      end
+      member do
+        get 'history', as: :history
       end
     end
     root to: 'visitors#index'

@@ -1,0 +1,1 @@
+json.array! @order_state_logs, partial: 'order_state_logs/order_state_log', as: :order_state_log
