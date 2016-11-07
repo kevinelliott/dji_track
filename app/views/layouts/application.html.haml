@@ -5,7 +5,7 @@
     %title= content_for?(:title) ? yield(:title) : 'DroneHome'
     %meta{:name => "description", :content => "#{content_for?(:description) ? yield(:description) : 'Community for drone enthusiasts'}"}
     = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Open+Sans|Raleway', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js'
+    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.3.0/Chart.bundle.js', 'chartkick'
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = csrf_meta_tags
 
