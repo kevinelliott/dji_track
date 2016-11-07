@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161103122259) do
+ActiveRecord::Schema.define(version: 20161107064312) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,27 +29,31 @@ ActiveRecord::Schema.define(version: 20161103122259) do
   end
 
   create_table "manufacturers", force: :cascade do |t|
-    t.string   "name",            null: false
-    t.string   "code",            null: false
+    t.string   "name",                                            null: false
+    t.string   "code",                                            null: false
     t.text     "description"
     t.string   "website"
     t.string   "support_email"
     t.string   "support_website"
     t.string   "logo_url"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
+    t.string   "common_name",     default: "MISSING COMMON NAME", null: false
     t.index ["code"], name: "index_manufacturers_on_code", using: :btree
+    t.index ["common_name"], name: "index_manufacturers_on_common_name", using: :btree
     t.index ["name"], name: "index_manufacturers_on_name", using: :btree
   end
 
   create_table "merchants", force: :cascade do |t|
-    t.string   "name",                              null: false
+    t.string   "name",                                          null: false
     t.text     "description"
     t.string   "website"
     t.string   "referral_code"
-    t.string   "status",        default: "pending", null: false
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
+    t.string   "status",        default: "pending",             null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "common_name",   default: "MISSING COMMON NAME", null: false
+    t.index ["common_name"], name: "index_merchants_on_common_name", using: :btree
     t.index ["status"], name: "index_merchants_on_status", using: :btree
   end
 

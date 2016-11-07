@@ -77,12 +77,17 @@
 
     - if orders.present?
 
-      .orders-header
-        %h2
-          = merchant.name
-          .float-xs-right
+      .orders-header.clearfix
+        .float-xs-left
+          %h2= merchant.common_name
+          %small.text-muted= merchant.name
+        .float-xs-right.text-xs-right
+          %h2
             %small
-              #{((orders.shipped.count / orders.count.to_f) * 100).round}% of Orders Shipped
+              #{shipped_percent(orders)}% Shipped
+          %small.text-muted
+            #{delivered_percent(orders)}% Delivered
+
 
       .orders-subheader
         .orders-chart

@@ -4,7 +4,8 @@ class Order < ApplicationRecord
   belongs_to :merchant
   belongs_to :product, optional: true
 
-  scope :shipped, -> { where(shipping_status: 'Shipped') }
+  scope :delivered, -> { where(delivery_status: 'delivered') }
+  scope :shipped, -> { where('LOWER(shipping_status) = ?','shipped') }
 
   validates :order_id, presence: true, length: { is: 12 }
   validates :phone_tail, presence: true, length: { is: 4 }
