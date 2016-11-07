@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://rails-assets.org/
   specs:
     actioncable (5.0.0.1)
       actionpack (= 5.0.0.1)
@@ -358,7 +359,7 @@ PLATFORMS
 DEPENDENCIES
   better_errors
   binding_of_caller
-  bootstrap (~> 4.0.0.alpha3.1)
+  bootstrap (~> 4.0.0.alpha5)
   byebug
   capybara
   chartkick
@@ -391,7 +392,7 @@ DEPENDENCIES
   pry-rescue
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
-  rails-assets-tether
+  rails-assets-tether!
   rails_12factor
   rails_layout
   rb-fchange

@@ -12,8 +12,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jquery-turbolinks'
 gem 'jbuilder', '~> 2.5'
-gem 'rails-assets-tether'
-gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'devise'
 gem 'devise_invitable'
 gem 'haml-rails'
@@ -30,6 +29,10 @@ gem 'font-awesome-rails'
 gem 'redcarpet'
 gem 'groupdate'
 gem 'chartkick'
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-tether'
+end
 
 group :development do
   gem 'web-console'
