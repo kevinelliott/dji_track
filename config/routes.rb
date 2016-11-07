@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
 
   namespace :dji_track do
-    resources :orders, except: [:edit, :update, :destroy]
+    resources :orders, except: [:edit, :update, :destroy] do
+      collection do
+        get 'chart_data', as: :chart_data
+      end
+    end
     root to: 'visitors#index'
   end
 

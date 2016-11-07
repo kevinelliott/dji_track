@@ -86,7 +86,7 @@
 
       .orders-subheader
         .orders-chart
-          = column_chart Order.where(order_time: [Date.parse('2016-09-27')..Date.parse('2016-10-11')]).group(:shipping_status).group_by_day(:order_time).count, stacked: true
+          = column_chart chart_data_dji_track_orders_path, stacked: true
 
       %table.table.table-sm.table-striped.table-middle.table-responsive
         %thead.thead-inverse

@@ -84,6 +84,10 @@ class DjiTrack::OrdersController < ApplicationController
     end
   end
 
+  def chart_data
+    render json: Order.where(order_time: [Date.parse('2016-09-27')..Date.parse('2016-10-11')]).group(:shipping_status).group_by_day(:order_time).count.chart_json
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
