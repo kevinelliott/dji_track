@@ -6,8 +6,14 @@
       .state-log-change
         = state_log.column.humanize.titleize
         changed from 
-        %strong #{state_log.from.titleize}
+        - if state_log.from != nil
+          %strong #{state_log.from.to_s.titleize}
+        - else
+          %em nil
         to 
-        %strong #{state_log.to.titleize}
+        - if state_log.to != nil
+          %strong #{state_log.to.to_s.titleize}
+        - else
+          %em nil
 - else
   There is currently no logged history. Please check again later.
