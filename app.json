@@ -33,6 +33,11 @@
       "value": "user@example.com",
       "required": true
     },
+    "ADMIN_USERNAME": {
+      "description": "The administrator's username.",
+      "value": "admin",
+      "required": true
+    },
     "ADMIN_PASSWORD": {
       "description": "The administrator's password for signing in.",
       "value": "changeme",
@@ -43,6 +48,16 @@
       "value": "myapp.herokuapp.com",
       "required": false
     },
-    "RAILS_ENV": "production"
+    "RAILS_ENV": "production",
+    "ROLLBAR_ACCESS_TOKEN": {
+      "description": "Used for sending error reports when the app crashes. Free Rollbar account is fine.",
+      "value": "",
+      "required": true
+    },
+    "SLACK_API_TOKEN": {
+      "description": "Used for sending alerts to Slack when an order gets shipped.",
+      "value": "",
+      "required": false
+    }
   }
 }
