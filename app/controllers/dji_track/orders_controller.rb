@@ -81,7 +81,7 @@ class DjiTrack::OrdersController < ApplicationController
         OrderStateLog.track_changes(@order, changes) if changes.present?
 
         format.html { redirect_to dji_track_orders_path, notice: 'Your entry was submitted. Others will appreciate this. Thank you!' }
-        format.json { render :show, status: :created, location: dji_track_orders_path }
+        format.json { render json: @order, status: :created, location: dji_track_orders_path }
       else
         format.html { render :new }
         format.json { render json: @order.errors, status: :unprocessable_entity }
