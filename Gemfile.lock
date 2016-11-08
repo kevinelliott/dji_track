@@ -98,7 +98,7 @@ GEM
       actionmailer (>= 4.0.0)
       devise (>= 4.0.0)
     diff-lcs (1.2.5)
-    dji (0.5.8)
+    dji (0.6.0)
       activesupport
       nokogiri
       thor (>= 0.18.1, < 2.0)
