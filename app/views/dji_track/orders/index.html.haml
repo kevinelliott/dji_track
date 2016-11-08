@@ -153,7 +153,8 @@
                     In
                     = distance_of_time_in_words(order.estimated_delivery_at, Time.current)
                 - else
-                  = order.delivery_status.capitalize
+                  %span{ title: order.delivered_at }
+                    = order.delivery_status.capitalize
               %td.text-xs-right{ title: order.last_changed_at }
                 = time_ago_in_words order.last_changed_at
                 ago
