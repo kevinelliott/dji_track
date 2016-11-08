@@ -8,6 +8,20 @@ class OrderStateLog < ApplicationRecord
         from, to = *data
         order.order_state_logs << OrderStateLog.new(column: column, from: from.try(:downcase), to: to.try(:downcase))
         order.save
+
+        notify_slack(order, column, from, to)
+      end
+    end
+
+    def notify_slack(order, column, from, to)
+      if column == 'shipping_status' && to.downcase == 'shipped'
+        message = "Order #{order.masked_order_id} from #{order.order_time} to #{order.shipping_country.upcase} was just shipped."
+        slack = Slack::Web::Client.new
+        slack.chat_postMessage(
+          channel: '#mavic-shipping-status',
+          text: message,
+          as_user: true
+        )
       end
     end
 
