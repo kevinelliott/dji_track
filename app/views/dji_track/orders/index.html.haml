@@ -146,15 +146,17 @@
               %td{ class: order.shipping_status_class }
                 = order.shipping_status
               %td{ class: order.delivery_status_class }
-                - if order.estimated_delivery_at.present?
+                - if order.delivery_status == 'delivered'
+                  %span{ title: order.delivered_at }
+                    = order.delivery_status.capitalize
+                - elsif order.estimated_delivery_at.present?
                   - if Time.current > order.estimated_delivery_at
                     Arriving
                   - else
                     In
                     = distance_of_time_in_words(order.estimated_delivery_at, Time.current)
                 - else
-                  %span{ title: order.delivered_at }
-                    = order.delivery_status.capitalize
+                  = order.delivery_status.capitalize
               %td.text-xs-right{ title: order.last_changed_at }
                 = time_ago_in_words order.last_changed_at
                 ago
