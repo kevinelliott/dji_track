@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "manufacturer_id": 1,
+    "name": "Mavic Pro",
+    "code": "mavic-pro",
+    "description": "",
+    "logo_url": "http://product1.djicdn.com/uploads/sku/covers/30020/small_aece41a1-c4fa-4644-8f3d-61d8f9bd5e4f.png",
+    "website": "http://store.dji.com/product/mavic-pro",
+    "upc": "190021279605",
+    "asin": "B01M0AVO1P",
+    "status": "published",
+    "created_at": "2016-11-02T08:33:30.638Z",
+    "updated_at": "2016-11-02T08:33:30.638Z"
+  },
+  {
+    "id": 2,
+    "manufacturer_id": 1,
+    "name": "Mavic Pro Fly More Combo",
+    "code": "mavic-pro-fly-more-combo",
+    "description": "",
+    "logo_url": "https://images-na.ssl-images-amazon.com/images/I/51T3YRu%2BPvL._SY300_.jpg",
+    "website": "http://store.dji.com/product/mavic-pro-fly-more-combo",
+    "upc": "6958265138010",
+    "asin": "B01LZWGS9L",
+    "status": "published",
+    "created_at": "2016-11-02T08:34:05.116Z",
+    "updated_at": "2016-11-02T08:34:05.116Z"
+  }
+]
