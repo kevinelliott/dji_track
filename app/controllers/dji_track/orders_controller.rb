@@ -22,9 +22,11 @@ class DjiTrack::OrdersController < ApplicationController
           deliveries << order.delivered_in_days if order.delivered_in_days.present?
         end
       end
-      puts "Deliveries: #{deliveries.count}, Deliveries Sum: #{deliveries.sum.to_f}"
-      puts "Days #{(deliveries.sum.to_f / deliveries.count)}, Weeks: #{((deliveries.sum.to_f / deliveries.count) / 7).round(1)}"
-      "#{((deliveries.sum.to_f / deliveries.count) / 7).round(1)} weeks"
+      if deliveries.count > 0
+        puts "Deliveries: #{deliveries.count}, Deliveries Sum: #{deliveries.sum.to_f}"
+        puts "Days #{(deliveries.sum.to_f / deliveries.count)}, Weeks: #{((deliveries.sum.to_f / deliveries.count) / 7).round(1)}"
+        "#{((deliveries.sum.to_f / deliveries.count) / 7).round(1)} weeks"
+      end
     end
 
     @orders_by_country = {}
