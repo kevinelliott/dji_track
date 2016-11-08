@@ -2,8 +2,9 @@ class Order < ApplicationRecord
   before_save :default_order
 
   belongs_to :merchant
-  belongs_to :product, optional: true
   has_many :order_state_logs
+  belongs_to :product, optional: true
+  belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
 
   scope :delivered, -> { where(delivery_status: 'delivered') }
   scope :not_delivered, -> { where('delivery_status != ?', 'delivered') }
