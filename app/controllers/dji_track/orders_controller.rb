@@ -22,7 +22,9 @@ class DjiTrack::OrdersController < ApplicationController
           deliveries << order.delivered_in_days if order.delivered_in_days.present?
         end
       end
-      "#{((deliveries.sum / deliveries.count) / 7).round(1)} weeks"
+      if deliveries.sum > 0 || deliveries.count > 0
+        "#{((deliveries.sum / deliveries.count) / 7).round(1)} weeks"
+      end
     end
 
     @orders_by_country = {}
