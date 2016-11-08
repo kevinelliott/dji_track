@@ -1,0 +1,13 @@
+%td
+  %h5.user-name
+    = link_to user.name, user
+  .user-email
+    = link_to user.email, user
+%td
+  Orders #{user.orders.count}
+%td.text-xs-right.align-middle
+  = form_for(user) do |f|
+    = f.select :role, User.roles.keys.map { |role| [role.titleize,role] }
+    = f.submit 'Change Role', class: 'btn btn-sm'
+%td.text-xs-right.align-middle
+  = link_to('Delete User', user_path(user), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-sm btn-danger') unless user == current_user
