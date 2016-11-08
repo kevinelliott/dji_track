@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "name": "DJI",
+    "code": "",
+    "description": "Drone manufacturers",
+    "website": "dji.com",
+    "support_email": "onlinesales@dji.com",
+    "support_website": "forum.dji.com",
+    "logo_url": "http://forum1.djicdn.com/static/image/common/newmobile201603/logo_2016_04.png",
+    "created_at": "Tue, 08 Nov 2016 20:33:13 UTC +00:00",
+    "updated_at": "Tue, 08 Nov 2016 20:33:15 UTC +00:00",
+    "common_name": "DJI"
+  }
+]
