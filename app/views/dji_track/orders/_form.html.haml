@@ -12,7 +12,7 @@
       .col-xs-4
         .form-group
           = f.label :merchant
-          = f.select :merchant, Merchant.active.order(name: :asc).collect { |o| [o.name, o.id] }, { selected: '1', prompt: 'Choose a Merchant' }, { class: 'form-control' }
+          = f.select :merchant, Merchant.active.order(common_name: :asc).collect { |o| [o.common_name, o.id] }, { selected: '1', prompt: 'Choose a Merchant' }, { class: 'form-control' }
     .row
       .col-xs-6
         .form-group
