@@ -47,7 +47,7 @@ class DjiTrack::OrdersController < ApplicationController
         Merchant.find(order_params[:merchant].to_i)
       else
         merchant_name = order_params[:merchant].presence || 'DJI'
-        Merchant.where('LOWER(name) LIKE ?', merchant_name.downcase).first
+        Merchant.where('LOWER(common_name) LIKE ?', merchant_name.downcase).first
       end
     else
       Merchant.find(1)
