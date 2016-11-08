@@ -15,7 +15,7 @@ class OrderStateLog < ApplicationRecord
 
     def notify_slack(order, column, from, to)
       if column == 'shipping_status' && to.downcase == 'shipped'
-        message = "Order #{order.masked_order_id} from #{order.order_time} to #{order.shipping_country.upcase} was just shipped."
+        message = "Order #{order.masked_order_id} from #{order.order_time.presence || 'an unknown Order Time'} to #{(order.shipping_country.presence || 'UNKNOWN').upcase} was just shipped."
 
         slack = Slack::Web::Client.new
         slack.chat_postMessage(
