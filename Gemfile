@@ -30,6 +30,7 @@ gem 'groupdate'
 gem 'chartkick'
 gem 'rollbar'
 gem 'video_info'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 group :development do
   gem 'web-console'

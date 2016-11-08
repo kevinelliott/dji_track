@@ -5,7 +5,7 @@ class Video < ApplicationRecord
   scope :published, -> { where(status: 'published') }
 
   validates :summary, presence: true
-  validates :url, presence: true
+  validates :url, presence: true, unique: true
 
   def publish!
     update(status: 'published', published_at: Time.current)
