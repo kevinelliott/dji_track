@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108002949) do
+ActiveRecord::Schema.define(version: 20161108014834) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -202,17 +202,24 @@ ActiveRecord::Schema.define(version: 20161108002949) do
 
   create_table "videos", force: :cascade do |t|
     t.integer  "streaming_site_id"
-    t.string   "title",                                        null: false
-    t.text     "summary",                                      null: false
+    t.string   "title",                                            null: false
+    t.text     "summary",                                          null: false
     t.text     "description"
-    t.string   "url",                                          null: false
+    t.string   "url",                                              null: false
     t.string   "channel_name"
     t.string   "channel_url"
     t.integer  "user_id"
-    t.string   "status",            default: "pending-review", null: false
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
+    t.string   "status",                default: "pending-review", null: false
+    t.datetime "created_at",                                       null: false
+    t.datetime "updated_at",                                       null: false
     t.datetime "published_at"
+    t.string   "thumbnail_url_small"
+    t.string   "thumbnail_url_medium"
+    t.string   "thumbnail_url_large"
+    t.string   "embed_url"
+    t.text     "embed_code"
+    t.datetime "provider_published_at"
+    t.integer  "duration"
     t.index ["channel_name"], name: "index_videos_on_channel_name", using: :btree
     t.index ["published_at"], name: "index_videos_on_published_at", using: :btree
     t.index ["status"], name: "index_videos_on_status", using: :btree

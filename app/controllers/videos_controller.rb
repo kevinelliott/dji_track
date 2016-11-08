@@ -14,16 +14,7 @@ class VideosController < ApplicationController
 
   def create
     @video = Video.new(video_params)
-
-    if @video.url.present?
-      video_info = VideoInfo.new(@video.url)
-      if video_info.available?
-        @video.title        = video_info.title
-        @video.description  = video_info.description
-        @video.channel_name = video_info.author
-        @video.channel_url  = video_info.author_url
-      end
-    end
+    @video.update_from_source
 
     respond_to do |format|
       if @video.save
