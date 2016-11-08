@@ -1,0 +1,20 @@
+%h1 Streaming Sites
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th Code
+      %th Description
+      %th
+      %th
+      %th
+
+  %tbody
+    - @streaming_sites.each do |streaming_site|
+      %tr
+        %td= streaming_site.name
+        %td= streaming_site.code
+        %td= streaming_site.description
+
+%br

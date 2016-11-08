@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161107121543) do
+ActiveRecord::Schema.define(version: 20161108002949) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,6 +146,18 @@ ActiveRecord::Schema.define(version: 20161107121543) do
     t.index ["status"], name: "index_products_on_status", using: :btree
   end
 
+  create_table "streaming_sites", force: :cascade do |t|
+    t.string   "name",        null: false
+    t.string   "code",        null: false
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "website"
+    t.string   "logo_url"
+    t.index ["code"], name: "index_streaming_sites_on_code", using: :btree
+    t.index ["name"], name: "index_streaming_sites_on_name", using: :btree
+  end
+
   create_table "terms", force: :cascade do |t|
     t.string   "name",        null: false
     t.text     "description"
@@ -188,8 +200,30 @@ ActiveRecord::Schema.define(version: 20161107121543) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "videos", force: :cascade do |t|
+    t.integer  "streaming_site_id"
+    t.string   "title",                                        null: false
+    t.text     "summary",                                      null: false
+    t.text     "description"
+    t.string   "url",                                          null: false
+    t.string   "channel_name"
+    t.string   "channel_url"
+    t.integer  "user_id"
+    t.string   "status",            default: "pending-review", null: false
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.datetime "published_at"
+    t.index ["channel_name"], name: "index_videos_on_channel_name", using: :btree
+    t.index ["published_at"], name: "index_videos_on_published_at", using: :btree
+    t.index ["status"], name: "index_videos_on_status", using: :btree
+    t.index ["streaming_site_id"], name: "index_videos_on_streaming_site_id", using: :btree
+    t.index ["user_id"], name: "index_videos_on_user_id", using: :btree
+  end
+
   add_foreign_key "articles", "users"
   add_foreign_key "order_state_logs", "orders"
   add_foreign_key "orders", "products"
   add_foreign_key "products", "manufacturers"
+  add_foreign_key "videos", "streaming_sites"
+  add_foreign_key "videos", "users"
 end

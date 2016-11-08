@@ -1,0 +1,33 @@
+%p#notice= notice
+
+%p
+  %b Streaming site:
+  = @video.streaming_site
+%p
+  %b Title:
+  = @video.title
+%p
+  %b Summary:
+  = @video.summary
+%p
+  %b Description:
+  = @video.description
+%p
+  %b Url:
+  = @video.url
+%p
+  %b Channel name:
+  = @video.channel_name
+%p
+  %b Channel url:
+  = @video.channel_url
+%p
+  %b User:
+  = @video.user
+%p
+  %b Status:
+  = @video.status
+
+= link_to 'Edit', edit_video_path(@video)
+\|
+= link_to 'Back', videos_path

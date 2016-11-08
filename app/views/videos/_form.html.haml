@@ -1,0 +1,31 @@
+= form_for @video do |f|
+  - if @video.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@video.errors.count, "error")} prohibited this video from being saved:"
+      %ul
+        - @video.errors.full_messages.each do |msg|
+          %li= msg
+
+  .form-group
+    = f.label :title
+    = f.text_field :title, class: 'form-control', placeholder: 'Guy flies DJI Mavic into a wall'
+    %small.text-muted
+      You should copy &amp; paste the title of the video from the source site.
+  .form-group
+    = f.label :url
+    = f.text_field :url, class: 'form-control', placeholder: 'http://www.youtube.com/watch?asjdkajk'
+    %small.text-muted
+      A link to the video on the source site.
+  .form-group
+    = f.label :summary
+    = f.text_area :summary, class: 'form-control', placeholder: 'A short clip of a guy flying his new DJI Mavic and then stupidly flies it directly into a wall. User error!'
+    %small.text-muted
+      Your own summary of what the video is about.
+  .form-group
+    = f.label :description
+    = f.text_area :description, class: 'form-control'
+    %small.text-muted
+      You should copy &amp; paste the description of the video from the source site.
+
+  .actions
+    = f.submit 'Save', class: 'btn btn-primary'

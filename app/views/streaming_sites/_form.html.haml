@@ -1,0 +1,25 @@
+= form_for @streaming_site do |f|
+  - if @streaming_site.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@streaming_site.errors.count, "error")} prohibited this streaming_site from being saved:"
+      %ul
+        - @streaming_site.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :code
+    = f.text_field :code
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :website
+    = f.text_field :website
+  .field
+    = f.label :logo_url
+    = f.text_field :logo_url
+  .actions
+    = f.submit 'Save'

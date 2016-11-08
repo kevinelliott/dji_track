@@ -1,0 +1,17 @@
+%h1
+  Videos
+  .float-xs-right
+    = link_to 'Submit a Video', new_video_path, class: 'btn btn-primary'
+
+%br
+
+.videos
+  - @videos.each do |video|
+    .video
+      %h4.video-title
+        = link_to video.title, video.url, target: '_blank'
+      %h6.video-posted-at.text-muted
+        = video.published_at.to_s(:long)
+      .video-summary= video.summary
+
+%br

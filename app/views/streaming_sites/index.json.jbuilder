@@ -1,0 +1,1 @@
+json.array! @streaming_sites, partial: 'streaming_sites/streaming_site', as: :streaming_site

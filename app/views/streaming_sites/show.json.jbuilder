@@ -1,0 +1,1 @@
+json.partial! "streaming_sites/streaming_site", streaming_site: @streaming_site

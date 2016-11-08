@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :order_state_logs
   namespace :dji_track do
     resources :orders, except: [:edit, :update, :destroy] do
       collection do
@@ -25,13 +24,19 @@ Rails.application.routes.draw do
     root to: 'articles#index'
   end
 
+  resources :order_state_logs
+
   resources :products
+
+  resources :streaming_sites, except: [:edit, :update, :destroy]
 
   resources :terms
   get 'terminology', to: 'terminology#index', as: :terminology
 
   devise_for :users
   resources :users
+
+  resources :videos, except: [:edit, :update, :destroy]
 
   get '/orders', to: redirect('/dji_track/orders')
   get '/orders/new', to: redirect('/dji_track/orders/new')

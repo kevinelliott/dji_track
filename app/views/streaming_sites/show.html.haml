@@ -1,0 +1,13 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @streaming_site.name
+%p
+  %b Code:
+  = @streaming_site.code
+%p
+  %b Description:
+  = @streaming_site.description
+
+= link_to 'Back', streaming_sites_path
