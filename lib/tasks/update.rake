@@ -73,7 +73,7 @@ namespace :update do
     puts "-----------------------------------------------------------------------------"
     puts
 
-    Order.not_delivered.order(order_time: :asc).find_in_batches(batch_size: 10).with_index do |orders, batch|
+    Order.order(order_time: :asc).find_in_batches(batch_size: 10).with_index do |orders, batch|
       puts "Processing Shipping Batch ##{batch}"
 
       orders.each_with_index do |order, index|
@@ -90,7 +90,14 @@ namespace :update do
             if shipment.present?
               puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} #{order.pretty_shipping_company} shipment with waybill #{shipment.waybill} has an estimated delivery date of #{shipment.estimated_delivery_date}"
               puts shipment.inspect
-              order.update(estimated_delivery_at: shipment.estimated_delivery_date, delivery_status: 'enroute')
+
+              if shipment.delivery_status == 'delivered'
+                order.update(delivery_status: shipment.delivery_status, delivered_at: shipment.delivered_at)
+              elsif shipment.estimated_delivery_date.present?
+                order.update(estimated_delivery_at: shipment.estimated_delivery_date, delivery_status: 'enroute')
+              else
+                order.update(delivery_status: 'enroute')
+              end
             else
               puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} has invalid #{order.pretty_shipping_company} waybill #{order.tracking_number}!"
             end
