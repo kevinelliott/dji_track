@@ -33,6 +33,11 @@
       "value": "user@example.com",
       "required": true
     },
+    "ADMIN_USERNAME": {
+      "description": "The administrator's username.",
+      "value": "admin",
+      "required": true
+    },
     "ADMIN_PASSWORD": {
       "description": "The administrator's password for signing in.",
       "value": "changeme",
