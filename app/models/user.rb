@@ -6,6 +6,16 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
 
+  def gravatar_url
+    require 'digest/md5'
+    token = if email.present?
+      Digest::MD5.hexdigest(email.downcase)
+    else
+      dji_username.presence || 'unknown'
+    end
+    "https://www.gravatar.com/avatar/#{token}"
+  end
+
   def set_default_role
     self.role ||= :user
   end
