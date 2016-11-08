@@ -4,8 +4,6 @@ class Video < ApplicationRecord
 
   scope :published, -> { where(status: 'published') }
 
-  validates :title, presence: true
   validates :summary, presence: true
   validates :url, presence: true
-  validates :status, presence: true
 end

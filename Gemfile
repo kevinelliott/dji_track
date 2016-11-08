@@ -29,6 +29,7 @@ gem 'redcarpet'
 gem 'groupdate'
 gem 'chartkick'
 gem 'rollbar'
+gem 'video_info'
 
 group :development do
   gem 'web-console'
