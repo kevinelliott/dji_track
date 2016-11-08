@@ -9,6 +9,9 @@ class Order < ApplicationRecord
   scope :not_delivered, -> { where('delivery_status != ?', 'delivered') }
   scope :shipped, -> { where('LOWER(shipping_status) = ?','shipped') }
 
+  scope :with_order_id, -> { where('order_id IS NOT NULL AND order_id != ?', '') }
+  scope :with_phone_tail, -> { where('phone_tail IS NOT NULL AND phone_tail != ?', '') }
+
   validates :order_id, presence: true, length: { is: 12 }
   validates :phone_tail, presence: true, length: { is: 4 }
 
