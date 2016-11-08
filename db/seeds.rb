@@ -10,6 +10,9 @@ user = CreateAdminService.new.call
 CreateManufacturersService.new.call
 Manufacturer.all.each { |m| puts 'CREATED MANUFACTURER: ' << m.name }
 
+CreateMerchantsService.new.call
+Merchant.all.each { |m| puts 'CREATED MERCHANT: ' << m.name }
+
 CreateProductService.new.call
 Product.all.each { |p| puts 'CREATED PRODUCT: ' << p.name }
 
