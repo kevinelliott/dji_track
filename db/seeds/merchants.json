@@ -7,8 +7,7 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.808Z",
-    "updated_at": "2016-10-28T22:09:30.808Z",
-    "url": "https://www.dronehome.io/merchants/2.json"
+    "updated_at": "2016-10-28T22:09:30.808Z"
   },
   {
     "id": 3,
@@ -18,8 +17,7 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.810Z",
-    "updated_at": "2016-10-28T22:09:30.810Z",
-    "url": "https://www.dronehome.io/merchants/3.json"
+    "updated_at": "2016-10-28T22:09:30.810Z"
   },
   {
     "id": 4,
@@ -29,8 +27,7 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.812Z",
-    "updated_at": "2016-10-28T22:09:30.812Z",
-    "url": "https://www.dronehome.io/merchants/4.json"
+    "updated_at": "2016-10-28T22:09:30.812Z"
   },
   {
     "id": 5,
@@ -40,8 +37,7 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.815Z",
-    "updated_at": "2016-10-28T22:09:30.815Z",
-    "url": "https://www.dronehome.io/merchants/5.json"
+    "updated_at": "2016-10-28T22:09:30.815Z"
   },
   {
     "id": 6,
@@ -51,8 +47,7 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.817Z",
-    "updated_at": "2016-10-28T22:09:30.817Z",
-    "url": "https://www.dronehome.io/merchants/6.json"
+    "updated_at": "2016-10-28T22:09:30.817Z"
   },
   {
     "id": 1,
@@ -62,7 +57,6 @@
     "referral_code": null,
     "status": "active",
     "created_at": "2016-10-28T22:09:30.802Z",
-    "updated_at": "2016-11-07T08:25:17.137Z",
-    "url": "https://www.dronehome.io/merchants/1.json"
+    "updated_at": "2016-11-07T08:25:17.137Z"
   }
 ]
