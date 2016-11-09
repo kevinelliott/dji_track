@@ -7,7 +7,8 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.808Z",
-    "updated_at": "2016-10-28T22:09:30.808Z"
+    "updated_at": "2016-10-28T22:09:30.808Z",
+    "common_name": "Amazon"
   },
   {
     "id": 3,
@@ -17,7 +18,8 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.810Z",
-    "updated_at": "2016-10-28T22:09:30.810Z"
+    "updated_at": "2016-10-28T22:09:30.810Z",
+    "common_name": "Amazon UK"
   },
   {
     "id": 4,
@@ -27,7 +29,8 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.812Z",
-    "updated_at": "2016-10-28T22:09:30.812Z"
+    "updated_at": "2016-10-28T22:09:30.812Z",
+    "common_name": "Best Buy"
   },
   {
     "id": 5,
@@ -37,7 +40,8 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.815Z",
-    "updated_at": "2016-10-28T22:09:30.815Z"
+    "updated_at": "2016-10-28T22:09:30.815Z",
+    "common_name": "B\u0026H"
   },
   {
     "id": 6,
@@ -47,7 +51,8 @@
     "referral_code": null,
     "status": "pending",
     "created_at": "2016-10-28T22:09:30.817Z",
-    "updated_at": "2016-10-28T22:09:30.817Z"
+    "updated_at": "2016-10-28T22:09:30.817Z",
+    "common_name": "NewEgg"
   },
   {
     "id": 1,
@@ -57,6 +62,7 @@
     "referral_code": null,
     "status": "active",
     "created_at": "2016-10-28T22:09:30.802Z",
-    "updated_at": "2016-11-07T08:25:17.137Z"
+    "updated_at": "2016-11-07T08:25:17.137Z",
+    "common_name": "DJI"
   }
 ]
