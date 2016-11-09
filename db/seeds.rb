@@ -6,5 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user = CreateAdminService.new.call
+
+CreateManufacturersService.new.call
+Manufacturer.all.each { |m| puts 'CREATED MANUFACTURER: ' << m.name }
+
+CreateMerchantsService.new.call
+Merchant.all.each { |m| puts 'CREATED MERCHANT: ' << m.name }
+
+CreateProductService.new.call
+Product.all.each { |p| puts 'CREATED PRODUCT: ' << p.name }
+
 puts 'CREATED ADMIN USER: ' << user.email
 # Environment variables (ENV['...']) can be set in the file .env file.
