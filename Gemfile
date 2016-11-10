@@ -31,6 +31,8 @@ gem 'rollbar'
 gem 'video_info'
 gem 'acts-as-taggable-on', '~> 4.0'
 gem 'slack-ruby-client'
+gem 'bourbon'
+gem 'administrate'
 
 group :development do
   gem 'web-console'

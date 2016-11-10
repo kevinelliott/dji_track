@@ -1,5 +1,22 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    resources :users
+
+    resources :articles
+    resources :manufacturers
+    resources :merchants
+    resources :orders
+    resources :order_state_logs
+    resources :products
+    resources :streaming_sites
+    resources :terms
+    resources :videos
+
+    root to: "users#index"
+  end
+
+  
   namespace :dji_track do
     resources :orders, except: [:edit, :update, :destroy] do
       collection do
