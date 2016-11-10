@@ -5,7 +5,7 @@ namespace :update do
     puts "-----------------------------------------------------------------------------"
     puts
 
-    Order.with_order_id.with_phone_tail.not_delivered.order(updated_at: :asc).find_in_batches(batch_size: 10).with_index do |orders, batch|
+    Merchant.where(common_name: 'DJI').first.orders.with_order_id.with_phone_tail.not_delivered.order(updated_at: :asc).find_in_batches(batch_size: 10).with_index do |orders, batch|
       puts "Processing group ##{batch}"
 
       orders.each_with_index do |order, index|
@@ -73,7 +73,7 @@ namespace :update do
     puts "-----------------------------------------------------------------------------"
     puts
 
-    Order.order(order_time: :asc).find_in_batches(batch_size: 10).with_index do |orders, batch|
+    Merchant.where(common_name: 'DJI').first.orders.order(order_time: :asc).find_in_batches(batch_size: 10).with_index do |orders, batch|
       puts "Processing Shipping Batch ##{batch}"
 
       orders.each_with_index do |order, index|
