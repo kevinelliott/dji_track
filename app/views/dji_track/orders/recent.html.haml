@@ -1,7 +1,10 @@
+- content_for :subnav do
+  = render 'layouts/subnav_dji'
 
-%h2 Recently Shipped
-%p
-  A listing of orders that has shipped in the last couple of days.
+.jumbotron
+  %h1.display-4 Recently Shipped
+  %p.lead
+    A listing of orders that has shipped in the last couple of days.
 
 - days = @order_state_logs.keys.reverse
 - days.each do |day|
