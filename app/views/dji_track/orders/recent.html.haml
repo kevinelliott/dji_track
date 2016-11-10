@@ -4,7 +4,7 @@
 .jumbotron
   %h1.display-4 Recently Shipped
   %p.lead
-    A listing of orders that has shipped in the last couple of days.
+    A listing of orders that have shipped in the last couple of days from all merchants.
 
 - days = @order_state_logs.keys.reverse
 - days.each do |day|
