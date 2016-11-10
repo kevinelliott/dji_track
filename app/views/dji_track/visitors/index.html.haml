@@ -4,18 +4,30 @@
 .jumbotron
   %h1.display-4 DJI Track
   %p.lead
-    A place to track your DJI preorders, regular orders, and understand where your order is in relation to
+    Track your preorders &amp; regular orders from various merchants, and understand where your order is in relation to
     other people's shipping status.
 
 .row
-  .col-md-4
+  .card-deck
     .card
       = image_tag 'mavic-pro.png', class: 'card-img-top img-fluid', alt: 'Mavic Pro'
       .card-block
-        %h4.card-title Mavic Pro Preorders
+        %h4.card-title.text-xs-center Mavic Pro Preorders
         %p.card-text
-          Realtime shipping statuses of the brand new
-          Mavic Pro and Mavic Pro Fly More combo from DJI.
+          Realtime shipping statuses of the brand new DJI
+          Mavic Pro &amp; Mavic Pro Fly More combo.
+      .card-block
         .text-xs-center
           = link_to 'Mavic Pro Orders', dji_track_orders_path, class: 'btn btn-primary'
           = link_to 'Recently Shipped', recent_dji_track_orders_path, class: 'btn btn-default'
+    .card
+      = image_tag 'control-create-2016-11-15.png', class: 'card-img-top img-fluid', alt: 'Mavic Pro'
+      .card-block
+        %h4.card-title.text-xs-center Mystery Preorder
+        %p.card-text
+          Realtime shipping statuses of DJI's brand new mystery. We don't know anything
+          yet, but have a guess.
+      .card-block
+        .text-xs-center
+          = link_to 'Coming Soon', '#', class: 'btn btn-primary'
+          = link_to 'Come back Nov 15th', '#', class: 'btn btn-default'
