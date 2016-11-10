@@ -7,6 +7,8 @@ class Video < ApplicationRecord
   validates :summary, presence: true
   validates :url, presence: true, uniqueness: true
 
+  before_save :update_from_source
+
   def publish!
     update(status: 'published', published_at: Time.current)
   end
