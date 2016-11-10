@@ -6,10 +6,11 @@
 # you're free to overwrite the RESTful controller actions.
 module Admin
   class ApplicationController < Administrate::ApplicationController
+    before_action :authenticate_user!
     before_action :authenticate_admin
 
     def authenticate_admin
-      current_user.present? && current_user.admin?
+      redirect_to '/', alert: 'Not authorized.' unless current_user && access_whitelist
     end
 
     # Override this value to specify the number of elements to display at a time
@@ -17,5 +18,12 @@ module Admin
     # def records_per_page
     #   params[:per_page] || 20
     # end
+
+    private
+
+    def access_whitelist
+      current_user.try(:admin?)
+    end
+
   end
 end
