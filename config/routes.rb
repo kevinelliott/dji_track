@@ -16,7 +16,8 @@ Rails.application.routes.draw do
     root to: "users#index"
   end
 
-  
+  get 'about/index', as: :about
+
   namespace :dji_track do
     resources :orders, except: [:edit, :update, :destroy] do
       collection do
