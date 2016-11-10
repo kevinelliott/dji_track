@@ -22,6 +22,5 @@
       .manufacturer-description
         = manufacturer.description
       .manufacturer-support.text-muted
-        Suppport:
         - if manufacturer.support_website.present?
-          = link_to manufacturer.support_website, manufacturer.support_website, target: '_blank'
+          = link_to 'Support', manufacturer.support_website, class: 'btn btn-sm btn-info', target: '_blank'
