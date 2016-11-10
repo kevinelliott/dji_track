@@ -33,6 +33,10 @@ class DjiTrack::OrdersController < ApplicationController
     @countries = Order.select(:shipping_country).uniq
   end
 
+  def recent
+    @order_state_logs = OrderStateLog.where('order_state_logs.column = ? AND LOWER(order_state_logs.to) = ?', 'shipping_status', 'shipped').order(created_at: :desc).to_a.group_by_day(&:created_at)
+  end
+
   def show
   end
 

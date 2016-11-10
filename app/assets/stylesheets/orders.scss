@@ -16,6 +16,15 @@
   cursor: pointer;
 }
 
+.shipped-orders {
+  margin-bottom: 30px;
+
+  .order {
+    border: 1px solid #ccc;
+  }
+}
+
+
 .shipping-status-pending, .payment-status-pending, 
 .shipping-company-pending, .delivery-status-pending {
   background-color: #ffcccc;

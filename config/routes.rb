@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :orders, except: [:edit, :update, :destroy] do
       collection do
         get 'chart_data', as: :chart_data
+        get 'recent', as: :recent
       end
       member do
         get 'history', as: :history

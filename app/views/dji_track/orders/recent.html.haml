@@ -1,0 +1,40 @@
+
+%h2 Recently Shipped
+%p
+  A listing of orders that has shipped in the last couple of days.
+
+- days = @order_state_logs.keys.reverse
+- days.each do |day|
+  %h5.shipped-day
+    = day.to_s(:long)
+  
+  %table.table.table-sm.shipped-orders
+    %thead
+      %tr
+        %th Time
+        %th Order ID
+        %th Destination
+        %th Order Time
+        %th Product
+        %th Shipping Wait
+    - @order_state_logs[day].each do |osl|
+      %tr.order
+        %td.text-xs-right.order-shipped-date
+          = osl.created_at.to_s(:time)
+        %td
+          = osl.order.masked_order_id
+        %td.text-xs-left
+          - if osl.order.shipping_country.present?
+            = flag_icon(osl.order.shipping_country[0..1].downcase.to_sym)
+            = osl.order.shipping_country
+        %td
+          = osl.order.order_time
+        %td.text-xs-left
+          = osl.order.product.try(:name)
+        %td.text-xs-right
+          - if osl.created_at.present? && osl.order.order_time.present?
+            - wait_in_days = ((osl.created_at - osl.order.order_time) / 60 / 60 / 24).round
+            - if wait_in_days > 0
+              #{wait_in_days} days
+          - else
+            Unknown
