@@ -1,6 +1,8 @@
 class Product < ApplicationRecord
   belongs_to :manufacturer
 
+  scope :published, -> { where(status: 'published') }
+
   def amazon_affiliate_code
     "dronehome00-20"
   end

@@ -44,7 +44,7 @@
       .col-xs-6
         .form-group
           = f.label :product_id, 'Product'
-          = f.collection_select :product_id, Product.includes(:manufacturer).order('manufacturers.name ASC, products.name ASC'), :id, :manufacturer_product_name, { prompt: 'Select a Product' }, { required: true, class: 'form-control' }
+          = f.collection_select :product_id, Product.published.includes(:manufacturer).order('manufacturers.name ASC, products.name ASC'), :id, :manufacturer_product_name, { prompt: 'Select a Product' }, { required: true, class: 'form-control' }
       .col-xs-6
         .form-group
           = f.label :order_time, 'Order Time'
