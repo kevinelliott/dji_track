@@ -65,20 +65,6 @@
           = f.country_select :shipping_country, { priority_countries: ['GB', 'US'], include_blank: 'Select a Country' }, { class: 'form-control' }
 
     .row
-      .col-xs-4
-        .form-group
-          = f.label :payment_status, 'Payment Status'
-          = f.select :payment_status, ['Pay Confirmed', 'Pay Pending'], {}, { class: 'form-control' }
-      .col-xs-4
-        .form-group
-          = f.label :shipping_company, 'Shipping Company'
-          = f.select :shipping_company, @shipping_companies, {}, { class: 'form-control' }
-      .col-xs-4
-        .form-group
-          = f.label :shipping_status, 'Shipping Status'
-          = f.select :shipping_status, ['Pending', 'Shipped'], {}, { class: 'form-control' }
-
-    .row
       .col-xs-6
         .form-group
           = f.label :tracking_number, 'Tracking Number'
@@ -101,6 +87,27 @@
           %small.form-text
             Provide your email address if you wish to be notified about changes to your order status. (not yet avail)
 
+    %h4 Order Status
+    %p
+      These details help to identify where your order is in the delivery flow. This is
+      the most critical information (be sure you've set an accurate Order Time above 
+      in order to be the most helpful to others).
+
+    .row
+      .col-xs-4
+        .form-group
+          = f.label :payment_status, 'Payment Status'
+          = f.select :payment_status, ['Pay Confirmed', 'Pay Pending'], {}, { class: 'form-control' }
+      .col-xs-4
+        .form-group
+          = f.label :shipping_company, 'Shipping Company'
+          = f.select :shipping_company, @shipping_companies, {}, { class: 'form-control' }
+      .col-xs-4
+        .form-group
+          = f.label :shipping_status, 'Shipping Status'
+          = f.select :shipping_status, ['Pending', 'Shipped'], {}, { class: 'form-control' }
+
     = f.hidden_field :manual, value: true
+
     .actions
       = f.submit 'Save', class: 'btn btn-primary form-control'
