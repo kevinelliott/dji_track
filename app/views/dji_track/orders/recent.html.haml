@@ -7,11 +7,15 @@
 - days.each do |day|
   %h5.shipped-day
     = day.to_s(:long)
+    .float-xs-right
+      %small
+        #{@order_state_logs[day].count} orders shipped
   
   %table.table.table-sm.shipped-orders
     %thead
       %tr
         %th Time
+        %th Merchant
         %th Order ID
         %th Destination
         %th Order Time
@@ -21,6 +25,8 @@
       %tr.order
         %td.text-xs-right.order-shipped-date
           = osl.created_at.to_s(:time)
+        %td
+          = osl.order.merchant.common_name
         %td
           = osl.order.masked_order_id
         %td.text-xs-left
