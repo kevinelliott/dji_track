@@ -72,6 +72,10 @@
 
   %br
 
+  .orders-subheader
+    .orders-chart
+      = column_chart chart_data_dji_track_orders_path, stacked: true
+
   - @merchants.each do |merchant|
     - orders = @merchant_orders[merchant.id]
 
@@ -87,11 +91,6 @@
               #{shipped_percent(orders)}% Shipped
           %small.text-muted
             #{delivered_percent(orders)}% Delivered
-
-
-      .orders-subheader
-        .orders-chart
-          = column_chart chart_data_dji_track_orders_path, stacked: true
 
       %table.table.table-sm.table-striped.table-middle.table-responsive.table-hover
         %thead.thead-inverse
