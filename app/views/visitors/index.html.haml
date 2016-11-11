@@ -1,10 +1,37 @@
-.jumbotron
+.jumbotron.text-xs-center
+  = image_tag 'quadbot-happy.png', width: 325
+  %small.text-muted
+    Meet Quadbot.
   %h1.display-5 Welcome to DroneHome!
   %p.lead
-    A home for drone enthusiasts to learn about the latest drones, hear about drone news, learn about the
-    latest drone laws, and connect with each other.
+    A home for drone enthusiasts to learn about the newest drones, drone news, drone laws, and connect with other drone pilots.
 
 .row
+  .col-md-4
+    .card
+      .card-block
+        %h4.card-title Drone News
+        %p.card-text
+          Learn about the latest happenings in the world of drones, from new outlandish laws about where you can fly,
+          to the latest news about new drone products. Easy way for you to know what is going
+          on in the community.
+        .text-xs-center
+          = link_to 'Read News', news_root_path, class: 'btn btn-info'
+      .card-footer
+        .text-muted
+          And contribute your order data!
+  .col-md-4
+    .card
+      .card-block
+        %h4.card-title Order Tracking
+        %p.card-text
+          Track orders of DJI products from a variety of merchants, such as DJI, Amazon, and Best Buy. This is especially helpful during preorder
+          and recent launches due to the general silence from DJI about shipping status.
+        .text-xs-center
+          = link_to 'Track Orders', dji_track_root_path, class: 'btn btn-primary'
+      .card-footer
+        .text-muted
+          And contribute your order data!
   .col-md-4
     .card
       .card-block
@@ -13,7 +40,7 @@
           Realtime discussions with other drone enthusiasts. DroneHome on Slack has many rooms to discuss specific drone brands and models, as well as regional rooms to talk to drone
           pilots in your neck of the woods.
         .text-xs-center
-          = link_to 'Request Invitation', 'https://welike.typeform.com/to/m03t7Q', class: 'btn btn-primary'
+          = link_to 'Request Invitation', 'https://welike.typeform.com/to/m03t7Q', class: 'btn btn-warning'
       .card-footer
         .text-muted
           It's free and public.
