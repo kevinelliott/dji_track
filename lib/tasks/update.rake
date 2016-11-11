@@ -73,7 +73,7 @@ namespace :update do
     puts "-----------------------------------------------------------------------------"
     puts
 
-    Merchant.where(common_name: 'DJI').first.orders.order(order_time: :asc).find_in_batches(batch_size: 10).with_index do |orders, batch|
+    Order.order(order_time: :asc).find_in_batches(batch_size: 10).with_index do |orders, batch|
       puts "Processing Shipping Batch ##{batch}"
 
       orders.each_with_index do |order, index|
@@ -83,29 +83,67 @@ namespace :update do
           order.delivery_status = 'enroute' if order.shipping_status.downcase == 'shipped'
           
           case order.shipping_company.downcase
+
           when 'dhl' then
             tr       = DJI::DHL.track(order.tracking_number)
             shipment = tr.shipments.first
 
             if shipment.present?
-              puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} #{order.pretty_shipping_company} shipment with waybill #{shipment.waybill} has an estimated delivery date of #{shipment.estimated_delivery_date}"
+              puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} #{order.pretty_shipping_company} shipment with waybill #{shipment.waybill}"
               puts shipment.inspect
 
-              if shipment.delivery_status == 'delivered'
-                order.update(delivery_status: shipment.delivery_status, delivered_at: shipment.delivered_at)
+              if shipment.delivery_status.try(:downcase) == 'delivered'
+                order.delivery_status = 'delivered'
+                order.delivered_at    = shipment.delivered_at
+                puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} has been delivered by #{order.pretty_shipping_company}!"
               elsif shipment.estimated_delivery_date.present?
-                order.update(estimated_delivery_at: shipment.estimated_delivery_date, delivery_status: 'enroute')
+                order.estimated_delivery_at = shipment.estimated_delivery_date
+                order.delivery_status       = 'enroute'
+                puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} is enroute by #{order.pretty_shipping_company} with tracking number #{order.tracking_number}, and estimated delivery by #{order.estimated_delivery_at}!"
               else
-                order.update(delivery_status: 'enroute')
+                order.delivery_status = 'enroute'
+                puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} is enroute by #{order.pretty_shipping_company} with tracking number #{order.tracking_number}!"
               end
+
+              changes = order.changes
+              order.save(validate: false)
+
+              OrderStateLog.track_changes(order, changes)
             else
               puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} has invalid #{order.pretty_shipping_company} waybill #{order.tracking_number}!"
             end
+
+          when 'fedex' then
+            tr      = DJI::Fedex.track(order.tracking_number)
+            package = tr.packages.first
+
+            if package.present?
+              puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} #{order.pretty_shipping_company} shipment with tracking number #{package.tracking_number}"
+
+              order.estimated_delivery_at = package.estimated_delivery_date if package.estimated_delivery_date.present?
+              order.delivered_at          = package.delivery_date if package.delivery_date.present?
+              
+              if package.key_status.try(:downcase) == 'delivered'
+                order.delivery_status = 'delivered'
+                puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} has been delivered by #{order.pretty_shipping_company}!"
+              else
+                order.delivery_status = 'enroute'
+                puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} is enroute by #{order.pretty_shipping_company} with tracking number #{order.tracking_number}!"
+              end
+
+              changes = order.changes
+              order.save(validate: false)
+
+              OrderStateLog.track_changes(order, changes)
+            else
+              puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} has invalid #{order.pretty_shipping_company} tracking number #{order.tracking_number}!"
+            end
+
           else
             puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} has a currently unsupported shipper '#{order.shipping_company}'."
           end
         else
-          puts "Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} has no tracking number."
+          puts "Batch ##{batch}, Item #{index + 1} - Order #{order.order_id}/#{order.phone_tail} has no tracking number."
         end
       end
 
