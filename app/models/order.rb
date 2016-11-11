@@ -2,7 +2,7 @@ class Order < ApplicationRecord
   before_save :default_order
 
   belongs_to :merchant
-  has_many :order_state_logs
+  has_many :order_state_logs, dependent: :destroy
   belongs_to :product, optional: true
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
 
