@@ -1,9 +1,12 @@
 .jumbotron
   %h1.display-4 Products
-  %p
-    Learn about available drones and their accessories for a variety of market leading drone manufacturers. All
-    purchases made by clicking links from here to product pages result in helping to offset the cost of
-    running this community and will ensure that it continues to grow.
+  %p.lead
+    Learn about available drones and their accessories for a variety of market leading drone manufacturers.
+  %p.text-muted
+    If you are planning to purchase a drone in the near future, make sure that you consider clicking a link
+    below in order to benefit our community. All purchases made by clicking links from here result in helping
+    to offset the cost of running this community and will ensure that it continues to grow.
+    Tell your friends.
 
 .row
   .col-sm-4
@@ -20,7 +23,7 @@
           = manufacturer.common_name
 
         %ul.list-group
-          - manufacturer.product_families.each do |product_family|
+          - manufacturer.product_families.active.each do |product_family|
             = link_to product_family.name, products_path(request.query_parameters.merge(product_family: product_family.id)), class: (params[:product_family].to_i == product_family.id ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action')
 
   .col-sm-8
