@@ -50,7 +50,7 @@ window.analytics.SNIPPET_VERSION = '2.0.9';
 
 // Load Analytics.js with your key, which will automatically
 // load the tools you've enabled for your account. Boosh!
-window.analytics.load('123456');
+window.analytics.load('wEyU9q2ZwkIUYqEJER4P9xOPiX46NTCP');
 
 // accommodate Turbolinks and make the first page call to load the integrations.
 $(document).on('ready page:change', function() {
