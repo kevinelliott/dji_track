@@ -1,0 +1,26 @@
+- content_for :title, 'The page you were looking for cannot be found. (Error 404)'
+
+.row
+  .col-xs-12.col-md-6.text-xs-left
+    .error-details
+      %h1 Yikes!
+      %h2 We can't find the page you are looking for.
+      %h6 Error code: 404
+      %p
+        Instead, here are some links:
+      %ul
+        %li
+          = link_to 'Home', root_path
+        %li
+          = link_to 'Manufacturers', manufacturers_path
+        %li
+          = link_to 'News', news_root_path
+        %li
+          = link_to 'Videos', videos_path
+        %li
+          = link_to 'Order Tracking', dji_track_root_path
+
+  .col-xs-12.col-md-6.text-xs-center
+    .error-image
+      = image_tag 'quadbot-sad-404.png', width: 400
+    %h5 You have made Quadbot very sad.

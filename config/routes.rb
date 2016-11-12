@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'errors/not_found'
+
+  get 'errors/internal_server_error'
+
   namespace :admin do
     resources :users
 
@@ -59,6 +63,10 @@ Rails.application.routes.draw do
 
   get '/orders', to: redirect('/dji_track/orders')
   get '/orders/new', to: redirect('/dji_track/orders/new')
+
+  # Errors
+  match '/404', to: 'errors#not_found', via: :all, as: :error_404
+  match '/500', to: 'errors#internal_server_error', via: :all, as: :error_500
 
   root to: 'visitors#index'
 end

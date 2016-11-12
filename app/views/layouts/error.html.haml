@@ -1,0 +1,17 @@
+!!!
+%html
+  %head
+    %meta{ name: 'viewport', content: 'width=device-width, initial-scale=1.0' }
+    %title= content_for?(:title) ? yield(:title) : 'DroneHome'
+    %meta{ name: 'description', content: "#{content_for?(:description) ? yield(:description) : 'Community for drone enthusiasts'}" }
+    = stylesheet_link_tag 'application', 'https://fonts.googleapis.com/css?family=Open+Sans|Raleway', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+    = csrf_meta_tags
+
+  %body.error
+    %header
+      = render 'layouts/navigation'
+      = yield :subnav
+    %main{:role => "main"}
+      = render 'layouts/messages'
+      = yield
