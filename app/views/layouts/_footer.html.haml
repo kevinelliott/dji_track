@@ -1,10 +1,62 @@
 .container
+  %br
   %hr
-  %small
-    Have issues, ideas, or comments? Contact Kevin at
-    = mail_to 'kevin@welikeinc.com', 'kevin@welikeinc.com', subject: 'DJI Track'
-    and you can find me as
-    %strong kevinelliott
-    on the #{link_to 'DJI Forums', 'http://forum.dji.com'}, #{link_to 'RC Groups', 'http://rcgroups.com'}, or #{link_to 'MavicPilots', 'http://mavicpilots.com'}.
   %br
+  .row
+    .col-xs-4
+      %ul.footer-links
+        %li
+          %strong
+            Features
+        %li
+          = link_to 'Manufacturers', manufacturers_path
+        %li
+          = link_to 'News', news_root_path
+        %li
+          = link_to 'Videos', videos_path
+        %li
+          = link_to 'Terminology', videos_path
+
+    .col-xs-4
+      %ul.footer-links
+        %li
+          %strong
+            Shipment Tracking
+        %li
+          = link_to 'DJI Mavic Pro', dji_track_orders_path
+        %li
+          = link_to 'DJI Mystery Product', dji_track_root_path
+          %small.text-muted Coming Soon!
+
+      %ul.footer-links
+        %li
+          %strong
+            Community
+        %li
+          = link_to 'Chat', 'https://welike.typeform.com/to/m03t7Q'
+
+    .col-xs-4.text-xs-right
+      %ul.footer-links
+        %li
+          %h4
+            DroneHome
+          %small.text-muted
+            A community for drone enthusiasts.
+            
+      %ul.footer-links
+        %li
+          Find us on 
+          = link_to 'Facebook', 'http://facebook.com/dronehome-io', target: '_blank'
+    
   %br
+
+  .text-xs-right
+    %strong
+      Have issues, ideas, or comments? 
+    %br
+    %small
+      Say hello at
+      = mail_to 'hello@dronehome.io', 'hello@dronehome.io'
+      and you can find me as
+      %strong kevinelliott
+      on the #{link_to 'DJI Forums', 'http://forum.dji.com'}, #{link_to 'RC Groups', 'http://rcgroups.com'}, or #{link_to 'MavicPilots', 'http://mavicpilots.com'}.
