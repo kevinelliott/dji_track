@@ -40,7 +40,7 @@ class DjiTrack::OrdersController < ApplicationController
     last_12_hours = shipped.where('order_state_logs.created_at >= ?', 12.hours.ago.in_time_zone('UTC')).count
     last_24_hours = shipped.where('order_state_logs.created_at >= ?', 24.hours.ago.in_time_zone('UTC')).count
 
-    @order_state, @order_state_count = if last_12_hours > 0
+    @shipping_state, @shipping_state_count = if last_12_hours > 0
       [:active, last_12_hours]
     elsif last_24_hours > 0
       [:slow, last_24_hours]

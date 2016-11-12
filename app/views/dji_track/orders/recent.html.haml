@@ -7,15 +7,15 @@
     A listing of orders that have shipped in the last couple of days from all merchants.
 
 .shipping-status
-  - case @order_state
+  - case @shipping_state
   - when :active
     .alert.alert-success
       %strong Shipping normal.
-      Orders are being sent out (#{@order_state_count} orders in the last 12 hours).
+      Orders are being sent out (#{@shipping_state_count} orders in the last 12 hours).
   - when :slow
     .alert.alert-warning
       %strong Shipping slow.
-      Orders are slowly being sent out (#{@order_state_count} orders in the last 24 hours).
+      Orders are slowly being sent out (#{@shipping_state_count} orders in the last 24 hours).
   - when :stopped
     .alert.alert-danger
       %strong Shipping stopped.
