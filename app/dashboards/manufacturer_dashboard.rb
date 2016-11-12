@@ -66,7 +66,7 @@ class ManufacturerDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how manufacturers are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(manufacturer)
-  #   "Manufacturer ##{manufacturer.id}"
-  # end
+  def display_resource(manufacturer)
+    "#{manufacturer.common_name}"
+  end
 end

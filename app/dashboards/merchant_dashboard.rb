@@ -63,7 +63,7 @@ class MerchantDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how merchants are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(merchant)
-  #   "Merchant ##{merchant.id}"
-  # end
+  def display_resource(merchant)
+    "#{merchant.common_name}"
+  end
 end
