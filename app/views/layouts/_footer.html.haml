@@ -17,6 +17,15 @@
         %li
           = link_to 'Terminology', videos_path
 
+      %ul.footer-links
+        %li
+          %strong
+            Products
+        - Manufacturer.order(name: :asc).each do |manufacturer|
+          %li
+            = link_to manufacturer.common_name, products_path
+
+
     .col-xs-4
       %ul.footer-links
         %li

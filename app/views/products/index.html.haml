@@ -46,10 +46,13 @@
               %p.card-text
                 = product.description
             .card-footer
-              - if product.dji_store_url.present?
-                = link_to 'DJI Store', product.dji_store_url, class: 'btn btn-sm btn-outline-secondary', target: '_blank'
-              - if product.asin.present? || product.upc.present?
-                = link_to 'Amazon', product.amazon_url, class: 'btn btn-sm btn-outline-success'
+              - if product.website.present?
+                = link_to 'More Info', product.website, class: 'btn btn-sm btn-outline-secondary', target: '_blank'
+              .float-xs-right
+                - if product.dji_store_url.present?
+                  = link_to 'DJI Store', product.dji_store_url, class: 'btn btn-sm btn-outline-info', target: '_blank'
+                - if product.asin.present? || product.upc.present?
+                  = link_to 'Amazon', product.amazon_url, class: 'btn btn-sm btn-outline-success'
     - else
       No products for this product family yet.
       

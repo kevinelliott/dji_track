@@ -1,5 +1,7 @@
 %li.nav-item{ class: controller.controller_name.eql?('manufacturers') ? 'active' : '' }
   = link_to 'Manufacturers', manufacturers_path, class: 'nav-link'
+%li.nav-item{ class: controller.controller_name.eql?('products') ? 'active' : '' }
+  = link_to 'Products', products_path, class: 'nav-link'
 %li.nav-item{ class: controller.class.parents.include?(News) ? 'active' : '' }
   = link_to 'News', news_root_path, class: 'nav-link'
 %li.nav-item{ class: controller.controller_name.eql?('videos') ? 'active' : '' }
