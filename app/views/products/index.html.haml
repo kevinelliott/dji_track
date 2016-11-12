@@ -1,8 +1,14 @@
-%h1 Products
+.jumbotron
+  %h1.display-4 Products
+  %p
+    Learn about available drones and their accessories for a variety of market leading drone manufacturers. All
+    purchases made by clicking links from here to product pages result in helping to offset the cost of
+    running this community and will ensure that it continues to grow.
 
 .row
   .col-sm-4
     %h4.text-muted DJI
+
     %ul.list-group
       %li.list-group-item
         Inspire 1
@@ -19,25 +25,24 @@
 
 
   .col-sm-8
-    .card-deck-wrapper
-      .card-deck
-        - @products.in_groups_of(2).each do |group|
-          .row
-            - group.compact.each do |product|
-              .card
-                .card-img-top
-                  .product-image
-                    = image_tag product.logo_url, class: 'img-fluid'
-                .card-block
-                  %h5.card-title
-                    = product.name
-                  %h6.card-subtitle.text-muted
-                    = product.manufacturer.name
-                .card-block
-                  %p.card-text
-                    = product.description
-                .card-footer
-                  - if product.dji_store_url.present?
-                    = link_to 'DJI Store', product.dji_store_url, class: 'btn btn-sm btn-outline-secondary', target: '_blank'
-                  - if product.asin.present? || product.upc.present?
-                    = link_to 'Amazon', product.amazon_url, class: 'btn btn-sm btn-outline-success'
+    %h4.text-muted DJI Mavic Pro
+
+    - @products.each do |product|
+      .row
+        .card.product
+          .card-img-top
+            .product-image
+              = image_tag product.logo_url, class: 'img-fluid'
+          .card-block
+            %h5.card-title
+              = product.name
+            %h6.card-subtitle.text-muted
+              = product.manufacturer.name
+          .card-block
+            %p.card-text
+              = product.description
+          .card-footer
+            - if product.dji_store_url.present?
+              = link_to 'DJI Store', product.dji_store_url, class: 'btn btn-sm btn-outline-secondary', target: '_blank'
+            - if product.asin.present? || product.upc.present?
+              = link_to 'Amazon', product.amazon_url, class: 'btn btn-sm btn-outline-success'
