@@ -1,22 +1,43 @@
 %h1 Products
 
-.card-deck-wrapper
-  .card-deck
-    - @products.each do |product|
-      .card
-        .card-img-top
-          .product-image
-            = image_tag product.logo_url, class: 'img-fluid'
-        .card-block
-          %h5.card-title
-            = product.name
-          %h6.card-subtitle.text-muted
-            = product.manufacturer.name
-        .card-block
-          %p.card-text
-            = product.description
-        .card-footer
-          - if product.dji_store_url.present?
-            = link_to 'DJI Store', product.dji_store_url, class: 'btn btn-sm btn-outline-secondary', target: '_blank'
-          - if product.asin.present? || product.upc.present?
-            = link_to 'Amazon', product.amazon_url, class: 'btn btn-sm btn-outline-success'
+.row
+  .col-sm-4
+    %h4.text-muted DJI
+    %ul.list-group
+      %li.list-group-item
+        Inspire 1
+      %li.list-group-item
+        Inspire Accessories
+      %li.list-group-item
+        Mavic Pro
+      %li.list-group-item
+        Mavic Pro Accessories
+      %li.list-group-item
+        Phantom 4
+      %li.list-group-item
+        Phantom 4 Accessories
+
+
+  .col-sm-8
+    .card-deck-wrapper
+      .card-deck
+        - @products.in_groups_of(2).each do |group|
+          .row
+            - group.compact.each do |product|
+              .card
+                .card-img-top
+                  .product-image
+                    = image_tag product.logo_url, class: 'img-fluid'
+                .card-block
+                  %h5.card-title
+                    = product.name
+                  %h6.card-subtitle.text-muted
+                    = product.manufacturer.name
+                .card-block
+                  %p.card-text
+                    = product.description
+                .card-footer
+                  - if product.dji_store_url.present?
+                    = link_to 'DJI Store', product.dji_store_url, class: 'btn btn-sm btn-outline-secondary', target: '_blank'
+                  - if product.asin.present? || product.upc.present?
+                    = link_to 'Amazon', product.amazon_url, class: 'btn btn-sm btn-outline-success'
