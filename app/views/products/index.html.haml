@@ -27,7 +27,11 @@
             = link_to product_family.name, products_path(request.query_parameters.merge(product_family: product_family.id)), class: (params[:product_family].to_i == product_family.id ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action')
 
   .col-sm-8
-    %h4.text-muted DJI Mavic Pro
+    %h4.text-muted
+      - if @product_family.present?
+        = @product_family.name
+      - else
+        All Products
 
     - if @products.count > 0
 
