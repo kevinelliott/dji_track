@@ -6,6 +6,21 @@
   %p.lead
     A listing of orders that have shipped in the last couple of days from all merchants.
 
+.shipping-status
+  - case @order_state
+  - when :normal
+    .alert.alert-success
+      %strong Shipping normal.
+      Orders are being sent out (#{@order_state_count} orders in the last 12 hours).
+  - when :slow
+    .alert.alert-warning
+      %strong Shipping slow.
+      Orders are slowly being sent out (#{@order_state_count} orders in the last 24 hours).
+  - when :stopped
+    .alert.alert-danger
+      %strong Shipping stopped.
+      Orders are not being sent out (no orders over last 24 hours).
+
 - days = @order_state_logs.keys.reverse
 - days.each do |day|
   %h5.shipped-day
