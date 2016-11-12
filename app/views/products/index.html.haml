@@ -4,7 +4,9 @@
   .card-deck
     - @products.each do |product|
       .card
-        = image_tag product.logo_url, class: 'card-img-top w-100'
+        .card-img-top
+          .product-image
+            = image_tag product.logo_url, class: 'img-fluid'
         .card-block
           %h5.card-title
             = product.name
