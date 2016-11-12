@@ -8,7 +8,7 @@
 
 .shipping-status
   - case @order_state
-  - when :normal
+  - when :active
     .alert.alert-success
       %strong Shipping normal.
       Orders are being sent out (#{@order_state_count} orders in the last 12 hours).
