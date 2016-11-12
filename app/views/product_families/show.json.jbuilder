@@ -1,0 +1,1 @@
+json.partial! "product_families/product_family", product_family: @product_family

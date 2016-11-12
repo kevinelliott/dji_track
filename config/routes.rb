@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'errors/not_found'
-
-  get 'errors/internal_server_error'
-
   namespace :admin do
     resources :users
 
@@ -12,6 +8,7 @@ Rails.application.routes.draw do
     resources :merchants
     resources :orders
     resources :order_state_logs
+    resources :product_families
     resources :products
     resources :streaming_sites
     resources :terms

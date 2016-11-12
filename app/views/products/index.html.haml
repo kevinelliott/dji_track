@@ -7,22 +7,21 @@
 
 .row
   .col-sm-4
-    %h4.text-muted DJI
 
-    %ul.list-group
-      %li.list-group-item
-        Inspire 1
-      %li.list-group-item
-        Inspire Accessories
-      %li.list-group-item
-        Mavic Pro
-      %li.list-group-item
-        Mavic Pro Accessories
-      %li.list-group-item
-        Phantom 4
-      %li.list-group-item
-        Phantom 4 Accessories
+    .product-menu-section
+      %h4.text-muted
+        All Manufacturers
+      %ul.list-group
+        = link_to 'All Products', products_path, class: (params[:product_family].to_i == 0 ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action')
 
+    - @manufacturers.each do |manufacturer|
+      .product-menu-section
+        %h4.text-muted
+          = manufacturer.common_name
+
+        %ul.list-group
+          - manufacturer.product_families.each do |product_family|
+            = link_to product_family.name, products_path(request.query_parameters.merge(product_family: product_family.id)), class: (params[:product_family].to_i == product_family.id ? 'list-group-item list-group-item-action active' : 'list-group-item list-group-item-action')
 
   .col-sm-8
     %h4.text-muted DJI Mavic Pro

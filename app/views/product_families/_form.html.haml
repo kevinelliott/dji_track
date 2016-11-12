@@ -1,0 +1,28 @@
+= form_for @product_family do |f|
+  - if @product_family.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@product_family.errors.count, "error")} prohibited this product_family from being saved:"
+      %ul
+        - @product_family.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :manufacturer
+    = f.text_field :manufacturer
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :description
+    = f.text_field :description
+  .field
+    = f.label :logo_url
+    = f.text_field :logo_url
+  .field
+    = f.label :website
+    = f.text_field :website
+  .field
+    = f.label :status
+    = f.text_field :status
+  .actions
+    = f.submit 'Save'

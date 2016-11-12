@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161108170738) do
+ActiveRecord::Schema.define(version: 20161112094000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,22 +127,37 @@ ActiveRecord::Schema.define(version: 20161108170738) do
     t.index ["shipping_status"], name: "index_orders_on_shipping_status", using: :btree
   end
 
-  create_table "products", force: :cascade do |t|
-    t.integer  "manufacturer_id",                     null: false
+  create_table "product_families", force: :cascade do |t|
+    t.integer  "manufacturer_id"
     t.string   "name",                                null: false
-    t.string   "code",                                null: false
+    t.string   "description"
+    t.string   "logo_url"
+    t.string   "website"
+    t.string   "status",          default: "pending", null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+    t.index ["manufacturer_id"], name: "index_product_families_on_manufacturer_id", using: :btree
+    t.index ["status"], name: "index_product_families_on_status", using: :btree
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer  "manufacturer_id",                       null: false
+    t.string   "name",                                  null: false
+    t.string   "code",                                  null: false
     t.text     "description"
     t.string   "logo_url"
     t.string   "website"
     t.string   "upc"
     t.string   "asin"
-    t.string   "status",          default: "pending", null: false
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "status",            default: "pending", null: false
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
     t.string   "dji_store_url"
+    t.integer  "product_family_id"
     t.index ["code"], name: "index_products_on_code", using: :btree
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id", using: :btree
     t.index ["name"], name: "index_products_on_name", using: :btree
+    t.index ["product_family_id"], name: "index_products_on_product_family_id", using: :btree
     t.index ["status"], name: "index_products_on_status", using: :btree
   end
 
@@ -232,7 +247,9 @@ ActiveRecord::Schema.define(version: 20161108170738) do
   add_foreign_key "articles", "users"
   add_foreign_key "order_state_logs", "orders"
   add_foreign_key "orders", "products"
+  add_foreign_key "product_families", "manufacturers"
   add_foreign_key "products", "manufacturers"
+  add_foreign_key "products", "product_families"
   add_foreign_key "videos", "streaming_sites"
   add_foreign_key "videos", "users"
 end

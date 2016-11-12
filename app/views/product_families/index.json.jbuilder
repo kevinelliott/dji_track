@@ -1,0 +1,1 @@
+json.array! @product_families, partial: 'product_families/product_family', as: :product_family

@@ -1,0 +1,31 @@
+%h1 Listing product_families
+
+%table
+  %thead
+    %tr
+      %th Manufacturer
+      %th Name
+      %th Description
+      %th Logo url
+      %th Website
+      %th Status
+      %th
+      %th
+      %th
+
+  %tbody
+    - @product_families.each do |product_family|
+      %tr
+        %td= product_family.manufacturer
+        %td= product_family.name
+        %td= product_family.description
+        %td= product_family.logo_url
+        %td= product_family.website
+        %td= product_family.status
+        %td= link_to 'Show', product_family
+        %td= link_to 'Edit', edit_product_family_path(product_family)
+        %td= link_to 'Destroy', product_family, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Product family', new_product_family_path
