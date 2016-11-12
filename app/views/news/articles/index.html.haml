@@ -1,8 +1,6 @@
-%h1 News
-%h6.text-muted Bringing you drone news from inside the community.
-
-%hr
-%br
+.jumbotron
+  %h1 News
+  %p.lead Bringing you drone news from inside the community.
 
 - @articles.each do |article|
   = render article
