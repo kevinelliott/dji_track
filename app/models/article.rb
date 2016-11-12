@@ -3,7 +3,7 @@ class Article < ApplicationRecord
   belongs_to :user
 
   def notify_slack
-    message = "A new DroneHome article has been published: #{link_to title, articles_path}"
+    message = "A new DroneHome article has been published: #{link_to title, 'http://www.dronehome.io/news'}"
 
     slack = Slack::Web::Client.new
     slack.chat_postMessage(
