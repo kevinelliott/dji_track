@@ -1,5 +1,6 @@
 class Product < ApplicationRecord
   belongs_to :manufacturer
+  belongs_to :product_family
 
   scope :published, -> { where(status: 'published') }
 
