@@ -34,9 +34,8 @@
       - @products.each do |product|
         .row
           .card.product
-            .card-img-top
-              .product-image
-                = image_tag product.logo_url, class: 'img-fluid'
+            .card-img-top.product-image.text-xs-center
+              = image_tag product.logo_url, class: 'img-fluid'
             .card-block
               %h5.card-title
                 = product.name
