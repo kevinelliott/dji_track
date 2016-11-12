@@ -12,13 +12,12 @@
 .videos
   - @videos.each do |video|
     .video
-      .video-header
-        %h5.video-title
-          = link_to video.title, video.url, target: '_blank'
       .video-body.embed-responsive.embed-responsive-16by9
         - if video.embed_code.present?
           = video.embed_code.html_safe
       .video-footer
+        %h4.video-title
+          = link_to video.title, video.url, target: '_blank'
         %h6.video-posted-at.text-muted
           = video.published_at.to_s(:long)
         .video-summary= video.summary
