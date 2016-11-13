@@ -121,6 +121,25 @@ class DjiTrack::OrdersController < ApplicationController
     end
   end
 
+  def country_chart_data
+    render json: Order.group(:shipping_country).order('count_id desc').limit(15).count(:id).chart_json
+  end
+
+  def recently_shipped_chart_data
+    last_7_days = [1.week.ago.in_time_zone('UTC').to_date..Date.today]
+
+    shipped = OrderStateLog.where('order_state_logs.column = ? AND LOWER(order_state_logs.to) = ?', 'shipping_status', 'shipped')
+    @osls = shipped.group_by_day(:created_at, last: 7).count
+    puts @osls.inspect
+
+    render json: @osls.chart_json
+  end
+
+  def order_time_chart_data
+    render json: Order.group_by_day(:order_time).count.chart_json
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
