@@ -129,7 +129,7 @@ class DjiTrack::OrdersController < ApplicationController
     last_7_days = [1.week.ago.in_time_zone('UTC').to_date..Date.today]
 
     shipped = OrderStateLog.where('order_state_logs.column = ? AND LOWER(order_state_logs.to) = ?', 'shipping_status', 'shipped')
-    @osls = shipped.group_by_day(:created_at, last: 7).count
+    @osls = shipped.group_by_day(:created_at, last: 14).count
     puts @osls.inspect
 
     render json: @osls.chart_json

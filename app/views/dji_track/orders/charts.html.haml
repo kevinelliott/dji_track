@@ -1,0 +1,25 @@
+- content_for :subnav do
+  = render 'layouts/subnav_dji'
+
+.jumbotron
+  %h1.display-4 Charts &amp; Statistics
+  %p.lead
+    Interesting information about shipped DJI Mavic Pros.
+
+.box
+  .box-header
+    %h2 Orders per Country
+    %small.text-muted
+      The number of orders for each country.
+  .box-subheader
+    .orders-chart
+      = bar_chart country_chart_data_dji_track_orders_path
+
+.box
+  .box-header
+    %h2 Recently Shipped Orders
+    %small.text-muted
+      The number of shipped orders for each day over the last two weeks.
+  .box-subheader
+    .orders-chart
+      = area_chart recently_shipped_chart_data_dji_track_orders_path

@@ -25,9 +25,9 @@ Rails.application.routes.draw do
         get 'chart_data', as: :chart_data
         get 'country_chart_data', as: :country_chart_data
         get 'recently_shipped_chart_data', as: :recently_shipped_chart_data
-        
+
         get 'recent', as: :recent
-        get 'statistics', as: :statistics
+        get 'charts', as: :charts
       end
       member do
         get 'history', as: :history
