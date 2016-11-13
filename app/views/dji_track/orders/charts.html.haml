@@ -17,6 +17,15 @@
 
 .box
   .box-header
+    %h2 Orders per Month
+    %small.text-muted
+      The number of orders created in each month.
+  .box-subheader
+    .orders-chart
+      = column_chart order_month_chart_data_dji_track_orders_path
+
+.box
+  .box-header
     %h2 Recently Shipped Orders
     %small.text-muted
       The number of shipped orders for each day over the last two weeks.
