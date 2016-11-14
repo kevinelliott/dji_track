@@ -2,6 +2,8 @@ class Product < ApplicationRecord
   belongs_to :manufacturer
   belongs_to :product_family
 
+  acts_as_taggable_on :features
+
   scope :published, -> { where(status: 'published') }
 
   def amazon_affiliate_code

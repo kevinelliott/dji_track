@@ -3,12 +3,16 @@
 
   .video-header {
     padding: 10px;
-    background-color: #eee;
     border: 1px solid #ccc;
+    background-color: #f0f0f0;
 
     .video-title {
       margin: 0;
       a { color: #666; }
+    }
+    
+    .video-posted-at {
+      margin: 0;
     }
   }
 
@@ -17,8 +21,15 @@
     border-right: 1px solid #ccc;
   }
 
+  .video-description {
+    padding: 10px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+  }
+
   .video-footer {
     padding: 10px;
     border: 1px solid #ccc;
+    background-color: #eee;
   }
 }

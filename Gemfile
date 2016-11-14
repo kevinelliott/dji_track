@@ -29,10 +29,10 @@ gem 'groupdate'
 gem 'chartkick'
 gem 'rollbar'
 gem 'video_info'
-gem 'acts-as-taggable-on', '~> 4.0'
 gem 'slack-ruby-client'
 gem 'bourbon'
 gem 'administrate'
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 
 group :development do
   gem 'web-console'

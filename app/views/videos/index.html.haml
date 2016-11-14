@@ -15,11 +15,26 @@
       .video-body.embed-responsive.embed-responsive-16by9
         - if video.embed_code.present?
           = video.embed_code.html_safe
-      .video-footer
-        %h4.video-title
-          = link_to video.title, video.url, target: '_blank'
-        %h6.video-posted-at.text-muted
-          = video.published_at.to_s(:long)
-        .video-summary= video.summary
+      .video-header
+        .row
+          .col-xs-9
+            %h4.video-title
+              = link_to video.title, video.url, target: '_blank'
+            %h6.video-posted-at.text-muted
+              = video.published_at.to_s(:long)
+          .col-xs-3.text-xs-right
+            - if video.user.present? && video.user.gravatar_url.present?
+              = image_tag video.user.gravatar_url, height: 25, class: 'rounded-circle'
+              #{video.user.username}
+            - else
+              Anonymous  
 
+      .video-description
+        .video-summary
+          = video.summary
+      .video-footer
+        .video-tags
+          - video.tags.each do |tag|
+            .tag.tag-default
+              = tag.name
 %br

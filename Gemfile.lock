@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/mbleigh/acts-as-taggable-on.git
+  revision: 8e64c3d4a81cfbb8af621228eae36a65c1f94501
+  specs:
+    acts-as-taggable-on (4.0.0)
+      activerecord (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,8 +45,6 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (4.0.0)
-      activerecord (>= 4.0)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
     administrate (0.3.0)
@@ -414,7 +419,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  acts-as-taggable-on (~> 4.0)
+  acts-as-taggable-on!
   administrate
   better_errors
   binding_of_caller

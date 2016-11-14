@@ -2,6 +2,8 @@ class Video < ApplicationRecord
   belongs_to :streaming_site
   belongs_to :user, required: false
 
+  acts_as_taggable
+
   scope :published, -> { where(status: 'published') }
 
   validates :summary, presence: true
