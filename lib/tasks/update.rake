@@ -62,7 +62,7 @@ namespace :update do
         end
 
         # Add some delay so that we're not hitting DJI's website too hard
-        sleep 1
+        sleep 3
       end
 
     end
