@@ -63,13 +63,18 @@ class Order < ApplicationRecord
   end
 
   def order_table_row_class
-    'table-success' if delivery_status.eql?('delivered')
+    if delivery_status.eql?('delivered')
+      'table-success'
+    elsif shipping_status.eql?('canceled')
+      'table-danger'
+    end
   end
 
   def payment_status_class
-    case payment_status
-    when 'Pay Confirmed' then 'payment-status-pay-confirmed'
-    when 'Pending' then 'payment-status-pending'
+    case payment_status.try(:downcase)
+    when 'pay confirmed' then 'payment-status-pay-confirmed'
+    when 'pending' then 'payment-status-pending'
+    when 'canceled' then 'order-canceled'
     else
       'payment-status-unknown'
     end
@@ -77,6 +82,7 @@ class Order < ApplicationRecord
 
   def pretty_shipping_company
     case shipping_company.downcase
+    when 'canceled' then 'Canceled'
     when 'tba' then 'Pending'
     when 'dhl' then 'DHL'
     when 'fedex' then 'FedEx'
@@ -93,6 +99,7 @@ class Order < ApplicationRecord
 
     case shipping_company.downcase
     when '' then 'shipping-company-pending'
+    when 'canceled' then 'order-canceled'
     when 'tba' then 'shipping-company-pending'
     when *valid_shipping_companies then 'shipping-company-selected'
     else
@@ -102,6 +109,7 @@ class Order < ApplicationRecord
 
   def shipping_status_class
     case shipping_status.downcase.to_sym
+    when :canceled then 'order-canceled'
     when :pending then 'shipping-status-pending'
     when :shipped then 'shipping-status-shipped'
     else

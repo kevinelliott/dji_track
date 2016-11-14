@@ -1,0 +1,33 @@
+%h1 Cancel Your Order
+
+%p.alert.alert-warning
+  If you canceled your order it would be helpful to let the community know you have done this by canceling
+  here. This will obviously not affect your real order and will only update our own database to reflect that
+  you have canceled.
+
+.card.card-block
+  = form_for @order, url: cancel_dji_track_orders_path do |f|
+    - if @order.errors.any?
+      #error_explanation
+        %h2= "#{pluralize(@order.errors.count, "error")} prohibited this order from being saved:"
+        %ul
+          - @order.errors.full_messages.each do |msg|
+            %li= msg
+
+    %h4 Credentials
+    .row
+      .col-xs-6
+        .form-group
+          = f.label :order_id, 'Order ID'
+          = f.text_field :order_id, class: 'form-control', placeholder: '123456789012'
+          %small.form-text
+            The same full Order ID that you provided when you created your entry here.
+      .col-xs-6
+        .form-group
+          = f.label :phone_tail, 'Phone Tail'
+          = f.text_field :phone_tail, class: 'form-control', placeholder: '1234'
+          %small.form-text
+            The same last 4 digits of the phone number associated with your entry here.
+
+    .actions
+      = f.submit 'Cancel', class: 'btn btn-danger form-control'

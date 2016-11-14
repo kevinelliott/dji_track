@@ -41,6 +41,22 @@
           Coming soon:
         Email and SMS alerts when key order information changes. DJI only emails you when your order ships, but we can detect various stages that they don't communicate about, such as Wait Pick, Shipped (without tracking), etc.
 
+      %p.alert.alert-danger
+        %strong
+          Automatic DJI order tracking stopped!
+        Early this morning (Monday, November 14th, 2016), DJI put a human verification step onto their
+        = link_to 'Order Tracking', 'https://store.dji.com/orders/tracking'
+        page, preventing our ability to track orders from DJI Direct automatically. Captchas are intentional 
+        verification steps to ensure that a human is making the request. This breaks
+        the CLI tool that many of you are running locally on your computers to see an automatic reoccuring order status
+        on your local screen, as well as our automated web udpater that updates the table below in order to benefit
+        the community. We always viewed this project to organize
+        the community in a positive way (who was otherwise increasingly negative and frustrated on the DJI forums) 
+        and we are sad that DJI feels it was necessary to push back on the community. Discuss at 
+        = link_to 'this Reddit post', 'https://www.reddit.com/r/djimavic/comments/5cwdqu/dji_injects_human_verification_to_order_tracking/'
+        and in the meantime we have contacted DJI but have not yet heard back.
+
+
     .col-md-4
 
       .card
@@ -50,6 +66,21 @@
             Need to make a change to the details you submitted? Update
             your entry by going to the 
             #{link_to 'manual submission form', new_dji_track_order_path }.
+            Use the same
+            %strong Order ID
+            and
+            %strong Phone Tail
+            as you previously did, but put in the 
+            %strong Details 
+            that you want to add or change.
+
+      .card
+        .card-block
+          %h4.card-title Canceled your order?
+          %p.card-text
+            Did you cancel your order? If so, let the community know by 
+            #{link_to 'canceling your entry', edit_dji_track_orders_path } to reflect this
+            so that the data in the chart is not affected by an abandoned order.
             Use the same
             %strong Order ID
             and
@@ -71,20 +102,6 @@
             It's free and public.
 
   %br
-  %p.alert.alert-danger
-    %strong
-      Automatic DJI order tracking stopped!
-    Early this morning (Monday, November 14th, 2016), DJI put a human verification step onto their
-    = link_to 'Order Tracking', 'https://store.dji.com/orders/tracking'
-    page, preventing our ability to track orders from DJI Direct automatically. Captchas are intentional 
-    verification steps to ensure that a human is making the request. This breaks
-    the CLI tool that many of you are running locally on your computers to see an automatic reoccuring order status
-    on your local screen, as well as our automated web udpater that updates the table below in order to benefit
-    the community. We always viewed this project to organize
-    the community in a positive way (who was otherwise increasingly negative and frustrated on the DJI forums) 
-    and we are sad that DJI feels it was necessary to push back on the community. Discuss at 
-    = link_to 'this Reddit post', 'https://www.reddit.com/r/djimavic/comments/5cwdqu/dji_injects_human_verification_to_order_tracking/'
-    and in the meantime we have contacted DJI but have not yet heard back.
 
   .orders-subheader
     .orders-chart
@@ -153,11 +170,11 @@
                   = flag_icon(order.shipping_country[0..1].downcase.to_sym)
                   = order.shipping_country
               %td{ class: order.payment_status_class }
-                = order.payment_status
+                = order.payment_status.capitalize
               %td{ class: order.shipping_company_class }
                 = order.pretty_shipping_company
               %td{ class: order.shipping_status_class }
-                = order.shipping_status
+                = order.shipping_status.capitalize
               %td{ class: order.delivery_status_class }
                 - if order.delivery_status == 'delivered'
                   %span{ title: order.delivered_at }

@@ -22,6 +22,9 @@ Rails.application.routes.draw do
   namespace :dji_track do
     resources :orders, except: [:edit, :update, :destroy] do
       collection do
+        get 'edit', as: :edit
+        post 'cancel', as: :cancel
+
         get 'chart_data', as: :chart_data
         get 'country_chart_data', as: :country_chart_data
         get 'recently_shipped_chart_data', as: :recently_shipped_chart_data

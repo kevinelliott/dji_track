@@ -108,8 +108,35 @@ class DjiTrack::OrdersController < ApplicationController
     end
   end
 
-  def chart_data
-    render json: Order.where(order_time: [Date.parse('2016-09-27')..Date.parse('2016-10-11')]).group(:shipping_status).group_by_day(:order_time).count.chart_json
+  def edit
+    @order = Order.new
+  end
+
+  def cancel
+    @order = Order.where(order_id: order_params[:order_id], phone_tail: order_params[:phone_tail]).first
+    
+    canceled = if @order.present?
+      @order.payment_status = 'canceled'
+      @order.shipping_company = 'canceled'
+      @order.shipping_status  = 'canceled'
+      @order.delivery_status  = 'canceled'
+
+      changes = @order.changes
+      @order.save(validate: false)
+      
+      OrderStateLog.track_changes(@order, changes)
+      true
+    else
+      false
+    end
+
+    respond_to do |format|
+      if canceled
+        format.html { redirect_to dji_track_orders_path, alert: 'Your order has been marked as canceled. Thank you for letting everyone know.' }
+      else
+        format.html { redirect_to dji_track_orders_path, notice: 'The order was not canceled because the Order ID and Phone Tail did not match an existing order.' }
+      end
+    end
   end
 
   def history
@@ -119,6 +146,11 @@ class DjiTrack::OrdersController < ApplicationController
     respond_to do |format|
       format.html { render layout: false }
     end
+  end
+
+
+  def chart_data
+    render json: Order.where(order_time: [Date.parse('2016-09-27')..Date.parse('2016-10-11')]).group(:shipping_status).group_by_day(:order_time).count.chart_json
   end
 
   def country_chart_data
