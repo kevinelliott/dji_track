@@ -6,6 +6,8 @@ class Order < ApplicationRecord
   belongs_to :product, optional: true
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
 
+  scope :canceled, -> { where(payment_status: 'canceled' ) }
+  scope :not_canceled, -> { where('payment_status != ?', 'canceled') }
   scope :delivered, -> { where(delivery_status: 'delivered') }
   scope :not_delivered, -> { where('delivery_status != ?', 'delivered') }
   scope :shipped, -> { where('LOWER(shipping_status) = ?','shipped') }
