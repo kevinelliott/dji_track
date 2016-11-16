@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161114222950) do
+ActiveRecord::Schema.define(version: 20161116221641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,8 @@ ActiveRecord::Schema.define(version: 20161114222950) do
     t.datetime "updated_at",                            null: false
     t.string   "dji_store_url"
     t.integer  "product_family_id"
+    t.boolean  "accessory",         default: false,     null: false
+    t.index ["accessory"], name: "index_products_on_accessory", using: :btree
     t.index ["code"], name: "index_products_on_code", using: :btree
     t.index ["manufacturer_id"], name: "index_products_on_manufacturer_id", using: :btree
     t.index ["name"], name: "index_products_on_name", using: :btree

@@ -13,6 +13,7 @@ class ProductDashboard < Administrate::BaseDashboard
     id: Field::Number,
     name: Field::String,
     code: Field::String,
+    accessory: Field::Boolean,
     description: Field::Text,
     logo_url: Field::String,
     website: Field::String,
@@ -35,6 +36,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :code,
+    :accessory,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -45,6 +47,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :id,
     :name,
     :code,
+    :accessory,
     :description,
     :logo_url,
     :website,
@@ -64,6 +67,7 @@ class ProductDashboard < Administrate::BaseDashboard
     :product_family,
     :name,
     :code,
+    :accessory,
     :description,
     :logo_url,
     :website,
