@@ -52,7 +52,8 @@
 
       - if @accessories.count > 0
         - @accessories.each do |product|
-          .row
-            = render product
+          .card-deck-wrapper
+            .card-deck
+              = render product
       - else
         No accessories for this product family yet.
