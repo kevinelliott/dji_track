@@ -1,0 +1,19 @@
+.card.product
+  .card-img-top.product-image.text-xs-center
+    = image_tag product.logo_url, class: 'img-fluid'
+  .card-block
+    %h5.card-title
+      = product.name
+    %h6.card-subtitle.text-muted
+      = product.manufacturer.name
+  .card-block
+    %p.card-text
+      = product.description
+  .card-footer
+    - if product.website.present?
+      = link_to 'More Info', product.website, class: 'btn btn-sm btn-outline-secondary', target: '_blank'
+    .float-xs-right
+      - if product.dji_store_url.present?
+        = link_to 'DJI Store', product.dji_store_url, class: 'btn btn-sm btn-outline-info', target: '_blank'
+      - if product.asin.present? || product.upc.present?
+        = link_to 'Amazon', product.amazon_url, class: 'btn btn-sm btn-outline-success'

@@ -4,10 +4,10 @@ class ProductsController < ApplicationController
   def index
     @manufacturers  = Manufacturer.includes(:product_families, :products).order(common_name: :asc)
     @product_family = ProductFamily.where(id: params[:product_family].to_i).includes(:manufacturer, :products).first
-    @products       = if @product_family.present?
-      @product_family.products.order(accessory: :asc, name: :asc)
+    @products, @accessories = if @product_family.present?
+      [@product_family.products.non_accessories.order(name: :asc), @product_family.products.accessories.order(name: :asc)]
     else
-      Product.order(name: :asc)
+      [Product.non_accessories.order(name: :asc), Product.accessories.order(name: :asc)]
     end
   end
 

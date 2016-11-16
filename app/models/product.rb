@@ -4,6 +4,8 @@ class Product < ApplicationRecord
 
   acts_as_taggable_on :features
 
+  scope :accessories, -> { where(accessory: true) }
+  scope :non_accessories, -> { where(accessory: false) }
   scope :published, -> { where(status: 'published') }
 
   def amazon_affiliate_code

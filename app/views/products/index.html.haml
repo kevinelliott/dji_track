@@ -34,28 +34,23 @@
         All Products
 
     - if @products.count > 0
-
       - @products.each do |product|
-        .row
-          .card.product
-            .card-img-top.product-image.text-xs-center
-              = image_tag product.logo_url, class: 'img-fluid'
-            .card-block
-              %h5.card-title
-                = product.name
-              %h6.card-subtitle.text-muted
-                = product.manufacturer.name
-            .card-block
-              %p.card-text
-                = product.description
-            .card-footer
-              - if product.website.present?
-                = link_to 'More Info', product.website, class: 'btn btn-sm btn-outline-secondary', target: '_blank'
-              .float-xs-right
-                - if product.dji_store_url.present?
-                  = link_to 'DJI Store', product.dji_store_url, class: 'btn btn-sm btn-outline-info', target: '_blank'
-                - if product.asin.present? || product.upc.present?
-                  = link_to 'Amazon', product.amazon_url, class: 'btn btn-sm btn-outline-success'
+        .card-deck-wrapper
+          .card-deck
+            = render product
     - else
-      No products for this product family yet.
-      
+      No products yet.
+
+    %h4.text-muted
+      - if @product_family.present?
+        = @product_family.name
+        Accessories
+      - else
+        All Accessories
+
+    - if @accessories.count > 0
+      - @accessories.each do |product|
+        .row
+          = render product
+    - else
+      No accessories for this product family yet.
