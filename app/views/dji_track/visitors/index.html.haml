@@ -10,7 +10,7 @@
 .row
   .card-deck
     .card
-      = image_tag 'mavic-pro.png', class: 'card-img-top img-fluid', alt: 'Mavic Pro'
+      = image_tag 'drones/dji-mavic-pro-1-1024x683.jpg', class: 'card-img-top img-fluid', alt: 'DJI Mavic Pro'
       .card-block
         %h4.card-title.text-xs-center Mavic Pro Preorders
         %p.card-text
@@ -21,13 +21,22 @@
           = link_to 'Mavic Pro Orders', dji_track_orders_path, class: 'btn btn-primary'
           = link_to 'Recently Shipped', recent_dji_track_orders_path, class: 'btn btn-default'
     .card
-      = image_tag 'control-create-2016-11-15.png', class: 'card-img-top img-fluid', alt: 'Mavic Pro'
+      = image_tag 'drones/dji-phantom-4-pro-1024x683.jpg', class: 'card-img-top img-fluid', alt: 'DJI Phantom 4 Pro'
       .card-block
-        %h4.card-title.text-xs-center Mystery Preorder
+        %h4.card-title.text-xs-center Phantom 4 Pro Preorders
         %p.card-text
-          Realtime shipping statuses of DJI's brand new mystery. We don't know anything
-          yet, but have a guess.
+          Realtime shipping statuses of DJI's brand new Phantom 4 Pro.
       .card-block
         .text-xs-center
-          = link_to 'Coming Soon', '#', class: 'btn btn-primary'
-          = link_to 'Come back Nov 15th', '#', class: 'btn btn-default'
+          = link_to 'Phantom 4 Pro Orders', dji_track_orders_path, class: 'btn btn-primary'
+          = link_to 'Coming Soon', '#', class: 'btn btn-default'
+    .card
+      = image_tag 'drones/dji-inspire-2-1024x683.jpg', class: 'card-img-top img-fluid', alt: 'DJI Inspire 2'
+      .card-block
+        %h4.card-title.text-xs-center Inspire 2 Preorders
+        %p.card-text
+          Realtime shipping statuses of DJI's brand new Inspire 2.
+      .card-block
+        .text-xs-center
+          = link_to 'Inspire 2 Orders', dji_track_orders_path, class: 'btn btn-primary'
+          = link_to 'Coming Soon', '#', class: 'btn btn-default'
