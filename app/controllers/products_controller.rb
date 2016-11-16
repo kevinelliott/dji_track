@@ -5,7 +5,7 @@ class ProductsController < ApplicationController
     @manufacturers  = Manufacturer.includes(:product_families, :products).order(common_name: :asc)
     @product_family = ProductFamily.where(id: params[:product_family].to_i).includes(:manufacturer, :products).first
     @products       = if @product_family.present?
-      @product_family.products.order(name: :asc)
+      @product_family.products.order(accessory: :desc, name: :asc)
     else
       Product.order(name: :asc)
     end
