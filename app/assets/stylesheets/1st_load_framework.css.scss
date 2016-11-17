@@ -3,10 +3,9 @@
 @import "bootstrap";
 
 // make all images responsive by default
-// img {
-//   @extend .img-fluid;
-//   margin: 0 auto;
-// }
+.article img {
+  @extend .rounded;
+}
 
 
 // THESE ARE EXAMPLES YOU CAN MODIFY
