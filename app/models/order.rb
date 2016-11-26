@@ -15,7 +15,7 @@ class Order < ApplicationRecord
   scope :with_order_id, -> { where('order_id IS NOT NULL AND order_id != ?', '') }
   scope :with_phone_tail, -> { where('phone_tail IS NOT NULL AND phone_tail != ?', '') }
 
-  validates :order_id, presence: true, length: { is: 12 }, if: Proc.new { |o| o.merchant.common_name == 'DJI' }
+  validates :order_id, presence: true, length: { in: [12, 13] }, if: Proc.new { |o| o.merchant.common_name == 'DJI' }
   validates :phone_tail, presence: true, length: { is: 4 }
 
   def default_order
