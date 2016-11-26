@@ -44,3 +44,8 @@
       .card-footer
         .text-muted
           It's free and public.
+
+.jumbotron.text-xs-center
+  %h2
+    Want a sticker or two?
+  = mail_to 'hello@dronehome.io', 'Say Hello', subject: 'Stickers', class: 'btn btn-lg btn-primary'
