@@ -127,6 +127,7 @@
         %thead.thead-inverse
           %tr
             %th Rank
+            %th Safe ID
             %th
               = sort_column :order_id, 'Order ID'
             %th
@@ -154,6 +155,8 @@
             %tr.order.order-clickable{ class: order.order_table_row_class, data: { toggle: 'modal', target: '#historyModal', remote: history_dji_track_order_path(order), masked_order_id: order.masked_order_id } }
               %td
                 = index+1
+              %td
+                = order.safe_id.upcase
               %td.text-xs-left{ class: !order.dji_lookup_success ? 'font-weight-bold' : '' }
                 = order.masked_order_id
               %td.text-xs-left

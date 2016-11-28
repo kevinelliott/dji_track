@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161116221641) do
+ActiveRecord::Schema.define(version: 20161128210739) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20161116221641) do
     t.boolean  "dji_lookup_success",           default: false,     null: false
     t.string   "dji_lookup_error_code"
     t.string   "dji_lookup_error_reason_code"
+    t.string   "safe_id",                                          null: false
     t.index ["delivered_at"], name: "index_orders_on_delivered_at", using: :btree
     t.index ["delivery_status"], name: "index_orders_on_delivery_status", using: :btree
     t.index ["dji_lookup_error_code"], name: "index_orders_on_dji_lookup_error_code", using: :btree
@@ -118,6 +119,7 @@ ActiveRecord::Schema.define(version: 20161116221641) do
     t.index ["owner_id"], name: "index_orders_on_owner_id", using: :btree
     t.index ["payment_status"], name: "index_orders_on_payment_status", using: :btree
     t.index ["product_id"], name: "index_orders_on_product_id", using: :btree
+    t.index ["safe_id"], name: "index_orders_on_safe_id", unique: true, using: :btree
     t.index ["shipping_city"], name: "index_orders_on_shipping_city", using: :btree
     t.index ["shipping_company"], name: "index_orders_on_shipping_company", using: :btree
     t.index ["shipping_country"], name: "index_orders_on_shipping_country", using: :btree

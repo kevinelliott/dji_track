@@ -6,11 +6,14 @@ class Order < ApplicationRecord
   belongs_to :product, optional: true
   belongs_to :owner, class_name: 'User', foreign_key: 'owner_id'
 
-  scope :canceled, -> { where(payment_status: 'canceled' ) }
-  scope :not_canceled, -> { where('payment_status != ?', 'canceled') }
-  scope :delivered, -> { where(delivery_status: 'delivered') }
-  scope :not_delivered, -> { where('delivery_status != ?', 'delivered') }
-  scope :shipped, -> { where('LOWER(shipping_status) = ?','shipped') }
+  scope :not_canceled, -> { where('LOWER(payment_status) != ?', 'canceled') }
+  scope :not_delivered, -> { where('LOWER(delivery_status) != ?', 'delivered') }
+  scope :not_shipped, -> { where('LOWER(shipping_status) != ?', 'shipped') }
+
+  scope :canceled, -> { where('LOWER(payment_status) = ?', 'canceled' ) }
+  scope :enroute, -> { where('LOWER(delivery_status) = ?', 'enroute')}
+  scope :delivered, -> { where('LOWER(delivery_status) = ?', 'delivered') }
+  scope :shipped, -> { where('LOWER(shipping_status) = ?', 'shipped') }
 
   scope :with_order_id, -> { where('order_id IS NOT NULL AND order_id != ?', '') }
   scope :with_phone_tail, -> { where('phone_tail IS NOT NULL AND phone_tail != ?', '') }
@@ -18,9 +21,27 @@ class Order < ApplicationRecord
   validates :order_id, presence: true, length: { in: 12..13 }, if: Proc.new { |o| o.merchant.common_name == 'DJI' }
   validates :phone_tail, presence: true, length: { is: 4 }
 
+  class << self
+
+    def generate_safe_id
+      source_chars = ('a'..'z').to_a + ('0'..'9').to_a
+      source_chars.shuffle[0,4].join
+    end
+
+    def unique_safe_id
+      while true
+        safe_id = generate_safe_id
+        return safe_id if Order.where(safe_id: safe_id).count == 0
+      end
+    end
+
+  end
+
   def default_order
+    # Set defaults
     self.last_changed_at  ||= Time.zone.now
     self.payment_status   ||= ''
+    self.safe_id          ||= Order.unique_safe_id
     self.shipping_company ||= ''
     self.shipping_country ||= ''
     self.shipping_status  ||= ''
