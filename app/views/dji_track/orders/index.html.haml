@@ -126,9 +126,11 @@
       %table.table.table-sm.table-striped.table-middle.table-responsive.table-hover
         %thead.thead-inverse
           %tr
-            %th Rank
-            %th Safe ID
-            %th
+            %th{ title: 'Rank for the current sort.' }
+              Rank
+            %th{ title: 'A unique DroneHome ID to reference the Order so that the true Order ID is not revealed' }
+              Safe ID
+            %th{ title: 'A masked Order ID so that the full Order ID is not revealed' }
               = sort_column :order_id, 'Order ID'
             %th
               = sort_column :dji_username, 'DJI Forum Username'
