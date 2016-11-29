@@ -28,7 +28,7 @@ class OrderInfoService
       tracking_page = DJI::OrderTracking.tracking_page
 
       # Store DJI state, set expiration, captcha image in database
-      request = order.validation_requests.create(...)
+      # request = order.validation_requests.create(...)
 
       request
     end
