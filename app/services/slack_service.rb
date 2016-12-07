@@ -70,8 +70,8 @@ class SlackService
         }
       when :enroute
         {
-          "text": "This order is enroute and should be delivered soon.",
-          "color": "#439FE0"
+          "text": "This order is en route and should be delivered soon.",
+          "color": "warning"
         }
       when :canceled
         nil
