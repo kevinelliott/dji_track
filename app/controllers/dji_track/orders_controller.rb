@@ -5,7 +5,7 @@ class DjiTrack::OrdersController < ApplicationController
   SORTABLE_COLUMNS = %w(order_id dji_username order_time shipping_country payment_status shipping_company shipping_status delivery_status last_changed_at updated_at)
   
   def index
-    @merchants = Merchant.active.order(created_at: :asc).includes(:orders)
+    @merchants = Merchant.active.order(created_at: :asc).includes(orders: [:merchant, :product])
     @merchant_orders = {}
     @merchants.each do |merchant|
       sort_column = SORTABLE_COLUMNS.include?(params[:sort_column]) ? params[:sort_column] : 'order_time'
