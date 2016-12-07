@@ -26,7 +26,8 @@ class NotificationService
       slack.chat_postMessage(
         channel: channel,
         text: message,
-        as_user: true
+        as_user: true,
+        mrkdwn: true
       )
     end
 
