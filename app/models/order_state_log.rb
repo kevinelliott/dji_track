@@ -9,19 +9,21 @@ class OrderStateLog < ApplicationRecord
         order.order_state_logs << OrderStateLog.new(column: column, from: from.try(:downcase), to: to.try(:downcase))
         order.save
 
-        notify_slack(order, column, from, to)
+        notify(order: order, column: column, from: from, to: to, destinations: [:slack])
       end
     end
 
-    def notify_slack(order, column, from, to)
-      if column == 'shipping_status' && to.present? && to.downcase == 'shipped'
-        message = "#{order.merchant.common_name}: Order #{order.masked_order_id} for #{order.product.name} on #{order.order_time.presence || 'an unknown Order Time'} to #{(order.shipping_country.presence || 'UNKNOWN').upcase} was just shipped."
 
-        slack = Slack::Web::Client.new
-        slack.chat_postMessage(
-          channel: '#mavic-shipping-status',
-          text: message,
-          as_user: true
+    def notify(options = {})
+      if options[:column] == 'shipping_status' && options[:to].present? && options[:to].downcase == 'shipped'
+        order   = options[:order]
+        message = "#{order.safe_id}: Order with #{order.merchant.common_name} of ID #{order.masked_order_id} for #{order.product.name} on #{order.order_time.presence || 'an unknown Order Time'} to #{(order.shipping_country.presence || 'an unknown country').upcase} was just shipped."
+
+        NotificationService.notify(
+          message: message,
+          destinations: [
+            { medium: :slack, channel: '#mavic-shipping-status' }
+          ]
         )
       end
     end
