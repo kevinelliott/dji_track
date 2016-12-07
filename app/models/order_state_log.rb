@@ -9,7 +9,7 @@ class OrderStateLog < ApplicationRecord
         order.order_state_logs << OrderStateLog.new(column: column, from: from.try(:downcase), to: to.try(:downcase))
         order.save
 
-        notify(order: order, column: column, from: from, to: to, destinations: [:slack])
+        notify(order: order, column: column, from: from, to: to)
       end
     end
 
@@ -17,7 +17,7 @@ class OrderStateLog < ApplicationRecord
     def notify(options = {})
       if options[:column] == 'shipping_status' && options[:to].present? && options[:to].downcase == 'shipped'
         order   = options[:order]
-        message = "#{order.safe_id}: Order with #{order.merchant.common_name} of ID #{order.masked_order_id} for #{order.product.name} on #{order.order_time.presence || 'an unknown Order Time'} to #{(order.shipping_country.presence || 'an unknown country').upcase} was just shipped."
+        message = "#{order.safe_id}: Order with **#{order.merchant.common_name}** of ID **#{order.masked_order_id}** for **#{order.product.name}** on #{order.order_time.presence || 'an unknown Order Time'} to **#{(order.shipping_country.presence || 'an unknown country').upcase}** was just shipped."
 
         NotificationService.notify(
           message: message,
