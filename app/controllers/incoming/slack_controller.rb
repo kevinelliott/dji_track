@@ -3,7 +3,7 @@ class Incoming::SlackController < ApplicationController
 
   def index
     channel  = "##{params[:channel_name]}"
-    incoming = params[:text].split(' ').[1..-1].join(' ')
+    incoming = params[:text].split(' ')[1..-1].join(' ')
     context, context_param, *command = incoming.split(' ')
 
     case context
