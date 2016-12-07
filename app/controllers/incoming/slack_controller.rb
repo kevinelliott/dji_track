@@ -16,7 +16,7 @@ class Incoming::SlackController < ApplicationController
         if order.present?
           case command
           when 'status'
-
+            SlackService.notify(type: :order_update, order: order, channel: channel)
           end
         else
           message = "There is no order for the Safe ID of '#{safe_id}'."
