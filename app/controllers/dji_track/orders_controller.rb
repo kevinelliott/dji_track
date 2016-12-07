@@ -12,7 +12,7 @@ class DjiTrack::OrdersController < ApplicationController
       sort_order  = %w(asc desc).include?(params[:sort_order]) ? params[:sort_order] : 'asc'
       sort        = "#{sort_column} #{sort_order.upcase}"
 
-      @merchant_orders[merchant.id] = merchant.orders.order(sort)
+      @merchant_orders[merchant.id] = merchant.orders.includes(:merchant, :product).order(sort)
     end
 
     @average_duration = begin
