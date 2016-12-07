@@ -4,7 +4,7 @@ class Incoming::SlackController < ApplicationController
   def index
     channel  = "##{params[:channel_name]}"
     incoming = params[:text].split(' ')[1..-1].join(' ')
-    context, context_param, *command = incoming.split(' ')
+    context, context_param, *command_and_arguments = incoming.split(' ')
 
     case context
     when 'order'
@@ -14,6 +14,8 @@ class Incoming::SlackController < ApplicationController
         order = Order.where(safe_id: safe_id.downcase)
 
         if order.present?
+          command, *arguments = command_and_arguments
+          
           case command
           when 'status'
             SlackService.notify(type: :order_update, order: order, channel: channel)
