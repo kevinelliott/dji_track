@@ -30,7 +30,7 @@ class SlackService
         },
         {
           "title": "Product",
-          "value": order.product.name,
+          "value": order.product.try(:name).presence || 'unknown',
           "short": true
         },
         {
