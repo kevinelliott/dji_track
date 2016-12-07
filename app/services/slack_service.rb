@@ -7,10 +7,7 @@ class SlackService
         {
           "fields": generate_fields(order)
     		},
-        {
-            "text": "This order has shipped.",
-            "color": "good"
-        }
+        generate_shipping_status(order)
       ]
     end
 
@@ -49,12 +46,41 @@ class SlackService
       ]
     end
 
+    def generate_shipping_status(order)
+      shipping_status = case.shipping_status.try(:downcase)
+      when 'shipped' then :shipped
+      when 'canceled' then :canceled
+      when 'pending', '', nil then :pending
+      else
+        :pending
+      end
+
+      case shipping_status
+      when :shipped
+        {
+          "text": "This order has shipped.",
+          "color": "good"
+        }
+      when :canceled
+        {
+          "text": "This order has been canceled.",
+          "color": "danger"
+        }
+      when :pending
+        {
+          "text": "This order has not yet shipped."
+        }
+      end
+    end
+
     def notify(options = {})
+      channel = options[:channel]
+
       case options[:type]
       when :order_update
-        SlackService.notify_order_update(channel: destination[:channel], order: options[:order])
+        SlackService.notify_order_update(channel: channel, order: options[:order])
       when :message
-        SlackService.notify_message(channel: destination[:channel], message: options[:message])
+        SlackService.notify_message(channel: channel, message: options[:message])
       else
         puts "SlackService: Unknown :type provided '#{options[:type]}'."
       end
