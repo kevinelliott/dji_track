@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :incoming do
+    post 'slack', to: 'slack#index'
+  end
+
   namespace :admin do
     resources :users
 
