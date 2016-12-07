@@ -47,7 +47,7 @@ class SlackService
     end
 
     def generate_shipping_status(order)
-      shipping_status = case shipping_status.try(:downcase)
+      shipping_status = case order.shipping_status.try(:downcase)
       when 'shipped' then :shipped
       when 'canceled' then :canceled
       when 'pending', '', nil then :pending
