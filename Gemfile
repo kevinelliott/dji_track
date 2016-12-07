@@ -34,6 +34,8 @@ gem 'bourbon'
 gem 'administrate'
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 
+gem 'newrelic_rpm'
+
 group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
