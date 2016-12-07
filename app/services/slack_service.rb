@@ -3,12 +3,18 @@ class SlackService
   class << self
 
     def generate_attachments(order)
-      [
+      attachments = [
         {
           "fields": generate_fields(order)
     		},
         generate_shipping_status(order)
       ]
+
+      if order.shipped?
+        attachments << generate_delivery_status(order)
+      end
+
+      attachments
     end
 
     def generate_fields(order)
@@ -44,6 +50,36 @@ class SlackService
           "short": true
         }
       ]
+    end
+
+    def generate_delivery_status(order)
+      delivery_status = case order.delivery_status.try(:downcase)
+      when 'delivered' then :delivered
+      when 'enroute' then :enroute
+      when 'canceled' then :canceled
+      when 'pending' then :pending
+      else
+        :pending
+      end
+
+      case delivery_status
+      when :delivered
+        {
+          "text": "This order has been delivered.",
+          "color": "good"
+        }
+      when :enroute
+        {
+          "text": "This order is enroute and should be delivered soon.",
+          "color": "#439FE0"
+        }
+      when :canceled
+        nil
+      when :pending
+        {
+          "text": "This order has not yet arrived."
+        }
+      end
     end
 
     def generate_shipping_status(order)

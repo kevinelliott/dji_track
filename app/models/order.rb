@@ -115,6 +115,10 @@ class Order < ApplicationRecord
     end
   end
 
+  def shipped?
+    shipping_status.try(:downcase) == 'shipped'
+  end
+
   def shipping_company_class
     valid_shipping_companies = %w[
       dhl fedex ups usps sagawa
