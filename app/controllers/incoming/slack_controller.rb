@@ -11,11 +11,11 @@ class Incoming::SlackController < ApplicationController
       safe_id = context_param
 
       if safe_id.present?
-        order = Order.where(safe_id: safe_id.downcase)
+        order = Order.where(safe_id: safe_id.downcase).first
 
         if order.present?
           command, *arguments = command_and_arguments
-          
+
           case command
           when 'status'
             SlackService.notify(type: :order_update, order: order, channel: channel)
