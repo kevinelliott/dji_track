@@ -35,7 +35,8 @@ class DjiTrack::OrdersController < ApplicationController
 
   def recent
     shipped = OrderStateLog.where('order_state_logs.column = ? AND LOWER(order_state_logs.to) = ?', 'shipping_status', 'shipped')
-    @order_state_logs = shipped.order(created_at: :desc).to_a.group_by_day(&:created_at)
+
+    @order_state_logs = shipped.includes(order: [:merchant, :product]).order(created_at: :desc).to_a.group_by_day(&:created_at)
 
     last_12_hours = shipped.where('order_state_logs.created_at >= ?', 12.hours.ago.in_time_zone('UTC')).count
     last_24_hours = shipped.where('order_state_logs.created_at >= ?', 24.hours.ago.in_time_zone('UTC')).count
