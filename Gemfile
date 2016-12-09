@@ -11,7 +11,7 @@ gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'bootstrap'
-gem 'haml-rails', require: false
+gem 'haml-rails'
 gem 'bourbon'
 
 gem 'devise'
