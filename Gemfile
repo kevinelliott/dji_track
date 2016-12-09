@@ -4,16 +4,18 @@ ruby '2.3.3'
 
 gem 'rails'
 
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
+gem 'sass-rails', '~> 5.0', require: false
+gem 'uglifier', '>= 1.3.0', require: false
+gem 'coffee-rails', '~> 4.2', require: false
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'bootstrap'
+gem 'haml-rails', require: false
+gem 'bourbon'
+
 gem 'devise'
 gem 'devise_invitable'
-gem 'haml-rails'
 gem 'high_voltage'
 gem 'pg'
 
@@ -22,19 +24,19 @@ gem 'dji'
 gem 'country_select'
 gem 'flag-icons-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
 gem 'sendgrid'
 gem 'font-awesome-rails'
 gem 'redcarpet'
 gem 'groupdate'
 gem 'chartkick'
-gem 'rollbar'
 gem 'video_info'
 gem 'slack-ruby-client'
-gem 'bourbon'
 gem 'administrate'
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 
 gem 'newrelic_rpm'
+gem 'rollbar'
 
 group :development do
   gem 'derailed'

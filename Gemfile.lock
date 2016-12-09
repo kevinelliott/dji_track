@@ -410,7 +410,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.4)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.1.1)
+    unicode-display_width (1.1.2)
     unicode_utils (1.4.0)
     video_info (2.6.1)
       iso8601 (~> 0.9)
@@ -438,7 +438,7 @@ DEPENDENCIES
   administrate
   better_errors
   binding_of_caller
-  bootstrap (~> 4.0.0.alpha5)
+  bootstrap
   bourbon
   byebug
   capybara
