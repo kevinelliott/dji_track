@@ -15,9 +15,11 @@ class OrderStateLog < ApplicationRecord
 
 
     def notify(options = {})
-      if options[:column] == 'shipping_status' && options[:to].present? && options[:to].downcase == 'shipped'
-        order   = options[:order]
-        # message = "_#{order.safe_id}_: Order with *#{order.merchant.common_name}* of ID *#{order.masked_order_id}* for *#{order.product.name}* on #{order.order_time.presence || 'an unknown Order Time'} to *#{(order.shipping_country.presence || 'an unknown country').upcase}* was just shipped."
+      if options[:column] == 'shipping_status' &&
+         options[:to].present? && 
+         options[:to].downcase == 'shipped'
+        
+        order = options[:order]
 
         NotificationService.notify(
           type: :order_update,

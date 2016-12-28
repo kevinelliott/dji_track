@@ -113,6 +113,8 @@ class SlackService
       channel = options[:channel]
 
       case options[:type]
+      when :order_status
+        SlackService.notify_order_status(channel: channel, order: options[:order])
       when :order_update
         SlackService.notify_order_update(channel: channel, order: options[:order])
       when :message
@@ -122,7 +124,7 @@ class SlackService
       end
     end
 
-    def notify_order_update(options = {})
+    def notify_order_status(options = {})
       slack   = Slack::Web::Client.new
       channel = options[:channel]
       order   = options[:order]
@@ -134,11 +136,18 @@ class SlackService
       puts "NotificationService: Posting order update notification to Slack."
       slack.chat_postMessage(
         channel: channel,
-        text: 'Order Update',
+        text: 'Order Status',
         attachments: attachments,
         as_user: true,
         mrkdwn: true
       )
+    end
+
+    def notify_order_update(options = {})
+      order   = options[:order]
+      channel = options[:channel]
+
+      message = "*#{order.safe_id}*: Order from *#{order.merchant.common_name}* of ID *#{order.masked_order_id.gsub("*", "X")}* for *#{order.product.name}* at #{order.order_time.presence || 'an unknown Order Time'} to *#{(order.shipping_country.presence || 'an unknown country').upcase}* was just shipped."
     end
 
     def notify_message(options = {})

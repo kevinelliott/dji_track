@@ -18,7 +18,7 @@ class Incoming::SlackController < ApplicationController
 
           case command
           when 'status'
-            SlackService.notify(type: :order_update, order: order, channel: channel)
+            SlackService.notify(type: :order_status, order: order, channel: channel)
           else
             message = "There is no order command called '#{command}'. Try: status"
             SlackService.notify_message(channel: channel, message: message)
