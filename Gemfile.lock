@@ -279,7 +279,7 @@ GEM
       interception (>= 0.5)
       pry
     public_suffix (2.0.4)
-    puma (3.6.2)
+    puma (3.11.2)
     rack (2.0.4)
     rack-test (0.6.3)
       rack (>= 1.0)
