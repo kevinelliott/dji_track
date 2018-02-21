@@ -232,9 +232,10 @@ GEM
     kaminari-core (1.1.1)
     launchy (2.4.3)
       addressable (~> 2.3)
-    listen (3.0.8)
+    listen (3.1.5)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     loofah (2.2.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -358,6 +359,7 @@ GEM
       ansi
       ast
     ruby-progressbar (1.8.1)
+    ruby_dep (1.5.0)
     ruby_parser (3.8.3)
       sexp_processor (~> 4.1)
     rubyzip (1.2.0)
@@ -477,7 +479,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   launchy
-  listen (~> 3.0.5)
+  listen (~> 3.1.5)
   newrelic_rpm
   pg
   pry-rails
