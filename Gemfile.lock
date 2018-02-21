@@ -315,7 +315,7 @@ GEM
     rake (11.3.0)
     rb-fchange (0.0.6)
       ffi
-    rb-fsevent (0.9.8)
+    rb-fsevent (0.10.2)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redcarpet (3.3.4)
