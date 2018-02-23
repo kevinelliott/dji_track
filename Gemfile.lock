@@ -1,9 +1,9 @@
 GIT
   remote: git://github.com/mbleigh/acts-as-taggable-on.git
-  revision: 8e64c3d4a81cfbb8af621228eae36a65c1f94501
+  revision: 38fefffc8f104455f87fdccd77841a2f550b16c6
   specs:
-    acts-as-taggable-on (4.0.0)
-      activerecord (>= 4.0)
+    acts-as-taggable-on (5.0.0)
+      activerecord (>= 4.2.8)
 
 GEM
   remote: https://rubygems.org/
