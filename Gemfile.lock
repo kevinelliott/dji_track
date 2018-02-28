@@ -109,7 +109,7 @@ GEM
       sort_alphabetical (~> 1.0)
     crass (1.0.3)
     daemons (1.2.4)
-    database_cleaner (1.5.3)
+    database_cleaner (1.6.2)
     datetime_picker_rails (0.0.7)
       momentjs-rails (>= 2.8.1)
     debug_inspector (0.0.3)
