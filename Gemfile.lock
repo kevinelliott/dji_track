@@ -131,9 +131,9 @@ GEM
       railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
-    devise_invitable (1.7.3)
-      actionmailer (>= 4.1.0)
-      devise (>= 4.0.0)
+    devise_invitable (2.0.0)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     diff-lcs (1.2.5)
     dji (0.7.4)
       activesupport
