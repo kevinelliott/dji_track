@@ -217,7 +217,7 @@ GEM
     interception (0.5)
     iso8601 (0.9.1)
     jaro_winkler (1.5.2)
-    jbuilder (2.7.0)
+    jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
     jquery-rails (4.3.3)
@@ -494,7 +494,7 @@ DEPENDENCIES
   high_voltage
   html2haml
   hub
-  jbuilder (~> 2.7)
+  jbuilder (~> 2.8)
   jquery-rails
   launchy
   listen (~> 3.1.5)
