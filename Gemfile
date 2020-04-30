@@ -25,7 +25,7 @@ gem 'country_select'
 gem 'flag-icons-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'sendgrid'
+gem 'sendgrid', '>= 1.2.4'
 gem 'font-awesome-rails'
 gem 'redcarpet'
 gem 'groupdate'
