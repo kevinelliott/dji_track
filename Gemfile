@@ -32,7 +32,7 @@ gem 'groupdate'
 gem 'chartkick'
 gem 'video_info'
 gem 'slack-ruby-client'
-gem 'administrate'
+gem 'administrate', '>= 0.11.0'
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 
 gem 'newrelic_rpm'
