@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.3'
 
-gem 'rails'
+gem 'rails', '>= 5.1.6.2'
 
 gem 'sass-rails', '~> 5.0', require: false
 gem 'uglifier', '>= 1.3.0', require: false
@@ -31,7 +31,7 @@ gem 'redcarpet'
 gem 'groupdate'
 gem 'chartkick'
 gem 'video_info'
-gem 'slack-ruby-client'
+gem 'slack-ruby-client', '>= 0.11.1'
 gem 'administrate'
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 
