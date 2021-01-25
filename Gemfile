@@ -9,7 +9,7 @@ gem 'uglifier', '>= 1.3.0', require: false
 gem 'coffee-rails', '~> 4.2', require: false
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.7'
+gem 'jbuilder', '~> 2.11'
 gem 'bootstrap'
 gem 'haml-rails'
 gem 'bourbon'
