@@ -73,7 +73,7 @@ end
 
 group :production do
   gem 'rails_12factor'
-  gem 'puma'
+  gem 'puma', '>= 4.3.8'
 end
 
 group :test do
