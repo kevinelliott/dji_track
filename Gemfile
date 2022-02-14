@@ -2,20 +2,20 @@ source 'https://rubygems.org'
 
 ruby '2.3.3'
 
-gem 'rails'
+gem 'rails', '>= 5.2.6.2'
 
-gem 'sass-rails', '~> 5.0', require: false
+gem 'sass-rails', '~> 5.0', '>= 5.0.7', require: false
 gem 'uglifier', '>= 1.3.0', require: false
-gem 'coffee-rails', '~> 4.2', require: false
-gem 'jquery-rails'
+gem 'coffee-rails', '~> 4.2', '>= 4.2.2', require: false
+gem 'jquery-rails', '>= 4.3.3'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
-gem 'bootstrap'
-gem 'haml-rails'
+gem 'bootstrap', '>= 4.3.1'
+gem 'haml-rails', '>= 1.0.0'
 gem 'bourbon'
 
-gem 'devise'
-gem 'devise_invitable'
+gem 'devise', '>= 4.6.1'
+gem 'devise_invitable', '>= 2.0.0'
 gem 'high_voltage'
 gem 'pg'
 
@@ -26,13 +26,13 @@ gem 'flag-icons-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'sendgrid'
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '>= 4.7.0.4'
 gem 'redcarpet'
 gem 'groupdate'
 gem 'chartkick'
 gem 'video_info'
 gem 'slack-ruby-client'
-gem 'administrate'
+gem 'administrate', '>= 0.11.0'
 gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 
 gem 'newrelic_rpm'
@@ -40,7 +40,7 @@ gem 'rollbar'
 
 group :development do
   gem 'derailed'
-  gem 'web-console'
+  gem 'web-console', '>= 3.7.0'
   gem 'listen', '~> 3.1.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -60,20 +60,20 @@ group :development do
 end
 
 group :development, :test do
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', '>= 2.7.1'
   gem 'byebug', platform: :mri
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '>= 4.9.0'
   gem 'faker'
   gem 'pry-rails'
   gem 'pry-rescue'
-  gem 'rspec-rails'
+  gem 'rspec-rails', '>= 3.5.2'
   gem 'rubocop'
   gem 'thin'
 end
 
 group :production do
   gem 'rails_12factor'
-  gem 'puma'
+  gem 'puma', '>= 4.3.11'
 end
 
 group :test do
