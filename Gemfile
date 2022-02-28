@@ -4,9 +4,9 @@ ruby '2.3.3'
 
 gem 'rails'
 
-gem 'sass-rails', '~> 5.0', require: false
+gem 'sass-rails', '~> 5.0', '>= 5.0.7', require: false
 gem 'uglifier', '>= 1.3.0', require: false
-gem 'coffee-rails', '~> 4.2', require: false
+gem 'coffee-rails', '~> 4.2', '>= 4.2.2', require: false
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
